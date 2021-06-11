@@ -18,13 +18,24 @@
 
 
     <title>TooL82</title>
+
+    <!-- junk -->
+
+    <link rel="stylesheet" href="/css/buts/default_shop.css">
+    <link rel="stylesheet" href="/css/buts/apms.css">
+    <%--<link rel="stylesheet" href="/css/buts/bootstrap.css" type="text/css" class="thema-mode">--%>
+    <link rel="stylesheet" href="/css/buts/magnific_popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/buts/buts.css" type="text/css" >
+    <link rel="stylesheet" href="/css/buts/widget.css">
+    <link rel="stylesheet" href="/css/buts/bagic.css">
 </head>
 <body>
-<div class="container">
+<div class="main">
     <tiles:insertAttribute name="header" />
 
+    <div class="container" style="margin-top: 150px">
     <tiles:insertAttribute name="main" />
-
+    </div>
     <tiles:insertAttribute name="footer" />
 </div>
 
