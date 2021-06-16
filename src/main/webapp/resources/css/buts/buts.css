@@ -403,7 +403,7 @@ input[type='password']:disabled {
     right: 0;
 }
 
-.title-wrap.border {
+.title-wrap-border {
     border-bottom: 2px solid #7e69fe;
 }
 
@@ -592,7 +592,7 @@ input[type='password']:disabled {
     text-align: right;
 }
 
-.button-align.border {
+.button-align-border {
     margin-top: 0;
     padding-top: 30px;
     border-top: 1px solid #333333;
@@ -1394,6 +1394,21 @@ a.header-login {
     line-height: 32px;
     border-radius: 17px;
     background-color: #7e69fe;
+}
+
+a.header-button {
+    position: relative;
+    display: inline-block;
+    width: 116px;
+    height: 34px;
+    margin-top: 35px;
+    font-size: 16px;
+    color: #7e69fe;
+    border: solid 1px #a89cf4;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 17px;
+    background-color: #FFFFFF;
 }
 
 .header-user {
@@ -2339,6 +2354,11 @@ a.header-login {
     right: 24px;
 }
 
+.item-row .item-quantity {
+    bottom: 10px;
+    right: 24px;
+}
+
 .item-row .item-price.large {
     font-size: 14px;
 }
@@ -2447,6 +2467,7 @@ a.header-login {
 .item-member {
     position: relative;
     display: inline-block;
+    float: right;
     width: 32px;
     height: 32px;
     margin-left: 8px;
@@ -3630,21 +3651,21 @@ a.header-login {
     border-radius: 10px;
 }
 
-.form-list.border {
+.form-list-border {
     border-top: 1px solid #333333;
 }
 
-.form-list.border li {
+.form-list-border li {
     min-height: auto;
     padding: 0;
     border-top: 1px solid #ececec;
 }
 
-.form-list.border li:first-child {
+.form-list-border li:first-child {
     border-top: 0;
 }
 
-.form-list.border select {
+.form-list-border select {
     position: relative;
     width: 350px;
     height: 32px;
@@ -3659,12 +3680,12 @@ a.header-login {
     outline: none;
 }
 
-.form-list.border select:focus {
+.form-list-border select:focus {
     border: solid 1px #7e69fe;
 }
 
-.form-list.border input[type='text'],
-.form-list.border input[type='password'] {
+.form-list-border input[type='text'],
+.form-list-border input[type='password'] {
     position: relative;
     height: 32px;
     margin-right: 0;
@@ -3675,42 +3696,42 @@ a.header-login {
     background-color: #f9f9f9;
 }
 
-.form-list.border .subject {
+.form-list-border .subject {
     position: relative;
     width: 120px;
     padding: 14px 0 13px 0;
     text-indent: -5px;
 }
 
-.form-list.border .contact {
+.form-list-border .contact {
     max-width: 460px;
     padding: 0 14px 18px 14px;
 }
 
-.form-list.border .email {
+.form-list-border .email {
     width: 344px;
 }
 
-.form-list.border .comment {
+.form-list-border .comment {
     width: 100%;
     margin-bottom: 10px;
 }
 
-.form-list.border .point {
+.form-list-border .point {
     width: 86px;
     margin: 0 2px 0 12px;
     text-align: right;
     vertical-align: top;
 }
 
-.form-list.border .all {
+.form-list-border .all {
     width: 70px;
     margin-top: 0;
     padding: 0;
     font-size: 13px;
 }
 
-.form-list.border-bottom {
+.form-list-border-bottom {
     padding-bottom: 10px;
     border-bottom: 1px solid #ececec;
 }

@@ -33,8 +33,8 @@
 <div class="main">
     <tiles:insertAttribute name="header" />
 
-    <div class="container" style="margin-top: 150px">
-    <tiles:insertAttribute name="main" />
+    <div class="container" style="margin-top: 150px; margin-bottom: 150px">
+        <tiles:insertAttribute name="main" />
     </div>
     <tiles:insertAttribute name="footer" />
 </div>

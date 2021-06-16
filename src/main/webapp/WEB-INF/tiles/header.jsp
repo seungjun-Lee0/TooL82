@@ -1,13 +1,13 @@
 <%@ page pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
     <!-- topper -->
     <div class="topper">
         <div class="width-container">
             <div class="topper-menu">
-                <a href="https://buts.co.kr/bbs/board.php?bo_table=event" class="v-bar">이벤트</a>
-                <a href="https://buts.co.kr/bbs/board.php?bo_table=notice">공지사항</a>
+                <a href="https://buts.co.kr/bbs/board.php?bo_table=event" class="v-bar">FAQ</a>
+                <a href="/notice/list">공지사항</a>
             </div>
         </div>
     </div>
@@ -16,30 +16,28 @@
     <div class="header">
         <div class="width-container">
             <div class="header-logo">
-                <a href="https://buts.co.kr"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/small-butslogo.png 2x" alt="" /></a>
+                <a href="/"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/small-butslogo.png 2x" alt="" /></a>
             </div>
             <div class="header-right">
-                <a href="https://buts.co.kr/bbs/login.php" class="header-login">로그인</a>
+                <a href="/seller/write" class="header-button">파티 만들기</a>
+                <a href="/member/login" class="header-login">로그인</a>
             </div>
         </div>
 
         <div class="header-menu pc">
             <ul>
                 <li class="menu-li off">
-                    <a id="movie" href="https://buts.co.kr/shop/list.php?ca_id=10" class="menu-a">
-                        <!-- 영상 -->
-                        영상									<span class="menu_new"></span>
-                    </a>
+                    <a id="movie" href="/video/list" class="menu-a">영상<span class="menu_new"></span></a>
                     <div class="sub-menu" style="display: none">
                         <div class="sub-width">
                             <div class="sub-tip">
                                 <span class="text-purple">영상</span> 인기 카테고리
-                                <a href="javascript:;" class="ttip">
+                                <a href="javascript:" class="ttip">
                                     <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/tip.png" alt="" />
                                     <span class="ttip-text" style="left: 0; width: 166px"> 많이 생성된 파티방 및 인기 검색어 기준으로 노출됩니다. </span>
                                 </a>
                             </div>
-                            <%--<ul>
+                            <ul>
                                 <li class="sub-li off">
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=1010" class="sub-a">
                                         #넷플릭스															</a>
@@ -73,24 +71,22 @@
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=1060" class="sub-a">
                                         기타(영상)															</a>
                                 </li>
-                            </ul>--%>
+                            </ul>
                         </div>
                     </div>
                 </li>
                 <li class="menu-li off">
-                    <a href="https://buts.co.kr/shop/list.php?ca_id=20" class="menu-a">
-                        <!-- 영상 -->
-                        도서/음악							</a>
+                    <a href="/music/list" class="menu-a">음악</a>
                     <div class="sub-menu" style="display: none">
                         <div class="sub-width">
                             <div class="sub-tip">
                                 <span class="text-purple">도서/음악</span> 인기 카테고리
-                                <a href="javascript:;" class="ttip">
+                                <a href="javascript:" class="ttip">
                                     <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/tip.png" alt="" />
                                     <span class="ttip-text" style="left: 0; width: 166px"> 많이 생성된 파티방 및 인기 검색어 기준으로 노출됩니다. </span>
                                 </a>
                             </div>
-                            <%--<ul>
+                            <ul>
                                 <li class="sub-li off">
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=2010" class="sub-a">
                                         #리디북스															</a>
@@ -119,24 +115,22 @@
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=2050" class="sub-a">
                                         기타(도서/음악)															</a>
                                 </li>
-                            </ul>--%>
+                            </ul>
                         </div>
                     </div>
                 </li>
                 <li class="menu-li off">
-                    <a href="https://buts.co.kr/shop/list.php?ca_id=30" class="menu-a">
-                        <!-- 영상 -->
-                        게임							</a>
+                    <a href="/game/list" class="menu-a">게임</a>
                     <div class="sub-menu" style="display: none">
                         <div class="sub-width">
                             <div class="sub-tip">
                                 <span class="text-purple">게임</span> 인기 카테고리
-                                <a href="javascript:;" class="ttip">
+                                <a href="javascript:" class="ttip">
                                     <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/tip.png" alt="" />
                                     <span class="ttip-text" style="left: 0; width: 166px"> 많이 생성된 파티방 및 인기 검색어 기준으로 노출됩니다. </span>
                                 </a>
                             </div>
-                            <%--<ul>
+                            <ul>
                                 <li class="sub-li off">
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=3010" class="sub-a">
                                         #닌텐도온라인															</a>
@@ -157,14 +151,13 @@
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=3020" class="sub-a">
                                         기타															</a>
                                 </li>
-                            </ul>--%>
+                            </ul>
                         </div>
                     </div>
                 </li>
+
                 <li class="menu-li off">
-                    <a href="https://buts.co.kr/shop/list.php?ca_id=60" class="menu-a">
-                        <!-- 영상 -->
-                        유틸							</a>
+                    <a href="/util/list" class="menu-a">유틸</a>
                     <div class="sub-menu" style="display: none">
                         <div class="sub-width">
                             <div class="sub-tip">
@@ -174,7 +167,7 @@
                                     <span class="ttip-text" style="left: 0; width: 166px"> 많이 생성된 파티방 및 인기 검색어 기준으로 노출됩니다. </span>
                                 </a>
                             </div>
-                            <%--<ul>
+                            <ul>
                                 <li class="sub-li off">
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=6010" class="sub-a">
                                         #MS Office															</a>
@@ -191,7 +184,7 @@
                                     <a href="https://buts.co.kr/shop/list.php?ca_id=6040" class="sub-a">
                                         기타															</a>
                                 </li>
-                            </ul>--%>
+                            </ul>
                         </div>
                     </div>
                 </li>
