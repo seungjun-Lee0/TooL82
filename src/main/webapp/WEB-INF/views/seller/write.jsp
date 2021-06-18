@@ -23,15 +23,15 @@
                 <div class="subject">ㆍ 모집인원</div>
                 <select name="it_stock_qty" id="it_stock_qty"class="width-100" value="">
                     <option value="0">총 인원수</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
+                    <option value="0">10</option>
+                    <option value="1">15</option>
+                    <option value="2">20</option>
+                    <option value="3">25</option>
+                    <option value="4">30</option>
+                    <option value="5">35</option>
+                    <option value="6">40</option>
+                    <option value="7">45</option>
+                    <option value="8">50</option>
                 </select>
                 명
             </li>
