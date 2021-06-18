@@ -6,7 +6,8 @@
     <div class="topper">
         <div class="width-container">
             <div class="topper-menu">
-                <a href="https://buts.co.kr/bbs/board.php?bo_table=event" class="v-bar">FAQ</a>
+                <a href="/register/regAgree" class="v-bar">회원가입</a>
+                <a href="/member/mypage" class="v-bar">마이페이지</a>
                 <a href="/notice/list">공지사항</a>
             </div>
         </div>
@@ -19,7 +20,7 @@
                 <a href="/"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/small-butslogo.png 2x" alt="" /></a>
             </div>
             <div class="header-right">
-                <a href="/seller/write" class="header-button">파티 만들기</a>
+                <a href="/seller/write" class="header-button">판매 등록</a>
                 <a href="/member/login" class="header-login">로그인</a>
             </div>
         </div>

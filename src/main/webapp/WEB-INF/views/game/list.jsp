@@ -4,10 +4,17 @@
 <div id="sct_hhtml" style="background-color:#242424;"></div>
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=jjKCQCf7iEQ" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/jjKCQCf7iEQ/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Q-RChtPvRao" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Q-RChtPvRao/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=OBN-XOR5xG4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/OBN-XOR5xG4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Kem4BZ0qQsU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Kem4BZ0qQsU/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=ZaSTQbfQuQg" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/ZaSTQbfQuQg/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=-kiZBSp87Qw" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/-kiZBSp87Qw/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=ULFAEnoc5jA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/ULFAEnoc5jA/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=UNch5YTXUc4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/UNch5YTXUc4/mqdefault.jpg" alt="" /></a>
+</div>
+
+<div class="text">
+    <span class="text" style="display:inline-block; width: 260px; text-align: center;">Guilty Gear Strive</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Sniper Ghost Warrior Contract 2</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Jurassic World Evolution CE</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">ANIMUS:Revenant</span>
 </div>
 
 <div class="title-wrap">
@@ -27,6 +34,9 @@
         </div>
         <div class="item-title">
             웨이브
+        </div>
+        <div>
+            <progress value="20" max="100" id="jb"></progress>
         </div>
         <div class="item-info">
             <div class="item-price"><span class="Rajdhani">20000</span>원</div>

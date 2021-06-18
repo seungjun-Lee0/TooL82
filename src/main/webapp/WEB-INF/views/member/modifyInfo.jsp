@@ -11,12 +11,12 @@
     <input type="hidden" name="mb_sex" value="">
 
     <div class="mw-800 form-signup mg-top-minus">
-        <div class="h3">아이디/비밀번호</div>
+        <div class="h3">비밀번호 수정</div>
         <div class="form-round signup">
             <ul class="form-list">
                 <li>
                     <span class="subject">ㆍ 아이디</span>
-                    <input type="text" name="mb_id" value="" id="reg_mb_id" required  placeholder="아이디" minlength="3" maxlength="20">
+                    <input type="text" name="mb_id" value="" id="reg_mb_id" required  placeholder="아이디" minlength="3" maxlength="20" readonly>
                     <span class="lightgrey inline-break">영문자, 숫자, _ 입력 가능, 최소 3글자 입력해주세요</span>
                 </li>
                 <li>
@@ -29,7 +29,7 @@
                 </li>
             </ul>
         </div>
-        <div class="h3"><span class="text-purple">내 정보</span> 입력</div>
+        <div class="h3"><span class="text-purple">내 정보</span> 수정</div>
         <div class="form-round signup">
             <ul class="form-list">
                 <li>

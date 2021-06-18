@@ -4,10 +4,16 @@
 <div id="sct_hhtml" style="background-color:#242424;"></div>
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=jjKCQCf7iEQ" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/jjKCQCf7iEQ/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Q-RChtPvRao" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Q-RChtPvRao/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=OBN-XOR5xG4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/OBN-XOR5xG4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Kem4BZ0qQsU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Kem4BZ0qQsU/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=PV11T75qIvU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/PV11T75qIvU/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=f9qsR_Y5Tg4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/f9qsR_Y5Tg4/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=dsshbgmYEqc" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/dsshbgmYEqc/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=XI2gnKVLqPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/XI2gnKVLqPk/mqdefault.jpg" alt="" /></a>
+</div>
+<div class="text">
+    <span class="text" style="display:inline-block; width: 260px; text-align: center;">rhino</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">AutoCAD</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">solidworks</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Xero</span>
 </div>
 
 <div class="title-wrap">
@@ -24,6 +30,9 @@
         </div>
         <div class="item-title">
             웨이브
+        </div>
+        <div>
+            <progress value="20" max="100" id="jb"></progress>
         </div>
         <div class="item-info">
             <div class="item-price"><span class="Rajdhani">20000</span>원</div>

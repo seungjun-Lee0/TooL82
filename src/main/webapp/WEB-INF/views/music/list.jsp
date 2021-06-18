@@ -4,12 +4,17 @@
 <div id="sct_hhtml" style="background-color:#242424;"></div>
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=jjKCQCf7iEQ" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/jjKCQCf7iEQ/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Q-RChtPvRao" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Q-RChtPvRao/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=OBN-XOR5xG4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/OBN-XOR5xG4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Kem4BZ0qQsU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Kem4BZ0qQsU/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=1gEhDajR9YM" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/1gEhDajR9YM/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=w-FB-5a0zXM" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/w-FB-5a0zXM/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=TLOJHfxXrn0" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/TLOJHfxXrn0/mqdefault.jpg" alt="" /></a>
+    <a href="https://www.youtube.com/watch?v=HgX5iboV9A4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/HgX5iboV9A4/mqdefault.jpg" alt="" /></a>
 </div>
-
+<div class="text">
+    <span class="text" style="display:inline-block; width: 260px; text-align: center;">Notion 6</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Sibelius First</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Cubase</span>
+    <span class="text" style="display:inline-block; margin-left: 17px; width: 260px; text-align: center;">Cakewalk Sonar</span>
+</div>
 <div class="title-wrap">
     <div class="title">
         <a href="./list.php?ca_id=10" class="text">음악</a>
@@ -24,6 +29,9 @@
         </div>
         <div class="item-title">
             웨이브
+        </div>
+        <div>
+            <progress value="20" max="100" id="jb"></progress>
         </div>
         <div class="item-info">
             <div class="item-price"><span class="Rajdhani">20000</span>원</div>

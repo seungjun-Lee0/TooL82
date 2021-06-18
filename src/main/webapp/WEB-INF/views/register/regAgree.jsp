@@ -438,7 +438,7 @@
     </div>
     <div class="button-align center">
         <a href="https://buts.co.kr/bbs/login.php" class="button">취소</a>
-        <button type="submit" class="button button-purple">회원가입</button>
+        <a href="/register/regForm"><button type="button" class="button button-purple">회원가입</button></a>
     </div>
 </form>
 </div>
