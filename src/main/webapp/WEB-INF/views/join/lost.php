@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta property="og:description" content="회원정보 찾기 > " />
+<meta property="og:description" content="회원정보 찾기" />
 
 <title>회원정보 찾기</title>
 
@@ -12,7 +12,7 @@
 	!important;position:absolute;top:0;left:0;margin:0
 	!important;padding:0 !important;font-size:0;line-height:0;border:0
 	 !important;overflow:hidden !important">
-	회원정보 찾기 > Buts	</h1>
+	회원정보 찾기 > 	</h1>
 <form>
 	<div class="mw-400 form-pd form-password">
 		<div class="form-title center"><span class="text-purple">아이디 / 패스워드</span> 찾기</div>
@@ -47,8 +47,7 @@ $(function() {
     var left = sw / 2 - cw / 2;
     moveTo(left, top);
 });
-</script>
-<!-- } 회원정보 찾기 끝 --></div>
+</script></div>
 
 
 </body>
