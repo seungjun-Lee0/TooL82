@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="util">
+
+    <select id = "selectUtil" statementType="PREPARED"
+            parameterType="int"
+            resultType="tool82.spring.mvc.vo.Product">
+        select pno, title, userid, oprice, sprice,
+               CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
+               party, cpartied,
+               CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
+               edate,
+               DATEDIFF(edate, current_date) leftd from pdetail
+        where category = 'u'
+        order by edate desc limit #{snum}, 8;
+    </select>
+
+    <select id="selectOne" statementType="PREPARED"
+            parameterType="String"
+            resultType="tool82.spring.mvc.vo.Product">
+        select pno, userid, category, title, party, cpartied, email, sdate, edate, oprice, sprice, contents, fnames,
+               CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
+               CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
+               DATEDIFF(edate, current_date) leftd
+        from pdetail
+        where pno = #{pno}
+          and category = 'u';
+    </select>
+
+    <select id="countUtil" statementType="PREPARED"
+            resultType="int">
+        select count(pno) cnt from pdetail
+        where category = 'u';
+    </select>
+
+
+</mapper>

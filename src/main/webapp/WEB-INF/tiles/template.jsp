@@ -15,7 +15,7 @@
     <script src="https://kit.fontawesome.com/dd1a91c868.js" crossorigin="anonymous"></script>
 
     <!-- user define CSS -->
-
+    <link rel="stylesheet" href="/css/personal/products.css">
 
     <title>TooL82</title>
 
@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="/css/buts/buts.css" type="text/css" >
     <link rel="stylesheet" href="/css/buts/widget.css">
     <link rel="stylesheet" href="/css/buts/bagic.css">
+
 </head>
 <body>
 <div class="main">
@@ -35,13 +36,17 @@
 
     <div class="container" style="margin-top: 150px; margin-bottom: 150px">
         <tiles:insertAttribute name="main" />
+        <a href="#" class="top" style="color: white">Top</a>
     </div>
+
     <tiles:insertAttribute name="footer" />
 </div>
 
 <!-- jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="/js/product.js"></script>
+<script src="/js/sale.js"></script>
 
 <!-- load js file -->
 

@@ -1,4 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:parseNumber var="cp" value="${param.cp}"/>
+<fmt:parseNumber var="sp" value="${(cp-1) / 10}" integerOnly="true"/>
+<%-- 정수로 나오기 위해 integerOnly --%>
+<fmt:parseNumber var="sp" value="${sp * 10 + 1}"/>
+<fmt:parseNumber var="ep" value="${sp +9}"/>
+
+<%-- 총 게시물 수를 페이지 당 게시물 수로 나눔 = 총 페이지 수 --%>
+<fmt:parseNumber var="tp" value="${mccnt / 8}" integerOnly="true"/>
+<c:if test="${ (mccnt % 8) > 0}">
+    <fmt:parseNumber var="tp" value="${tp + 1}"/>
+</c:if>
+
+<%-- 글번호 --%>
+<fmt:parseNumber var="snum" value="${mccnt - (cp - 1) * 30}"/>
+
+<%-- 페이지 링크: 검색 기능 x --%>
+<c:set var="pglink" value="/music/list?cp="/>
 
 
 <div id="sct_hhtml" style="background-color:#242424;"></div>
@@ -17,43 +38,77 @@
 </div>
 <div class="title-wrap">
     <div class="title">
-        <a href="./list.php?ca_id=10" class="text">음악</a>
+        <a href="/music/list" class="text">음악</a>
     </div>
 </div>
+
 <div class="item-list">
-
-    <div class="item-row">
-        <div class="item-type">
-            <span>WAVVE 프리미엄</span>
-            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
-        </div>
-        <div class="item-title">
-            웨이브
-        </div>
-        <div>
-            <progress value="20" max="100" id="jb"></progress>
-        </div>
-        <div class="item-info">
-            <div class="item-price"><span class="Rajdhani">20000</span>원</div>
-            <div class="item-quantity"><span class="Rajdhani">/ 50</span>명</div>
-
-            <div class="item-date">
-                21.07.10<span class="pc-inline">까지</span>(<strong>29</strong>일)
+    <div class="item-box">
+        <c:forEach var="mc" items="${mcs}">
+        <div class="item-row <c:if test="${mc.party eq mc.cpartied}">disabled</c:if>">
+            <div class="item-type">
+                <span>${mc.title}</span>
+                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
             </div>
+            <div class="item-title">
+                    ${fn:substring(mc.userid,0,3)}***
+            </div>
+            <div>
+                <c:if test="${mc.party eq mc.cpartied}">
+                    <div class="detail-sale-badge">
+                        <span>
+                            인원 모집 완료! 새로운 공구를 기다려주세요!
+                        </span>
+                    </div>
+                </c:if>
+                <c:if test="${mc.party ne mc.cpartied}">
+                    <progress value="${mc.partyrt}" max="100" id="jb"></progress>
+                </c:if>
+            </div>
+            <div class="item-info">
+                <div class="item-price">
+                    <del>${mc.oprice}원</del>
+                    <span class="Rajdhani">${mc.sprice}</span>원
+                    <span class="sale-badge">${mc.pricert}% 할인</span>
+                </div>
+                <div class="item-quantity">
+
+                    <span class="Rajdhani">
+                        <c:if test="${mc.party ne mc.cpartied}">
+                            ${mc.cpartied} / ${mc.party}</span>명
+                        </c:if>
+
+                </div>
+                <div class="item-date">
+                        ${mc.edate}<span class="pc-inline">까지</span>
+                        <c:if test="${mc.party ne mc.cpartied}">
+                            (<strong>${mc.leftd}</strong>일)
+                        </c:if>
+                </div>
+            </div>
+            <c:if test="${mc.party ne mc.cpartied}">
+                <a href="/music/detail?pno=${mc.pno}" class="item-button"></a>
+            </c:if>
         </div>
-        <a href="/music/detail" class="item-button"></a>
+    </c:forEach>
     </div>
-
-</div>
-<div id="item_list-nav" class="item-nav"><a href="https://buts.co.kr/skin/apms/list/Miso-Basic4/list.rows.php?lt=Buts&amp;ls=Miso-Basic4&amp;ca_id=10&amp;npg=0&amp;page=2"></a></div>
-<div class="item-more">
-    <a href="#" title="더보기">
-        더보기
-        <span class="color">
-					<span class="sound_only">더보기</span>
-				</span>
-    </a>
+    <div class="next-item" style="text-align: center">
+        <span type="button" id="tryit">더보기</span>
+    </div>
 </div>
 
-<div class="button-align right">
+<div class="apages">
+    <c:forEach var="i" begin="${sp}" end="${tp}" step="1">
+        <%--					표시된 페이지 i가 총페이지수보다 작거나 같을 동안만 출력--%>
+        <c:if test="${i le tp}">
+            <input type="hidden" id="page" class="page" value="${i+1}"/>
+        </c:if>
+        <c:if test="${i eq tp}">
+            <input type="hidden" id="epage" class="epage" value="${i}"/>
+        </c:if>
+    </c:forEach>
+    <input type="hidden" id="cpage" value="2">
+    <input type="hidden" id="spage" class="spage" value="${sp}"/>
+    <input type="hidden" id="plink" class="plink" value="${pglink}"/>
+    <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
 </div>
