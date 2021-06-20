@@ -3,4 +3,28 @@
 <mapper namespace="member">
 
 
+        <insert id="insertMember" statementType="PREPARED"
+                parameterType="tool82.spring.project.vo.Member">
+            insert into joinMember
+                (name, userid, passwd, email)
+            values (#{name}, #{userid}, #{passwd}, #{email});
+        </insert>
+
+
+        <select id="checkUserid" statementType="PREPARED"
+                parameterType="String" resultType="int">
+            select count(userid) cnt from joinMember
+            where userid = #{userid}
+        </select>
+
+        <select id="checkLogin" statementType="PREPARED"
+                parameterType="tool82.spring.project.vo.Member"
+                resultType="int">
+            select count(userid) cnt from joinMember
+            where userid = #{userid} and passwd = #{passwd}
+        </select>
+
+
+
+
 </mapper>

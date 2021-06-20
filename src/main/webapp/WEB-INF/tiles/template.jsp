@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/dd1a91c868.js" crossorigin="anonymous"></script>
 
     <!-- user define CSS -->
+    <link rel="stylesheet" href="../../../resources/css/join.css" type="text/css" >
 
 
     <title>TooL82</title>
