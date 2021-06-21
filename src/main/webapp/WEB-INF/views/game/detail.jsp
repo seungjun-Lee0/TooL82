@@ -1,8 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="title-wrap title-wrap-border">
     <div class="title">
-        <a href="./list.php?ca_id=10" class="text">영상</a>
+        <a href="./game/list" class="text">게임</a>
     </div>
 </div>
 
@@ -10,28 +13,49 @@
     <div class="symbol">
         <img src="https://buts.co.kr/thema/Buts/colorset/category/1010.jpg" alt="" />
     </div>
-    <div class="subject" id="title" name="title">제목️</div>
+    <div class="subject" id="title" name="title">${gm.title}️</div>
 </div>
 
 <div class="item-view-row">
 	<span class="picture">
 		<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt="" />
 	</span>
-    <span id="userid" name="userid">로얄넷플릭스</span>
-    <span class="right pc-block">판매글 번호 : <span class="lightgrey">1623659333</span></span>
+    <span id="userid" name="userid">${fn:substring(gm.userid,0,3)}***</span>
+<%--    <span class="right pc-block">판매글 번호 : <span class="lightgrey">1623659333</span></span>--%>
+</div>
+
+<div class="item-view-row">
+    <div class="bar-wrap">
+        <div class="bar-percentage" data-percentage="${gm.partyrt+1}"></div>
+        <div class="bar-container">
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <br>
 </div>
 
 <div class="item-view-row">
 		<span > 종료일 :
-		<span class="fw300" id="enddate">
-			2022.05.11
-        </span>
-		<span class="lightgrey">
-		    (331일)
-        </span>
-	</span>
+            <span class="fw300" id="enddate">
+                ${gm.edate}
+            </span>
+            <span class="lightgrey">
+                (${gm.leftd}일)
+            </span>
+	    </span>
 
-    <span class="v-bar left">판매가 : <span class="price Rajdhani text-purple">33,100</span><span class="lightgrey"> 원</span></span>
+    <span class="v-bar left">판매가 :
+        <span class="sale-price">${gm.oprice}</span>
+        <span class="price Rajdhani text-purple">${gm.sprice}</span>
+        <span class="lightgrey"> 원</span></span>
+        <span class="detail-sale-badge">${gm.pricert}% 할인</span>
+
+    <span class="v-bar left"> 남은 인원 :
+            <span class="fw300" id="party">
+                ${gm.party - gm.cpartied}
+            </span>명
+    </span>
 </div>
 
 <div class="empty" id="detailimg">
@@ -40,7 +64,7 @@
 
 <div class="item-view-caution">
     <div class="text" id="contents">
-        상세 내용 입력
+        ${gm.contents}
     </div>
 </div>
 
@@ -69,10 +93,13 @@
     </div>
 
     <div class="button-align center">
-        <a href="/video/list" class="button large">목록</a>
+        <a href="/game/list" class="button large">목록</a>
 
-        <button type="submit" onclick="document.pressed=this.value;" class="button large button-purple" id="buyreqbtn">구매신청</button>
+        <button type="button" class="button large button-purple" id="buyreqbtn">구매신청</button>
     </div>
+
+
+
 
 </form>
 
