@@ -44,18 +44,22 @@ $( document ).ready( function() {
 // next page
 
 $(document).on("click","#tryit", function (){
-    const fullContent = document.querySelector('.item-box');
-    var btn = document.createElement("button");
-    btn.setAttribute("id","tryit2")
+    /*const fullContent = document.querySelector('.item-box');
+    var btn = document.createElement("button");*/
+
+    /*btn.setAttribute("id","tryit2")
     var t = document.createTextNode("더보기");
     btn.appendChild(t);
     fullContent.appendChild(btn);
-    $('#tryit').remove();
+    $('#tryit').remove();*/
     madeBox();
+    console.log($('#epage').val());
+    console.log($('#cpage').val());
+    console.log($('#tpage').val());
 });
 
 
-$(document).on("click","#tryit2", function (){
+/*$(document).on("click","#tryit2", function (){
     const fullContent = document.querySelector('.item-box');
     var btn = document.createElement("button");
     btn.setAttribute("id","tryit")
@@ -64,10 +68,10 @@ $(document).on("click","#tryit2", function (){
     fullContent.appendChild(btn);
     $('#tryit2').remove();
     madeBox();
-});
+});*/
 
 function madeBox() { // 만약 버튼을 클릭했다면
-    const fullContent = document.querySelector('.container');
+    const fullContent = document.querySelector('.item-list');
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === xhr.DONE) {
@@ -90,8 +94,8 @@ function madeBox() { // 만약 버튼을 클릭했다면
     number++
     $('#cpage').val(number);
 
-    if ( $('#epage').val() === $('#tpage').val() ) {
-        alert('마지막 페이지에 도달했습니다!')
+    if ( $('#cpage').val() > $('#tpage').val() + 1 ) {
+        $('#tryit').hide();
     }
 
 }

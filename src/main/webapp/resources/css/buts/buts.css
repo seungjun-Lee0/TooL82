@@ -422,6 +422,12 @@ input[type='password']:disabled {
     color: #333333;
 }
 
+.title .title-text {
+    display: inline-block;
+    font-size: 15px;
+    color: #333333;
+}
+
 .title .button {
     margin-left: 15px;
     vertical-align: top;
@@ -2631,6 +2637,19 @@ a.header-button {
 }
 
 .item-more a {
+    display: block;
+    width: 80px;
+    height: 40px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    background-color: #7e69fe;
+    border-radius: 5px;
+}
+
+.item-more button {
     display: block;
     width: 80px;
     height: 40px;
@@ -6007,3 +6026,11 @@ a.header-button {
     }
 }
 /*# sourceMappingURL=buts.css.map */
+
+.join-ended {
+    display: inline-block;
+    width: 479.76px;
+    height: 40px;
+    text-align: center;
+    padding: 15px;
+}

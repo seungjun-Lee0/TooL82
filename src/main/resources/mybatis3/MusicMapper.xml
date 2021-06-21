@@ -12,7 +12,7 @@
                edate,
                DATEDIFF(edate, current_date) leftd from pdetail
         where category = 'm'
-        order by edate desc limit #{snum}, 8;
+        order by pno desc limit #{snum}, 8;
     </select>
 
     <select id="selectOne" statementType="PREPARED"

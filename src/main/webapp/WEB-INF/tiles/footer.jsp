@@ -4,8 +4,8 @@
 <div class="footer">
     <div class="width-container">
         <div class="padding-left">
-            <div class="footer-logo">
-                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo-glay.png" alt="" />
+            <div class="footer-logo" style="margin-top: -35px">
+                <img src="/banner/tool82_logo_grey.jpeg" height="97" width="100" alt="footer_logo" />
             </div>
             <span>Copyright © 2021 TooL82 Inc. All rights reserved.</span>
         </div>

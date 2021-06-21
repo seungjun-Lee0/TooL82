@@ -21,7 +21,7 @@
 		<img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt="" />
 	</span>
     <span id="userid" name="userid">${fn:substring(vd.userid,0,3)}***</span>
-    <%--    <span class="right pc-block">판매글 번호 : <span class="lightgrey">1623659333</span></span>--%>
+    <span class="right pc-block">판매글 번호 : <span class="lightgrey">${vd.pno}</span></span>
 </div>
 
 <div class="item-view-row">

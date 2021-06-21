@@ -16,8 +16,8 @@
     <!-- header -->
     <div class="header">
         <div class="width-container">
-            <div class="header-logo">
-                <a href="/"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/small-butslogo.png 2x" alt="" /></a>
+            <div class="header-logo" style="margin-top: -35px;">
+                <a href="/"><img src="/banner/tool82_logo.jpeg" height="90" width="100" alt="logo"/></a>
             </div>
             <div class="header-right">
                 <a href="/seller/write" class="header-button">판매 등록</a>

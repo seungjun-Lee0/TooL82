@@ -23,6 +23,7 @@
     line-height: 2px;
     padding: 6px 8px;
     text-transform: capitalize;
+    height: 40px;
 }
 
 
@@ -70,10 +71,3 @@ a.top {
     border-radius: 10px 10px 10px 10px;
 }
 
-
-#tryit {
-    color: ghostwhite;
-    background-color: #7e69fe;
-    border-radius: 10px 10px 10px 10px;
-    padding: 10px;
-}

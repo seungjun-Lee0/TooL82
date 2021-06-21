@@ -45,7 +45,6 @@
 </div>
 
 <div class="item-list">
-    <div class="item-box">
         <c:forEach var="vd" items="${vds}">
             <div class="item-row <c:if test="${vd.party eq vd.cpartied}">disabled</c:if>">
                 <div class="item-type">
@@ -58,7 +57,7 @@
                 <div>
                     <c:if test="${vd.party eq vd.cpartied}">
                         <div class="detail-sale-badge">
-                            <span>
+                            <span class="join-ended">
                                 인원 모집 완료! 새로운 공구를 기다려주세요!
                             </span>
                         </div>
@@ -93,10 +92,11 @@
                 </c:if>
             </div>
         </c:forEach>
-    </div>
-    <div class="next-item" style="text-align: center">
-        <span type="button" id="tryit">더보기</span>
-    </div>
+</div>
+<div class="item-more">
+    <button id="tryit" title="더보기">
+        더보기
+    </button>
 </div>
 
 <div class="apages">
@@ -109,7 +109,7 @@
             <input type="hidden" id="epage" class="epage" value="${i}"/>
         </c:if>
     </c:forEach>
-    <input type="hidden" id="cpage" value="2">
+    <input type="hidden" id="cpage" value="1">
     <input type="hidden" id="spage" class="spage" value="${sp}"/>
     <input type="hidden" id="plink" class="plink" value="${pglink}"/>
     <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
