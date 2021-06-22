@@ -57,8 +57,8 @@
             <div>
                 <c:if test="${ut.party eq ut.cpartied}">
                     <div class="detail-sale-badge">
-                        <span>
-                            인원 모집 완료! 새로운 공구를 기다려주세요!
+                        <span class="join-ended">
+                                인원 모집 완료! 새로운 공구를 기다려주세요!
                         </span>
                     </div>
                 </c:if>
@@ -93,8 +93,13 @@
         </div>
     </c:forEach>
     </div>
+</div>
+
+<div class="next-page">
     <div class="next-item" style="text-align: center">
-        <span type="button" id="tryit">더보기</span>
+        <c:if test="${tp ne 1}">
+            <span type="button" class="page-button" id="tryit">더보기</span>
+        </c:if>
     </div>
 </div>
 
