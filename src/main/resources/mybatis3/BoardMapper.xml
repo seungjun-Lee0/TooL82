@@ -2,4 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
+    <insert id="insertNotice" statementType="PREPARED" parameterType="tool82.spring.project.vo.Notice">
+        insert into notice (title, contents) values (#{title}, #{contents})
+    </insert>
+
+    <select id="selectNotice" statementType="PREPARED" parameterType="int" resultType="tool82.spring.project.vo.Notice">
+        select bno, title, regdate, views from notice order by bno desc limit #{snum}, 10
+    </select>
+
+    <select id="findSelect" statementType="PREPARED" parameterType="map" resultType="tool82.spring.project.vo.Notice">
+        select bno, title, regdate, views from notice
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat('%',#{fkey}, '%')
+        </if>
+        <if test="ftype == 'titcont'">
+            where title like concat('%',#{fkey}, '%') or contents like concat(#{fkey}, '%')
+        </if>
+        order by bno desc limit #{snum}, 10
+    </select>
+
+    <select id="selectOne" statementType="PREPARED" parameterType="String" resultType="tool82.spring.project.vo.Notice">
+        select * from notice where bno = #{bno}
+    </select>
+
+    <select id="countNotice" statementType="PREPARED" resultType="int">
+        select count(bno) cnt from notice
+    </select>
+
+    <select id="findSelectCount" statementType="PREPARED" parameterType="map" resultType="int">
+        select count(bno) cnt from notice
+        <if test="ftype != 'titcont'">
+            where ${ftype} like concat('%', #{fkey}, '%')
+        </if>
+        <if test="ftype == 'titcont'">
+            where title like concat('%', #{fkey}, '%') or contents like concat(#{fkey}, '%')
+        </if>
+    </select>
+
+    <update id="viewNotice" statementType="PREPARED" parameterType="String">
+        update notice set views = views + 1 where bno = #{bno}
+    </update>
+
+    <select id="selectPrev" statementType="PREPARED" parameterType="String" resultType="String">
+        select prev from (select bno, lead(bno) over (order by bno desc) prev from notice) newone where bno = #{bno}
+    </select>
+
+    <select id="selectNext" statementType="PREPARED" parameterType="String" resultType="String">
+        select next from (select bno, lag(bno) over (order by bno desc) next from notice) newone where bno = #{bno}
+    </select>
+
+
+
 </mapper>

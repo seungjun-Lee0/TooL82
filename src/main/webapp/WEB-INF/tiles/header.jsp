@@ -8,7 +8,7 @@
             <div class="topper-menu">
                 <a href="/register/regAgree" class="v-bar">회원가입</a>
                 <a href="/member/mypage" class="v-bar">마이페이지</a>
-                <a href="/notice/list">공지사항</a>
+                <a href="/notice/list?cp=1">공지사항</a>
             </div>
         </div>
     </div>
