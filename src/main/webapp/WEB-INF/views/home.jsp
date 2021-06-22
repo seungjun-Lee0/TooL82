@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <style>
     .cologo li {
@@ -18,90 +23,65 @@
     <a href="" class="slide-navi next"></a>
     <div class="item-boundary">
         <div class="item-list">
-            <div class="item-row">
-                <div class="item-type">
-                    <span>WAVVE 프리미엄</span>
-                    <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
-                </div>
-                <div class="item-title">
-                    웨이브
-                </div>
-                <div>
-                    <progress value="20" max="100" id="jb"></progress>
-                </div>
-                <div class="item-info">
-                    <div class="item-price"><span class="Rajdhani">20000</span>원</div>
-                    <div class="item-quantity"><span class="Rajdhani">/ 50</span>명</div>
+                <c:forEach var="hm" items="${hms}">
+                    <c:if test="${hm.category eq 'm'}">
+                        <c:set var="category" value="music" />
+                    </c:if>
+                    <c:if test="${hm.category eq 'v'}">
+                        <c:set var="category" value="video" />
+                    </c:if>
+                    <c:if test="${hm.category eq 'u'}">
+                        <c:set var="category" value="util" />
+                    </c:if>
+                    <c:if test="${hm.category eq 'g'}">
+                        <c:set var="category" value="game" />
+                    </c:if>
+                    <div class="item-row <c:if test="${hm.party eq hm.cpartied}">disabled</c:if>">
+                        <div class="item-type">
+                            <span>${hm.title}</span>
+                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
+                        </div>
+                        <div class="item-title">
+                                ${fn:substring(hm.userid,0,3)}***
+                        </div>
+                        <div>
+                            <c:if test="${hm.party eq hm.cpartied}">
+                                <div class="detail-sale-badge">
+                        <span class="join-ended">
+                            인원 모집 완료! 새로운 공구를 기다려주세요!
+                        </span>
+                                </div>
+                            </c:if>
+                            <c:if test="${hm.party ne hm.cpartied}">
+                                <progress value="${hm.partyrt}" max="100" id="jb"></progress>
+                            </c:if>
+                        </div>
+                        <div class="item-info">
+                            <div class="item-price">
+                                <del>${hm.oprice}원</del>
+                                <span class="Rajdhani">${hm.sprice}</span>원
+                                <span class="sale-badge">${hm.pricert}% 할인</span>
+                            </div>
+                            <div class="item-quantity">
 
-                    <div class="item-date">
-                        21.07.10<span class="pc-inline">까지</span>(<strong>29</strong>일)
-                    </div>
-                </div>
-                <a href="/game/detail" class="item-button"></a>
-            </div>
-            <div class="item-row">
-                <div class="item-type">
-                    <span>WAVVE 프리미엄</span>
-                    <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
-                </div>
-                <div class="item-title">
-                    웨이브
-                </div>
-                <div>
-                    <progress value="20" max="100" id="jb"></progress>
-                </div>
-                <div class="item-info">
-                    <div class="item-price"><span class="Rajdhani">20000</span>원</div>
-                    <div class="item-quantity"><span class="Rajdhani">/ 50</span>명</div>
+                    <span class="Rajdhani">
+                        <c:if test="${hm.party ne hm.cpartied}">
+                            ${hm.cpartied} / ${hm.party}</span>명
+                                </c:if>
 
-                    <div class="item-date">
-                        21.07.10<span class="pc-inline">까지</span>(<strong>29</strong>일)
+                            </div>
+                            <div class="item-date">
+                                    ${hm.edate}<span class="pc-inline">까지</span>
+                                <c:if test="${hm.party ne hm.cpartied}">
+                                    (<strong>${hm.leftd}</strong>일)
+                                </c:if>
+                            </div>
+                        </div>
+                        <c:if test="${hm.party ne hm.cpartied}">
+                            <a href="/${category}/detail?pno=${hm.pno}" class="item-button"></a>
+                        </c:if>
                     </div>
-                </div>
-                <a href="/game/detail" class="item-button"></a>
-            </div>
-            <div class="item-row">
-                <div class="item-type">
-                    <span>WAVVE 프리미엄</span>
-                    <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
-                </div>
-                <div class="item-title">
-                    웨이브
-                </div>
-                <div>
-                    <progress value="20" max="100" id="jb"></progress>
-                </div>
-                <div class="item-info">
-                    <div class="item-price"><span class="Rajdhani">20000</span>원</div>
-                    <div class="item-quantity"><span class="Rajdhani">/ 50</span>명</div>
-
-                    <div class="item-date">
-                        21.07.10<span class="pc-inline">까지</span>(<strong>29</strong>일)
-                    </div>
-                </div>
-                <a href="/game/detail" class="item-button"></a>
-            </div>
-            <div class="item-row">
-                <div class="item-type">
-                    <span>WAVVE 프리미엄</span>
-                    <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
-                </div>
-                <div class="item-title">
-                    웨이브
-                </div>
-                <div>
-                    <progress value="20" max="100" id="jb"></progress>
-                </div>
-                <div class="item-info">
-                    <div class="item-price"><span class="Rajdhani">20000</span>원</div>
-                    <div class="item-quantity"><span class="Rajdhani">/ 50</span>명</div>
-
-                    <div class="item-date">
-                        21.07.10<span class="pc-inline">까지</span>(<strong>29</strong>일)
-                    </div>
-                </div>
-                <a href="/game/detail" class="item-button"></a>
-            </div>
+                </c:forEach>
         </div>
     </div>
 </div>
@@ -137,66 +117,24 @@
         <tr>
             <th class="pc-table">번호</th>
             <th>제목</th>
-            <th>등록일</th>
+            <th style="width: 100px">등록일</th>
             <th class="pc-table">조회</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="active">
-            <td class="pc-table" style="width: 10%">1</td>
-            <td>
-                <div class="subject notice">
-                    <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                </div>
-            </td>
-            <td>2020.12.11</td>
-            <td class="pc-table" style="width: 10%">2111</td>
-        </tr>
-        <tr class="active">
-            <td class="pc-table" style="width: 10%">1</td>
-            <td>
-                <div class="subject notice">
-                    <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                </div>
-            </td>
-            <td>2020.12.11</td>
-            <td class="pc-table" style="width: 10%">2111</td>
-        </tr>
-        <tr class="active">
-            <td class="pc-table" style="width: 10%">1</td>
-            <td>
-                <div class="subject notice">
-                    <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                </div>
-            </td>
-            <td>2020.12.11</td>
-            <td class="pc-table" style="width: 10%">2111</td>
-        </tr>
-        <tr class="active">
-            <td class="pc-table" style="width: 10%">1</td>
-            <td>
-                <div class="subject notice">
-                    <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                </div>
-            </td>
-            <td>2020.12.11</td>
-            <td class="pc-table" style="width: 10%">2111</td>
-        </tr>
-        <tr class="active">
-            <td class="pc-table" style="width: 10%">1</td>
-            <td>
-                <div class="subject notice">
-                    <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                        무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                </div>
-            </td>
-            <td>2020.12.11</td>
-            <td class="pc-table" style="width: 10%">2111</td>
-        </tr>
+        <c:forEach var="hmn" items="${hmns}">
+            <tr class="">
+                <td class="pc-table" style="width: 10%">${hmn.bno}</td>
+                <td>
+                    <div class="subject">
+                        <a href="/notice/detail?bno=${hmn.bno}">
+                                ${hmn.title}																													</a>
+                    </div>
+                </td>
+                <td>${fn:substring(hmn.regdate,0,10)}</td>
+                <td class="pc-table" style="width: 10%">${hmn.views}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>

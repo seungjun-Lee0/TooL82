@@ -50,17 +50,6 @@
     </div>
 </div>
 
-<%--<form name="fboardlist" id="fboardlist" action="./board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post" role="form" class="form">--%>
-<%--    <input type="hidden" name="bo_table" value="notice">--%>
-<%--    <input type="hidden" name="sfl" value="">--%>
-<%--    <input type="hidden" name="stx" value="">--%>
-<%--    <input type="hidden" name="spt" value="">--%>
-<%--    <input type="hidden" name="sca" value="">--%>
-<%--    <input type="hidden" name="sst" value="wr_num, wr_reply">--%>
-<%--    <input type="hidden" name="sod" value="">--%>
-<%--    <input type="hidden" name="page" value="1">--%>
-<%--    <input type="hidden" name="sw" value="">--%>
-
     <div class="table-list list-wrap">
         <table>
             <thead>
@@ -72,17 +61,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="active">
-                <td class="pc-table" style="width: 10%">공지</td>
-                <td>
-                    <div class="subject notice">
-                        <a href="https://buts.co.kr/bbs/board.php?bo_table=notice&amp;wr_id=30">
-                            [공지] 무료 계정 및 무료로 배포되는 이용권을 이용한 파티 모집 제한												<span class="wr-icon wr-hot"></span>																	</a>
-                    </div>
-                </td>
-                <td>2020.12.11</td>
-                <td class="pc-table" style="width: 10%">211</td>
-            </tr>
 
             <c:forEach var="n" items="${ns}">
             <tr class="">

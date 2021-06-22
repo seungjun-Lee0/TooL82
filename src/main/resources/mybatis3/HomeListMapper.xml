@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home">
+
+    <select id = "selectList" statementType="PREPARED"
+            resultType="tool82.spring.project.vo.Product">
+        select pno, title, userid, oprice, sprice, category,
+               CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
+               party, cpartied,
+               CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
+               edate,
+               DATEDIFF(edate, current_date) leftd from pdetail
+        where party != cpartied
+        order by leftd limit 4;
+    </select>
+
+    <select id="selectNoticeList" statementType="PREPARED"
+            resultType="tool82.spring.project.vo.Notice">
+        select bno, title, regdate, views from notice order by bno desc limit 5
+    </select>
+
+</mapper>
