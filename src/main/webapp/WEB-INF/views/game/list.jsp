@@ -111,7 +111,7 @@
             <input type="hidden" id="epage" class="epage" value="${i}"/>
         </c:if>
     </c:forEach>
-    <input type="hidden" id="cpage" value="1">
+    <input type="hidden" id="cpage" value="2">
     <input type="hidden" id="spage" class="spage" value="${sp}"/>
     <input type="hidden" id="plink" class="plink" value="${pglink}"/>
     <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
