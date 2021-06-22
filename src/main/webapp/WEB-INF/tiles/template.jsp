@@ -49,7 +49,7 @@
 <script src="/js/sale.js"></script>
 
 <!-- load js file -->
-
+<script src="/js/notice.js"></script>
 
 </body>
 </html>
