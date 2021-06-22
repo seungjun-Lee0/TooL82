@@ -28,11 +28,6 @@ public class GameController {
         return mv;
     }
 
-//    @GetMapping("/game/next")
-//    public String gmnext(String cp) {
-//        String nxtgm = gsrv.readNxtGm(cp);
-//        return "redirect:/game/detail?cp=" + nxtgm;
-//    }
 
 
 }

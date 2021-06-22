@@ -10,7 +10,8 @@
                party, cpartied,
                CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
                edate,
-               DATEDIFF(edate, current_date) leftd from pdetail
+               DATEDIFF(edate, current_date) leftd, uuid
+        from pdetail
         where category = 'u'
         order by pno desc limit #{snum}, 8;
     </select>
@@ -21,7 +22,7 @@
         select pno, userid, category, title, party, cpartied, email, sdate, edate, oprice, sprice, contents, fnames,
                CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
                CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
-               DATEDIFF(edate, current_date) leftd
+               DATEDIFF(edate, current_date) leftd, uuid
         from pdetail
         where pno = #{pno}
           and category = 'u';

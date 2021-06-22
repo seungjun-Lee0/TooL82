@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sale">
+
+    <insert id="insertSale" statementType="PREPARED"
+            parameterType="tool82.spring.project.vo.Product">
+            insert into pdetail (userid, category, title, party, cpartied, sdate, edate,
+                                 email, oprice, sprice, contents, fnames, uuid)
+            values (#{userid}, #{category}, #{title},#{party}, #{cpartied}, #{sdate}, #{edate},
+                #{email},#{oprice},#{sprice},#{contents}, #{fnames}, #{uuid});
+    </insert>
+
+
+
+</mapper>

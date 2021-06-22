@@ -22,6 +22,8 @@ public class Product {
     protected String partyrt;
     protected String pricert;
     protected String leftd;
+    protected String uuid;
+    protected String todie;
 
     public String getPno() {
         return pno;
@@ -181,5 +183,21 @@ public class Product {
 
     public void setLeftd(String leftd) {
         this.leftd = leftd;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getTodie() {
+        return todie;
+    }
+
+    public void setTodie(String todie) {
+        this.todie = todie;
     }
 }

@@ -3,6 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="fnames" value="${fn:split(mc.fnames, '/' )}" />
+<c:set var="baseURL" value="http://localhost/detail/" />
+
 <div class="title-wrap title-wrap-border">
     <div class="title">
         <a href="./music/list" class="text">게임</a>
@@ -59,7 +62,19 @@
 </div>
 
 <div class="empty" id="detailimg">
-    <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+    <c:if test = "${fnames eq '' || fnames eq null}">
+        <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+    </c:if>
+    <c:if test = "${fnames ne '' || fnames ne null}">
+        <c:forEach var="f" items="${fnames}">
+                <c:set var="pos" value="${fn:indexOf(f, '.')}" />
+                <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
+                <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
+                <div>
+                    <img src="${baseURL}${fname}${mc.uuid}.${fext}" class="img-fluid">
+                </div>
+        </c:forEach>
+    </c:if>
 </div>
 
 <div class="item-view-caution">
