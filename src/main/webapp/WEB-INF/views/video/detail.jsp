@@ -3,15 +3,26 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="fnames" value="${fn:split(vd.fnames, '/' )}" />
+<c:set var="baseURL" value="http://localhost/cdn/" />
+
 <div class="title-wrap title-wrap-border">
     <div class="title">
-        <a href="./video/list" class="text">게임</a>
+        <a href="./video/list" class="text">영상</a>
     </div>
 </div>
 
 <div class="item-view-title">
     <div class="symbol">
-        <img src="https://buts.co.kr/thema/Buts/colorset/category/1010.jpg" alt="" />
+        <c:set var="f" value="${fnames[0]}" />
+        <c:set var="pos" value="${fn:indexOf(f, '.')}" />
+        <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
+        <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
+        <div>
+            <c:if test="${fname ne ''}">
+            <img src="${baseURL}${fname}${vd.uuid}.${fext}" class="img-fluid">
+            </c:if>
+        </div>
     </div>
     <div class="subject" id="title" name="title">${vd.title}️</div>
 </div>
@@ -59,7 +70,18 @@
 </div>
 
 <div class="empty" id="detailimg">
-    <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+    <c:if test = "${fname eq '' || fname eq null}">
+        <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+    </c:if>
+    <c:if test = "${fname ne ''}">
+        <c:set var="f" value="${fnames[1]}" />
+        <c:set var="pos" value="${fn:indexOf(f, '.')}" />
+        <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
+        <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
+        <div>
+            <img src="${baseURL}${fname}${vd.uuid}.${fext}" class="img-fluid">
+        </div>
+    </c:if>
 </div>
 
 <div class="item-view-caution">
@@ -68,14 +90,7 @@
     </div>
 </div>
 
-<form name="fitem" method="post" action="https://buts.co.kr/shop/cartupdate.php" role="form" onsubmit="return fitem_submit(this);">
-    <input type="hidden" name="it_id[]" value="1623659333">
-    <input type="hidden" name="it_msg1[]" value="">
-    <input type="hidden" name="it_msg2[]" value="">
-    <input type="hidden" name="it_msg3[]" value="">
-    <input type="hidden" name="sw_direct">
-    <input type="hidden" name="url">
-
+<form>
     <div class="item-view-check">
         <div class="input-check item-view-confirm">
             <input type="checkbox" id="chk_confirm" name="chk_confirm" />

@@ -51,26 +51,9 @@ public class SaleServiceImpl implements SaleService {
 
         } // if
 
-        int id = sdao.insertSale(p);
-
-        String ofname = p.getFnames().split("/")[0];
-        int pos = ofname.lastIndexOf(".");
-        String fname = ofname.substring(0, pos);
-        String fext = ofname.substring(pos+1);
-        ofname = fname + uuid + "." + fext;
-
-        imgutil.logoResize(ofname, id + "");
+        sdao.insertSale(p);
 
         return true;
-
     }
-
-    // without img
-//    @Override
-//    public boolean newSale(Product p) {
-//        boolean isInserted = false;
-//        if (sdao.insertSale(p) > 0) isInserted = true;
-//        return isInserted;
-//    }
 
 }

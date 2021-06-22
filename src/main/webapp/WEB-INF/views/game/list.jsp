@@ -21,6 +21,8 @@
 <%-- 페이지 링크: 검색 기능 x --%>
 <c:set var="pglink" value="/game/list?cp="/>
 
+<%-- 이미지 로고 출력 --%>
+<c:set var="baseURL" value="http://localhost/cdn/" />
 
 <div id="sct_hhtml" style="background-color:#242424;"></div>
 <div class="title">Coming Soon</div>
@@ -46,10 +48,21 @@
 
 <div class="item-list">
         <c:forEach var="gm" items="${gms}">
+            <c:set var="f" value="${fn:split(gm.fnames, '/')[0]}" />
+            <c:set var="pos" value="${fn:indexOf(f,'.')}" />
+            <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
+            <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
             <div class="item-row <c:if test="${gm.party eq gm.cpartied}">disabled</c:if>">
                 <div class="item-type">
                     <span>${gm.title}</span>
-                    <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
+                    <c:if test="${fname eq ''}">
+                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png"
+                             width="40" height="40" style="float: right">
+                    </c:if>
+                    <c:if test="${fname ne ''}">
+                    <img src="${baseURL}${fname}${gm.uuid}.${fext}" width="40" height="40"
+                         id="logo" style="float: right">
+                    </c:if>
                 </div>
                 <div class="item-title">
                         ${fn:substring(gm.userid,0,3)}***
