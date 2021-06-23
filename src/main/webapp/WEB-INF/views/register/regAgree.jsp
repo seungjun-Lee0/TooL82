@@ -17,7 +17,7 @@
 
             <div class="article-title" style="padding-top:0px;">제1조 목적</div>
 
-            <p>이 약관은 벗츠 회사(전자상거래 사업자로 이하 "회사"라 한다)가 운영하는 벗츠 쇼핑몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+            <p>이 약관은 툴팔이 회사(전자상거래 사업자로 이하 "회사"라 한다)가 운영하는 툴팔이 쇼핑몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
 
             ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
 
@@ -266,8 +266,8 @@
 
         <div class="h30"></div>			</div>
     <div class="input-check form-checkbox">
-        <input type="checkbox" name="agree" value="1" id="agree11" />
-        <label for="agree11">회원가입 약관의 내용에 동의합니다.</label>
+        <input type="checkbox" name="agree1" value="" id="agree1" />
+        <label for="agree1">회원가입 약관의 내용에 동의합니다.</label>
     </div>
     <div class="h3"><span class="text-purple">개인정보</span> 처리방침</div>
     <div class="form-round scroll">
@@ -433,12 +433,12 @@
 
         <div class="h30"></div>	</div>
     <div class="input-check form-checkbox">
-        <input type="checkbox" name="agree2" value="1" id="agree21" />
-        <label for="agree21">개인정보처리방침 안내 내용에 동의합니다.</label>
+        <input type="checkbox" name="agree2" value="" id="agree2" />
+        <label for="agree2">개인정보처리방침 안내 내용에 동의합니다.</label>
     </div>
     <div class="button-align center">
-        <a href="https://buts.co.kr/bbs/login.php" class="button">취소</a>
-        <a href="/register/regForm"><button type="button" class="button button-purple">회원가입</button></a>
+        <a href="/" class="button">취소</a>
+        <button type="button" class="button button-purple" id="regbtn">회원가입</button>
     </div>
 </form>
 </div>

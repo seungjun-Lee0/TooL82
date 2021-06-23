@@ -6,8 +6,12 @@
     <div class="topper">
         <div class="width-container">
             <div class="topper-menu">
+                <c:if test="${empty UID}">
                 <a href="/register/regAgree" class="v-bar">회원가입</a>
+                </c:if>
+                <c:if test="${not empty UID}">
                 <a href="/member/mypage" class="v-bar">마이페이지</a>
+                </c:if>
                 <a href="/notice/list?cp=1">공지사항</a>
             </div>
         </div>
@@ -20,8 +24,15 @@
                 <a href="/"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/small-butslogo.png" srcset="https://buts.co.kr/thema/Buts/colorset/Basic/img/2x/small-butslogo.png 2x" alt="" /></a>
             </div>
             <div class="header-right">
+                <c:if test="${not empty UID}">
                 <a href="/seller/write" class="header-button">판매 등록</a>
-                <a href="/member/login" class="header-login">로그인</a>
+                </c:if>
+                <c:if test="${empty UID}">
+                <a class="header-button" href="/member/login">로그인</a>
+                </c:if>
+                <c:if test="${not empty UID}">
+                <a class="header-button" href="/member/logout" id="logoutbtn">로그아웃</a>
+                </c:if>
             </div>
         </div>
 
