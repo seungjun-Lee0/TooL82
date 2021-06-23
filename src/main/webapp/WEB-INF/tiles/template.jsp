@@ -55,6 +55,7 @@
 
 <!-- load js file -->
 <script src="/js/notice.js"></script>
+<script src="/js/register.js"></script>
 
 </body>
 </html>

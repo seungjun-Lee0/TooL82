@@ -6,12 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 
 <link rel="stylesheet" href="/css/buts/shoppartner.css">
 
 <!-- [[ 파트너 페이지 ]] -->
 
 <div class="partner-wrap">
+
 
     <!-- nav -->
     <div class="partner-shade"></div>
@@ -35,16 +39,19 @@
         <ul>
             <li>
                 <div class="subject">ㆍ 아이디</div>
-                <span class="normal">아이디</span>
+                <span class="normal">${UID}</span>
             </li>
-            <li>
-                <div class="subject">ㆍ 이메일</div>
-                <span class="normal">이메일</span>
-            </li>
-            <li>
-                <div class="subject">ㆍ 가입일</div>
-                <span class="normal">회원가입일</span>
-            </li>
+
+
+                <li>
+                    <div class="subject">ㆍ 이메일</div>
+                    <span class="normal">${mb.email}</span>
+                </li>
+                <li>
+                    <div class="subject">ㆍ 가입일</div>
+                    <span class="normal">${mb.regdate}</span>
+                </li>
+
 
         </ul>
     </div>

@@ -2,5 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+    <insert id="insertMember" statementType="PREPARED" parameterType="tool82.spring.project.vo.Member">
+        insert into register (name, userid, passwd, email, selleryn) values (#{name}, #{userid}, #{passwd}, #{email}, #{selleryn})
+    </insert>
+
+    <select id="selectOneUserid" statementType="PREPARED" parameterType="String" resultType="int">
+        select count(userid) cnt from register where userid = #{userid}
+    </select>
+
+    <select id="selectLogin" statementType="PREPARED" parameterType="tool82.spring.project.vo.Member" resultType="int">
+        select count(userid) cnt from register where userid = #{userid} and passwd = #{passwd}
+    </select>
+
+    <select id="showOneMember" statementType="PREPARED" parameterType="String" resultType="tool82.spring.project.vo.Member">
+        select name, userid, email, regdate from register where userid = #{userid}
+    </select>
+
+    <update id="updateMember" statementType="PREPARED" parameterType="String">
+        update register set passwd = #{passwd}, email = #{email}, selleryn = #{selleryn} where userid = #{userid}
+    </update>
 
 </mapper>
