@@ -24,13 +24,21 @@
 <%-- 이미지 로고 출력 --%>
 <c:set var="baseURL" value="http://localhost/cdn/" />
 
-<div id="sct_hhtml" style="background-color:#242424;"></div>
+<script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/personal/modal.css">
+
+
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=jjKCQCf7iEQ" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/jjKCQCf7iEQ/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Q-RChtPvRao" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Q-RChtPvRao/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=OBN-XOR5xG4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/OBN-XOR5xG4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=Kem4BZ0qQsU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/Kem4BZ0qQsU/mqdefault.jpg" alt="" /></a>
+    <div class="popupModalVideo">
+        <a data-video="jjKCQCf7iEQ"><img src="https://img.youtube.com/vi/jjKCQCf7iEQ/mqdefault.jpg" class="recommand-thumb popup-youtube"/></a>
+        <a data-video="Q-RChtPvRao"><img src="https://img.youtube.com/vi/Q-RChtPvRao/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="OBN-XOR5xG4"><img src="https://img.youtube.com/vi/OBN-XOR5xG4/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="Kem4BZ0qQsU"><img src="https://img.youtube.com/vi/Kem4BZ0qQsU/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
 </div>
 <div class="text">
     <span class="text" style="display:inline-block; width: 260px; text-align: center;">Adobe Premiere Pro</span>
@@ -126,3 +134,5 @@
     <input type="hidden" id="plink" class="plink" value="${pglink}"/>
     <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
 </div>
+
+<script src="/js/modal.js"></script>

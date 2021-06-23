@@ -24,13 +24,21 @@
 <%-- 이미지 로고 출력 --%>
 <c:set var="baseURL" value="http://localhost/cdn/" />
 
-<div id="sct_hhtml" style="background-color:#242424;"></div>
+<script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/personal/modal.css">
+
+
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=ZaSTQbfQuQg" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/ZaSTQbfQuQg/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=-kiZBSp87Qw" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/-kiZBSp87Qw/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=ULFAEnoc5jA" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/ULFAEnoc5jA/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=UNch5YTXUc4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/UNch5YTXUc4/mqdefault.jpg" alt="" /></a>
+    <div class="popupModalVideo">
+        <a data-video="ZaSTQbfQuQg"><img src="https://img.youtube.com/vi/ZaSTQbfQuQg/mqdefault.jpg" class="recommand-thumb popup-youtube"/></a>
+        <a data-video="-kiZBSp87Qw"><img src="https://img.youtube.com/vi/-kiZBSp87Qw/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="ULFAEnoc5jA"><img src="https://img.youtube.com/vi/ULFAEnoc5jA/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="UNch5YTXUc4"><img src="https://img.youtube.com/vi/UNch5YTXUc4/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
 </div>
 
 <div class="text">
@@ -129,3 +137,5 @@
     <input type="hidden" id="plink" class="plink" value="${pglink}"/>
     <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
 </div>
+
+<script src="/js/modal.js"></script>

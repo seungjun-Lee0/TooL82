@@ -24,13 +24,21 @@
 <%-- 이미지 로고 출력 --%>
 <c:set var="baseURL" value="http://localhost/cdn/" />
 
-<div id="sct_hhtml" style="background-color:#242424;"></div>
+<script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/personal/modal.css">
+
+
 <div class="title">Coming Soon</div>
 <div class="recommand-list">
-    <a href="https://www.youtube.com/watch?v=PV11T75qIvU" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/PV11T75qIvU/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=f9qsR_Y5Tg4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/f9qsR_Y5Tg4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=dsshbgmYEqc" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/dsshbgmYEqc/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=XI2gnKVLqPk" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/XI2gnKVLqPk/mqdefault.jpg" alt="" /></a>
+    <div class="popupModalVideo">
+        <a data-video="PV11T75qIvU"><img src="https://img.youtube.com/vi/PV11T75qIvU/mqdefault.jpg" class="recommand-thumb popup-youtube"/></a>
+        <a data-video="f9qsR_Y5Tg4"><img src="https://img.youtube.com/vi/f9qsR_Y5Tg4/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="dsshbgmYEqc"><img src="https://img.youtube.com/vi/dsshbgmYEqc/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="XI2gnKVLqPk"><img src="https://img.youtube.com/vi/XI2gnKVLqPk/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
 </div>
 <div class="text">
     <span class="text" style="display:inline-block; width: 260px; text-align: center;">rhino</span>
@@ -126,3 +134,5 @@
     <input type="hidden" id="plink" class="plink" value="${pglink}"/>
     <input type="hidden" id="tpage" class="tpage" value="${tp}"/>
 </div>
+
+<script src="/js/modal.js"></script>

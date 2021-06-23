@@ -1238,7 +1238,7 @@ input[type='password']:disabled {
     height: 100px;
     background-color: white;
     border-bottom: 1px solid #ffe655;
-    z-index: 1000;
+    /*z-index: 1000;*/
 }
 
 .header.fixed {
