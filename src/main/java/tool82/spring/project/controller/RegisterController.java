@@ -15,7 +15,7 @@ import java.io.IOException;
 @Controller
 public class RegisterController {
 
-    @Autowired private MemberService msrv;
+    @Autowired private MemberService mbsrv;
 
     @GetMapping("/register/regAgree")
     public String regAgree(){
@@ -29,7 +29,7 @@ public class RegisterController {
 
     @PostMapping("/register/regOk")
     public String regOk(Member m, HttpServletRequest req) {
-        msrv.newMember(m);
+        mbsrv.newMember(m);
         return "redirect:/member/login.tiles";
     }
 
@@ -38,7 +38,7 @@ public class RegisterController {
     @GetMapping("/member/checkuid")
     public void checkuid(String uid, HttpServletResponse res) {
         try {
-            res.getWriter().println(msrv.checkUserid(uid));
+            res.getWriter().println(mbsrv.checkUserid(uid));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,7 @@ public class RegisterController {
     public String login(Member m, HttpSession sess) {
         String returnPage = "redirect:/member/loginfail";
 
-        if (msrv.checkLogin(m, sess)) returnPage = "redirect:/member/mypage";
+        if (mbsrv.checkLogin(m, sess)) returnPage = "redirect:/member/mypage";
         return returnPage;
     }
 
@@ -76,7 +76,7 @@ public class RegisterController {
     // 마이페이지
     @RequestMapping ("/member/mypage")
     public ModelAndView mypage(ModelAndView mv, HttpSession sess) {
-        Member m = msrv.readOneMember((String)sess.getAttribute("UID"));
+        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
         mv.setViewName("member/mypage.tiles");
         mv.addObject("mb", m);
         return mv;
@@ -87,7 +87,7 @@ public class RegisterController {
     // 정보수정
     @RequestMapping("/member/modifyInfo")
     public ModelAndView modifyinfo(ModelAndView mv, HttpSession sess) {
-        Member m = msrv.readOneMember((String)sess.getAttribute("UID"));
+        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
         mv.setViewName("member/modifyInfo.tiles");
         mv.addObject("mb", m);
         return mv;
@@ -95,7 +95,7 @@ public class RegisterController {
 
     @PostMapping("/member/modifyInfo")
     public String modifyOk(Member m) {
-        msrv.modifyMember(m);
+        mbsrv.modifyMember(m);
         return "redirect:/member/mypage";
     }
 
