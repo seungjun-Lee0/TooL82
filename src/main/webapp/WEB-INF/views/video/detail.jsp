@@ -24,7 +24,15 @@
             </c:if>
         </div>
     </div>
-    <div class="subject" id="title" name="title">${vd.title}️</div>
+    <div class="subject" id="title" name="title">
+        <span>${vd.title}️</span>
+        <span style="float: right">
+            <button class="button small border button-purple" id="updatebtn">수정하기</button>
+            <button class="button small border button-purple">삭제하기</button>
+        </span>
+    </div>
+
+
 </div>
 
 <div class="item-view-row">
@@ -113,6 +121,7 @@
         <button type="button" class="button large button-purple" id="buyreqbtn">구매신청</button>
     </div>
 
+    <input type="hidden" id="pno" value="${param.pno}">
 </form>
 
 <div class="sns-share-icon">

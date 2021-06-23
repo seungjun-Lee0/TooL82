@@ -3,10 +3,6 @@ package tool82.spring.project.vo;
 public class Product {
 
     protected String pno;
-    protected String gno;
-    protected String vno;
-    protected String mno;
-    protected String uno;
     protected String userid;
     protected String category;
     protected String title;
@@ -31,38 +27,6 @@ public class Product {
 
     public void setPno(String pno) {
         this.pno = pno;
-    }
-
-    public String getVno() {
-        return vno;
-    }
-
-    public void setVno(String vno) {
-        this.vno = vno;
-    }
-
-    public String getMno() {
-        return mno;
-    }
-
-    public void setMno(String mno) {
-        this.mno = mno;
-    }
-
-    public String getUno() {
-        return uno;
-    }
-
-    public void setUno(String uno) {
-        this.uno = uno;
-    }
-
-    public String getGno() {
-        return gno;
-    }
-
-    public void setGno(String gno) {
-        this.gno = gno;
     }
 
     public String getUserid() {

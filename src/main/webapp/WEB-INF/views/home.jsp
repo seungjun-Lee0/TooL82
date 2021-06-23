@@ -3,7 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/personal/modal.css">
 
 <style>
     .cologo li {
@@ -104,10 +105,15 @@
 <!-- recommand -->
 <div class="title">TooL82 <span class="text-purple">추천</span> 신작게임 트레일러!!</div>
 <div class="recommand-list" style="padding-bottom: 50px">
-    <a href="https://www.youtube.com/watch?v=ssrNcwxALS4" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/ssrNcwxALS4/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=bMcrXmaocv0" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/bMcrXmaocv0/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=55PRv_e00wc" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/55PRv_e00wc/mqdefault.jpg" alt="" /></a>
-    <a href="https://www.youtube.com/watch?v=3TL1ueQlBz8" class="recommand-thumb popup-youtube"><img src="https://img.youtube.com/vi/3TL1ueQlBz8/mqdefault.jpg" alt="" /></a>
+    <div class="popupModalVideo">
+        <a data-video="ssrNcwxALS4"><img src="https://img.youtube.com/vi/ssrNcwxALS4/mqdefault.jpg" class="recommand-thumb popup-youtube"/></a>
+        <a data-video="bMcrXmaocv0"><img src="https://img.youtube.com/vi/bMcrXmaocv0/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="55PRv_e00wc"><img src="https://img.youtube.com/vi/55PRv_e00wc/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="3TL1ueQlBz8"><img src="https://img.youtube.com/vi/3TL1ueQlBz8/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
 </div>
 
 <div class="form-half form-round signup" style="height: 350px">
@@ -155,3 +161,4 @@
     </ul>
 </div>
 
+<script src="/js/modal.js"></script>

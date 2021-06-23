@@ -10,7 +10,7 @@
                CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
                edate,
                DATEDIFF(edate, current_date) leftd from pdetail
-        where party != cpartied
+        where party != cpartied and DATEDIFF(edate, current_date) >= 0
         order by leftd limit 4;
     </select>
 

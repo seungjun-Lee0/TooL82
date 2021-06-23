@@ -7,4 +7,9 @@ public interface SaleDAO {
 
     int insertSale(Product p);
 
+    Product selectOneProd(String pno);
+
+    String readFnames(String pno);
+
+    int updateSaleItem(Product p);
 }

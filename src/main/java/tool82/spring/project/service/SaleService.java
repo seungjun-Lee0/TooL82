@@ -8,7 +8,7 @@ public interface SaleService {
     // with img
     boolean newSale(Product p, MultipartFile[] img);
 
-    // without img
-//    boolean newSale(Product p);
+    Product readOneProd(String pno);
 
+    void modifySaleItem(Product p, MultipartFile[] img);
 }
