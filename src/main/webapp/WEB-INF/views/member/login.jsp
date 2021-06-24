@@ -13,11 +13,6 @@
             <input type="password" name="passwd" id="passwd" required maxLength="20" placeholder="패스워드를 입력하세요">
             <span id="pwmsg"></span>
         </div>
-        <div class="login-option">
-            <div class="left">
-                <a href="https://buts.co.kr/bbs/password_lost.php" id="login_password_lost">아이디/비밀번호찾기</a>
-            </div>
-        </div>
         <button type="button" class="form-button button button-purple" id="loginbtn">로그인</button>
     </form>
 

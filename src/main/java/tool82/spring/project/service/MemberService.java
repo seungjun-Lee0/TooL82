@@ -11,6 +11,6 @@ public interface MemberService {
     String checkUserid(String uid);
     boolean checkLogin(Member m, HttpSession sess);
     Member readOneMember(String uid);
-    String modifyMember(Member m);
+    String modifyMember(Member m, HttpSession sess);
 
 }

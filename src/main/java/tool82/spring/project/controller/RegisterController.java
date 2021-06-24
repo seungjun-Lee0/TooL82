@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tool82.spring.project.service.MemberService;
 import tool82.spring.project.vo.Member;
 
@@ -50,11 +51,19 @@ public class RegisterController {
         return "member/login.tiles";
     }
 
-    @PostMapping("/member/login")
-    public String login(Member m, HttpSession sess) {
-        String returnPage = "redirect:/member/loginfail";
+    @GetMapping("member/loginfail")
+    public String loginfail() { return "member/loginfail.tiles"; }
 
-        if (mbsrv.checkLogin(m, sess)) returnPage = "redirect:/member/mypage";
+    @PostMapping("/member/login")
+    public String login(Member m, HttpSession sess , RedirectAttributes ra) {
+        String returnPage = "";
+
+        if (mbsrv.checkLogin(m, sess)) returnPage = "redirect:/";
+        else{
+            ra.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다!!");
+            ra.addFlashAttribute("url","/member/login");
+            return "redirect:/member/loginfail"; // alert 후, 전달된 url 파라미터로 이동시키는 페이지
+        }
         return returnPage;
     }
 
@@ -66,19 +75,11 @@ public class RegisterController {
     }
 
     // 마이페이지
-//    @GetMapping("/member/mypage")
-//    public ModelAndView mypage(ModelAndView mv, String uid) {
-//        mv.setViewName("member/mypage.tiles");
-//        mv.addObject("mb", msrv.readOneMember(uid));
-//        return mv;
-//    }
-
-    // 마이페이지
     @RequestMapping ("/member/mypage")
     public ModelAndView mypage(ModelAndView mv, HttpSession sess) {
-        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
+//        Member m = mbsrv.readOneMember((String)sess.getAttribute("MyInfo"));
         mv.setViewName("member/mypage.tiles");
-        mv.addObject("mb", m);
+        mv.addObject("mb", sess.getAttribute("MyInfo"));
         return mv;
     }
 
@@ -87,15 +88,14 @@ public class RegisterController {
     // 정보수정
     @RequestMapping("/member/modifyInfo")
     public ModelAndView modifyinfo(ModelAndView mv, HttpSession sess) {
-        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
         mv.setViewName("member/modifyInfo.tiles");
-        mv.addObject("mb", m);
         return mv;
     }
 
     @PostMapping("/member/modifyInfo")
-    public String modifyOk(Member m) {
-        mbsrv.modifyMember(m);
+    public String modifyOk(Member m, ModelAndView mv, HttpSession sess) {
+        mbsrv.modifyMember(m, sess);
+        mv.addObject("mb", sess.getAttribute("MyInfo"));
         return "redirect:/member/mypage";
     }
 

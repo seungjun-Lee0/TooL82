@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: seungjunlee
-  Date: 2021/06/18
-  Time: 12:09 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -40,26 +33,26 @@
         <ul>
             <li>
                 <div class="subject">ㆍ 아이디</div>
-                <span class="normal">${UID}</span>
+                <span class="normal">${sessionScope.MyInfo.userid}</span>
             </li>
 
 
                 <li>
                     <div class="subject">ㆍ 이메일</div>
-                    <span class="normal">${mb.email}</span>
+                    <span class="normal">${sessionScope.MyInfo.email}</span>
                 </li>
                 <li>
                     <div class="subject">ㆍ 권한</div>
-                    <c:if test="${mb.selleryn eq 0}">
+                    <c:if test="${sessionScope.MyInfo.selleryn eq 0}">
                     <span class="normal">판매자</span>
                     </c:if>
-                    <c:if test="${mb.selleryn eq 1}">
+                    <c:if test="${sessionScope.MyInfo.selleryn eq 1}">
                     <span class="normal">구매자</span>
                     </c:if>
                 </li>
                 <li>
                     <div class="subject">ㆍ 가입일</div>
-                    <span class="normal">${mb.regdate}</span>
+                    <span class="normal">${sessionScope.MyInfo.regdate}</span>
                 </li>
 
 

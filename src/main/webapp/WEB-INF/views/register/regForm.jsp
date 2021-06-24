@@ -1,14 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <form class="form-horizontal register-form" role="form" id="fregisterform" name="fregisterform" >
-<%--    <input type="hidden" name="w" value="">--%>
-<%--    <input type="hidden" name="url" value="https://buts.co.kr/bbs/register_form.php">--%>
-<%--    <input type="hidden" name="pim" value="">--%>
-<%--    <input type="hidden" name="agree" value="1">--%>
-<%--    <input type="hidden" name="agree2" value="1">--%>
-<%--    <input type="hidden" name="cert_type" value="">--%>
-<%--    <input type="hidden" name="cert_no" value="">--%>
-<%--    <input type="hidden" name="mb_sex" value="">--%>
 
     <div class="mw-800 form-signup mg-top-minus">
         <div class="h3">아이디/비밀번호</div>
@@ -16,12 +8,12 @@
             <ul class="form-list">
                 <li>
                     <span class="subject">ㆍ 아이디</span>
-                    <input type="text" name="userid" id="userid" required  placeholder="아이디" minlength="3" maxlength="20">
+                    <input type="text" name="userid" id="userid" required placeholder="아이디" maxlength="20">
                     <span class="lightgrey inline-break" id="idmsg">영문, 숫자, _ 입력 가능, 최소 3글자 입력해주세요</span>
                 </li>
                 <li>
                     <span class="subject">ㆍ 비밀번호</span>
-                    <input type="password" name="passwd" id="passwd" required  placeholder="비밀번호" minlength="7" maxlength="20">
+                    <input type="password" name="passwd" id="passwd" required placeholder="비밀번호" maxlength="20">
                     <span class="lightgrey inline-break" id="pwdmsg">영문, 숫자, 특수문자 입력 가능, 최소 7글자 입력해주세요</span>
                 </li>
                 <li>
@@ -57,7 +49,7 @@
                 <li>
                     <span class="subject" >ㆍ 판매자 여부</span>
                     <div class="form-inline inline-break" style="padding-top: -10px">
-                    <input type="radio" id="seller" name="selleryn" value="0">
+                    <input type="radio" id="seller" name="selleryn" value="0" checked>
                     <label for="seller"> &nbsp;판매자</label><br> &nbsp;&nbsp;&nbsp;
                     <input type="radio" id="buyer" name="selleryn" value="1">
                     <label for="buyer"> &nbsp;구매자</label><br>

@@ -2,17 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="email" value="${fn:split(mb.email, '@')}" />
+<c:set var="email" value="${fn:split(sessionScope.MyInfo.email, '@')}" />
 
 <form class="form-horizontal register-form" role="form" id="modifymemfrm" name="modifymemfrm" >
-<%--    <input type="hidden" name="w" value="">--%>
-<%--    <input type="hidden" name="url" value="https://buts.co.kr/bbs/register_form.php">--%>
-<%--    <input type="hidden" name="pim" value="">--%>
-<%--    <input type="hidden" name="agree" value="1">--%>
-<%--    <input type="hidden" name="agree2" value="1">--%>
-<%--    <input type="hidden" name="cert_type" value="">--%>
-<%--    <input type="hidden" name="cert_no" value="">--%>
-<%--    <input type="hidden" name="mb_sex" value="">--%>
 
     <div class="mw-800 form-signup mg-top-minus">
         <div class="h3">비밀번호 수정</div>
@@ -20,18 +12,18 @@
             <ul class="form-list">
                 <li>
                     <span class="subject">ㆍ 아이디</span>
-                    <input type="text" name="userid" value="${UID}" id="userid" required  placeholder="아이디" minlength="3" maxlength="20" readonly>
+                    <input type="text" name="userid" value="${sessionScope.MyInfo.userid}" id="userid" required  placeholder="아이디" minlength="3" maxlength="20" readonly>
                     <span class="lightgrey inline-break"></span>
                 </li>
                 <li>
                     <span class="subject">ㆍ 비밀번호</span>
                     <input type="password" name="passwd" id="passwd" required placeholder="비밀번호" minlength="3" maxlength="20">
-                    <span class="lightgrey inline-break" id="pwdmsg">수정할 비밀번호를 입력하세요</span>
+                    <span class="lightgrey inline-break" id="modpwdmsg">수정할 비밀번호를 입력하세요</span>
                 </li>
                 <li>
                     <span class="subject">ㆍ 비밀번호 확인</span>
                     <input type="password" name="repasswd" id="repasswd" required placeholder="비밀번호 확인" minlength="3" maxlength="20">
-                    <span class="lightgrey inline-break" id="repwdmsg"></span>
+                    <span class="lightgrey inline-break" id="modrepwdmsg"></span>
                 </li>
             </ul>
         </div>
@@ -40,7 +32,7 @@
             <ul class="form-list">
                 <li>
                     <span class="subject">ㆍ 이름</span>
-                    <input type="text" id="name" name="name" value="${mb.name}" required  placeholder="이름" size="10" readonly>
+                    <input type="text" id="name" name="name" value="${sessionScope.MyInfo.name}" required  placeholder="이름" size="10" readonly>
                 </li>
                 <li>
                     <span class="subject">ㆍ 이메일</span>
@@ -58,7 +50,7 @@
                 <li>
                     <span class="subject">ㆍ 판매자 여부</span>
                     <div class="form-inline inline-break" style="padding-top: -10px">
-                        <input type="radio" id="seller" name="selleryn" value="0">
+                        <input type="radio" id="seller" name="selleryn" value="0" checked>
                         <label for="seller"> &nbsp;판매자</label><br> &nbsp;&nbsp;&nbsp;
                         <input type="radio" id="buyer" name="selleryn" value="1">
                         <label for="buyer"> &nbsp;구매자</label><br>

@@ -20,34 +20,48 @@ $('#email3').on('change', function () {
     }
 });
 
+$('#userid').on('blur', function () {  checkuserid(); });
+
 // 아이디 중복체크
-$('#userid').on('blur', function () {
+
+function checkuserid() {
+    let uid = $('#userid').val();
+    if (uid == '') { // 아이디를 입력하지 않고 탭을 누른 경우
+        $('#idmsg').text('영문, 숫자, _ 입력 가능, 최소 3글자 입력해주세요');
+        return;
+    }
     $.ajax({
         url: '/member/checkuid',
         type: 'GET',
-        data: {'uid': $('#userid').val()}
+        data: { 'uid': $('#userid').val() }
     })
-        .done(function (data) {
-            let msg = '사용 불가능한 아이디입니다!';
-            $('#idmsg').attr('style', 'color:red');
+        .done(function(data){
+            let msg = '사용불가능한 아이디입니다!!';
+            $('#idmsg').attr('style', 'color:red !important');
 
-            if (data.trim() == '0') {
-                msg = '사용 가능한 아이디입니다!';
-                $('#idmsg').attr('style', 'color:blue');
+            if (data.trim() == '0' && $('#userid').val().length > 3 ) {
+                msg = '사용가능한 아이디입니다!!';
+                $('#idmsg').attr('style', 'color:blue !important');
             }
-            $('#idmsg').text(msg);
+            $('#idmsg').text( msg );
         })
-        .fail(function (xhr, status, error) {
+        .fail(function(xhr, status, error){
             alert(xhr.status + '/' + error);
         });
-})
+}
 
-// 중복 아이디 가입 방지
-// else if ($.ajax.data =='0');
+// 비밀번호 최소 숫자 체크
+$('#passwd').on('blur', function () {
+    if ($('#passwd').val().length < 7)
+        $('#pwdmsg').text('최소 일곱글자 이상 입력하세요!').attr('style', 'color:red');
+    else
+        $('#pwdmsg').text('영문, 숫자, 특수문자 입력 가능, 최소 7글자 입력해주세요').attr('style', 'color:#888888');
+});
 
 // 비밀번호 일치 체크
 $('#repasswd').on('blur', function () {
-    if ($('#passwd').val() == $('#repasswd').val()) $('#repwdmsg').text('비밀번호가 일치합니다!').attr('style', 'color:blue');
+    if ($('#passwd').val() == $('#repasswd').val())
+        $('#repwdmsg').text('비밀번호가 일치합니다!').attr('style', 'color:blue');
     else $('#repwdmsg').text('비밀번호가 일치하지 않습니다!').attr('style', 'color:red');
 });
 
@@ -55,21 +69,24 @@ $('#repasswd').on('blur', function () {
 $('#btn_submit').on('click', function() {
 
     if ($('#userid').val() == '') $('#idmsg').text('아이디를 입력하세요!').attr('style', 'color:red');
-    // else if ($('#idmsg').remove());
 
-    // else if ($('#idmsg').val() == '사용 가능한 아이디입니다!');
-    // ajax로 받아온 userid 끌어와서 비교해야 중복 아이디로 가입 방지 가능. 기능 구현 필요
+    else if ($('#userid').val().length < 3 ) $('#idmsg').text('최소 세글자 이상 입력하세요!').attr('style', 'color:red');
+
+    else if ($('#idmsg').text() == '사용불가능한 아이디입니다!!') $('#idmsg').text('사용불가능한 아이디입니다!!').attr('style', 'color:red');
 
     else if ( ($('#passwd').val() == '')) $('#pwdmsg').text('비밀번호를 입력하세요!').attr('style', 'color:red');
-    // else if ($('#pwdmsg').remove());
-    else if ($('#repasswd').val() == '') $('#repwdmsg').text('비밀번호를 다시 입력하세요!').attr('style', 'color:red');
-    // else if ($('#repwdmsg').remove());
-    else if ($('#name').val() == '') $('#namemsg').text('이름을 입력하세요!').attr('style', 'color:red');
-    // else if ($('#name').val() != '') $('#namemsg').remove();
-    else if ($('#email1').val() == '') $('#emailmsg').text('이메일을 입력하세요!').attr('style', 'color:red');
-    // else if ($('#email1').val() != '') $('#emailmsg').remove();
-    else {
 
+    else if ($('#repasswd').val() == '') $('#repwdmsg').text('비밀번호를 다시 입력하세요!').attr('style', 'color:red');
+
+    else if ($('#passwd').val().length < 7 ) $('#idmsg').text('최소 일곱글자 이상 입력하세요!').attr('style', 'color:red');
+
+    else if ($('#passwd').val() != $('#repasswd').val()) $('#repwdmsg').text('비밀번호가 일치하지 않습니다!').attr('style', 'color:red');
+
+    else if ($('#name').val() == '') $('#namemsg').text('이름을 입력하세요!').attr('style', 'color:red');
+
+    else if ($('#email1').val() == '') $('#emailmsg').text('이메일을 입력하세요!').attr('style', 'color:red');
+
+    else {
     $('#email').val($('#email1').val() + '@' + $('#email2').val());
 
     const frm = $('#fregisterform');
@@ -78,7 +95,7 @@ $('#btn_submit').on('click', function() {
     frm.submit();
 
     alert('툴팔이의 회원이 되신 것을 환영합니다:)');
-    } // else
+    }
 });
 
 // 로그인
@@ -99,11 +116,29 @@ $('#modbtn').on('click', function() {
     location.href = '/member/modifyInfo';
 });
 
+// 수정할 비밀번호 최소 숫자 체크
+$('#passwd').on('blur', function () {
+    if ($('#passwd').val().length < 7)
+        $('#modpwdmsg').text('최소 일곱글자 이상 입력하세요!').attr('style', 'color:red');
+    else
+        $('#modpwdmsg').text('영문, 숫자, 특수문자 입력 가능, 최소 7글자 입력해주세요').attr('style', 'color:#888888');
+});
+
+// 수정할 비밀번호 일치 체크
+$('#repasswd').on('blur', function () {
+    if ($('#passwd').val() == $('#repasswd').val())
+        $('#modrepwdmsg').text('비밀번호가 일치합니다!').attr('style', 'color:blue');
+    else $('#modrepwdmsg').text('비밀번호가 일치하지 않습니다!').attr('style', 'color:red');
+});
+
 // 회원정보수정
 $('#modifybtn').on('click', function() {
 
     if ($('#passwd').val() == '') $('#modpwdmsg').text('비밀번호를 입력하세요!').attr('style', 'color:red');
     else if ($('#repasswd').val() == '') $('#modrepwdmsg').text('비밀번호를 다시 입력하세요!').attr('style', 'color:red');
+    else if ($('#repasswd').val().length < 7 ) $('#modpwdmsg').text('최소 일곱글자 이상 입력하세요!').attr('style', 'color:red');
+    else if ($('#passwd').val() != $('#repasswd').val()) $('#modrepwdmsg').text('비밀번호가 일치하지 않습니다!').attr('style', 'color:red');
+    // else if ($('#passwd').val() == $('#repasswd').val()) $('#modrepwdmsg').text('비밀번호가 일치합니다!').attr('style', 'color:blue');
     else {
     $('#email').val($('#email1').val() + '@' + $('#email2').val());
 

@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
         boolean isLogin = false;
 
         if(mbdao.selectLogin(m) > 0) {
-            sess.setAttribute("UID", m.getUserid());
+            sess.setAttribute("MyInfo", readOneMember(m.getUserid()));
             isLogin = true;
         }
         return isLogin;
@@ -44,10 +44,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public String modifyMember(Member m) {
+    public String modifyMember(Member m, HttpSession sess) {
         String result = "회원정보 수정 실패";
         int cnt = mbdao.updateMember(m);
-        if (cnt > 0) result = "회원정보 수정 성공";
+        if (cnt > 0) {
+            sess.setAttribute("MyInfo", readOneMember(m.getUserid()));
+            result = "회원정보 수정 성공";
+        }
         return result;
     }
 
