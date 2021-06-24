@@ -83,7 +83,6 @@ public class RegisterController {
     }
 
 
-
     // 정보수정
     @RequestMapping("/member/modifyInfo")
     public ModelAndView modifyinfo(ModelAndView mv, HttpSession sess) {
