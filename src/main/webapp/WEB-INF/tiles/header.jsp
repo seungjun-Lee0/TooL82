@@ -25,7 +25,9 @@
             </div>
             <div class="header-right">
                 <c:if test="${not empty UID}">
+                    <c:if test="${mb.selleryn eq 0}">
                 <a href="/seller/write" class="header-button">판매 등록</a>
+                    </c:if>
                 </c:if>
                 <c:if test="${empty UID}">
                 <a class="header-button" href="/member/login">로그인</a>

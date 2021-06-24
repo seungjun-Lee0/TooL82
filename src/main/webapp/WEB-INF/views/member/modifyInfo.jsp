@@ -25,12 +25,12 @@
                 </li>
                 <li>
                     <span class="subject">ㆍ 비밀번호</span>
-                    <input type="password" name="passwd" id="passwd" required class="form-control input-sm" placeholder="비밀번호" minlength="3" maxlength="20">
-                    <span class="lightgrey inline-break" id="pwdmsg">영문, 숫자, 특수문자 입력 가능, 최소 7글자 입력해주세요</span>
+                    <input type="password" name="passwd" id="passwd" required placeholder="비밀번호" minlength="3" maxlength="20">
+                    <span class="lightgrey inline-break" id="pwdmsg">수정할 비밀번호를 입력하세요</span>
                 </li>
                 <li>
                     <span class="subject">ㆍ 비밀번호 확인</span>
-                    <input type="password" name="repasswd" id="repasswd" required class="form-control input-sm" placeholder="비밀번호 확인" minlength="3" maxlength="20">
+                    <input type="password" name="repasswd" id="repasswd" required placeholder="비밀번호 확인" minlength="3" maxlength="20">
                     <span class="lightgrey inline-break" id="repwdmsg"></span>
                 </li>
             </ul>
@@ -40,7 +40,7 @@
             <ul class="form-list">
                 <li>
                     <span class="subject">ㆍ 이름</span>
-                    <input type="text" id="name" name="name" value="${mb.name}" required  placeholder="이름" size="10">
+                    <input type="text" id="name" name="name" value="${mb.name}" required  placeholder="이름" size="10" readonly>
                 </li>
                 <li>
                     <span class="subject">ㆍ 이메일</span>
@@ -57,10 +57,12 @@
                 </li>
                 <li>
                     <span class="subject">ㆍ 판매자 여부</span>
-                    <input type="radio" id="seller" name="selleryn" value="0">
-                    <label for="seller">판매자</label><br>
-                    <input type="radio" id="buyer" name="selleryn" value="1">
-                    <label for="buyer">구매자</label><br>
+                    <div class="form-inline inline-break" style="padding-top: -10px">
+                        <input type="radio" id="seller" name="selleryn" value="0">
+                        <label for="seller"> &nbsp;판매자</label><br> &nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="buyer" name="selleryn" value="1">
+                        <label for="buyer"> &nbsp;구매자</label><br>
+                    </div>
                 </li>
             </ul>
         </div>
