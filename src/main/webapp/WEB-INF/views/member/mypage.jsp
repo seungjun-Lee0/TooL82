@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 
@@ -48,6 +49,15 @@
                     <span class="normal">${mb.email}</span>
                 </li>
                 <li>
+                    <div class="subject">ㆍ 권한</div>
+                    <c:if test="${mb.selleryn eq 0}">
+                    <span class="normal">판매자</span>
+                    </c:if>
+                    <c:if test="${mb.selleryn eq 1}">
+                    <span class="normal">구매자</span>
+                    </c:if>
+                </li>
+                <li>
                     <div class="subject">ㆍ 가입일</div>
                     <span class="normal">${mb.regdate}</span>
                 </li>
@@ -55,9 +65,9 @@
 
         </ul>
     </div>
-    <div class="text-right">
-        <a href="/member/modifyInfo" class="button round button-purple">정보수정</a>
-        <a href="https://buts.co.kr/bbs/member_confirm.php?url=member_leave.php" class="button round border button-purple leave-me">탈퇴하기</a>
+    <div class="text-right" style="margin-top: 50px">
+        <button type="button" id="modbtn" class="button round button-purple">정보수정</button>
+        <button type="button" id="delbtn" class="button round border button-purple leave-me">탈퇴하기</button>
     </div>
 </div>
 </div>
