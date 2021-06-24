@@ -67,6 +67,20 @@ $('#sellbtn').on('click', function() {
     else if (
         document.querySelector('#sp_warn').innerHTML='');
 
+    else if ($('#img1').get(0).files.length === 0)
+        document.querySelector('#img1_warn').innerHTML=
+            '<font color = #dc143c>로고를 등록하세요.</font>';
+
+    else if (
+        document.querySelector('#img1_warn').innerHTML='');
+
+    else if ($('#img2').val() == '')
+        document.querySelector('#img2_warn').innerHTML=
+            '<font color = #dc143c>제품 이미지를 등록하세요.</font>';
+
+    else if (
+        document.querySelector('#img2_warn').innerHTML='');
+
     else {
         $('#email').val( $('#email1').val() + '@' + $('#email2').val() );
 
@@ -131,6 +145,7 @@ $('#die2').on('change', function (){
 })
 
 $('#updateokbtn').on('click', function (){
+
     if ($('#category').val() == '' || $('#category').val() == '기본 분류 선택') {
         document.querySelector('#cat_warn').innerHTML =
             '<font color = #dc143c>판매할 서비스를 설정해주세요</font>'
@@ -185,13 +200,6 @@ $('#updateokbtn').on('click', function (){
     else if (
         document.querySelector('#sp_warn').innerHTML='');
 
-    else if ($('#img1').get(0).files.length === 0)
-        document.querySelector('#img1_warn').innerHTML=
-            '<font color = #dc143c>로고를 등록하세요.</font>';
-
-    else if ($('#img2').val() == '')
-        document.querySelector('#img2_warn').innerHTML=
-            '<font color = #dc143c>제품 이미지를 등록하세요.</font>';
     else {
         $('#email').val( $('#email1').val() + '@' + $('#email2').val() );
 

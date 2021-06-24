@@ -32,8 +32,8 @@
             parameterType="tool82.spring.project.vo.Product">
         update pdetail set category = #{category}, title = #{title}, party = #{party}, cpartied = #{cpartied},
                            email = #{email}, sdate = #{sdate}, edate = #{edate}, oprice = #{oprice},
-                           sprice = #{sprice}, contents = #{contents}, fnames = #{fnames}, uuid = #{uuid}
-        <if test="todie != ' '">
+                           sprice = #{sprice}, contents = #{contents}, uuid = #{uuid}
+        <if test="todie != ''">
             , fnames = #{fnames}
         </if>
         where pno = #{pno};

@@ -79,6 +79,7 @@
                             ${fname[0]}
                         </label>
                         <div class="lightgrey">40x40 사이즈로 자동으로 맞춰집니다.</div>
+                        <div id="img1_warn"></div>
                     </div>
                 </li>
                 <li>
@@ -93,6 +94,7 @@
                         <label class="custom-file-label" style="margin-left:120px; width: 300px;">
                             ${fname[1]}
                         </label>
+                        <div id="img2_warn"></div>
                     </div>
                 </li>
                 <li>

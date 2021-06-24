@@ -59,7 +59,8 @@
             <c:set var="pos" value="${fn:indexOf(f,'.')}" />
             <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
             <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
-            <div class="item-row <c:if test="${vd.party eq vd.cpartied}">disabled</c:if>">
+            <div class="item-row <c:if test="${vd.party eq vd.cpartied}">disabled</c:if>
+                                    <c:if test="${vd.leftd < 0 and vd.party ne vd.cpartied}">disabled</c:if>">
                 <div class="item-type">
                     <span>${vd.title}</span>
                     <c:if test="${fname eq ''}">
@@ -82,7 +83,14 @@
                             </span>
                         </div>
                     </c:if>
-                    <c:if test="${vd.party ne vd.cpartied}">
+                    <c:if test="${vd.leftd < 0 and vd.party ne vd.cpartied}">
+                        <div class="detail-sale-badge">
+                        <span class="join-ended">
+                            인원 모집 실패! 새로운 공구를 기다려주세요!
+                        </span>
+                        </div>
+                    </c:if>
+                    <c:if test="${vd.party ne vd.cpartied and vd.leftd >= 0}">
                         <progress value="${vd.partyrt}" max="100" id="jb"></progress>
                     </c:if>
                 </div>
@@ -95,19 +103,19 @@
                     <div class="item-quantity">
 
                         <span class="Rajdhani">
-                            <c:if test="${vd.party ne vd.cpartied}">
+                            <c:if test="${vd.party ne vd.cpartied and vd.leftd >= 0}">
                                 ${vd.cpartied} / ${vd.party}</span>명
                         </c:if>
 
                     </div>
                     <div class="item-date">
                             ${vd.edate}<span class="pc-inline">까지</span>
-                            <c:if test="${vd.party ne vd.cpartied}">
+                            <c:if test="${vd.party ne vd.cpartied and vd.leftd >= 0}">
                                 (<strong>${vd.leftd}</strong>일)
                             </c:if>
                     </div>
                 </div>
-                <c:if test="${vd.party ne vd.cpartied}">
+                <c:if test="${vd.party ne vd.cpartied and vd.leftd >= 0}">
                     <a href="/video/detail?pno=${vd.pno}" class="item-button"></a>
                 </c:if>
             </div>

@@ -60,7 +60,8 @@
             <c:set var="pos" value="${fn:indexOf(f,'.')}" />
             <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
             <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
-            <div class="item-row <c:if test="${gm.party eq gm.cpartied}">disabled</c:if>">
+            <div class="item-row <c:if test="${gm.party eq gm.cpartied}">disabled</c:if>
+                                    <c:if test="${gm.leftd < 0 and gm.party ne gm.cpartied}">disabled</c:if>">
                 <div class="item-type">
                     <span>${gm.title}</span>
                     <c:if test="${fname eq ''}">
@@ -83,7 +84,14 @@
                             </span>
                         </div>
                     </c:if>
-                    <c:if test="${gm.party ne gm.cpartied}">
+                    <c:if test="${gm.leftd < 0 and gm.party ne gm.cpartied}">
+                        <div class="detail-sale-badge">
+                        <span class="join-ended">
+                            인원 모집 실패! 새로운 공구를 기다려주세요!
+                        </span>
+                        </div>
+                    </c:if>
+                    <c:if test="${gm.party ne gm.cpartied and gm.leftd >= 0}">
                         <progress value="${gm.partyrt}" max="100" id="jb"></progress>
                     </c:if>
                 </div>
@@ -96,19 +104,19 @@
                     <div class="item-quantity">
 
                         <span class="Rajdhani">
-                            <c:if test="${gm.party ne gm.cpartied}">
+                            <c:if test="${gm.party ne gm.cpartied and gm.leftd >= 0}">
                                 ${gm.cpartied} / ${gm.party}</span>명
                         </c:if>
 
                     </div>
                     <div class="item-date">
                             ${gm.edate}<span class="pc-inline">까지</span>
-                            <c:if test="${gm.party ne gm.cpartied}">
+                            <c:if test="${gm.party ne gm.cpartied and gm.leftd >= 0}">
                                 (<strong>${gm.leftd}</strong>일)
                             </c:if>
                     </div>
                 </div>
-                <c:if test="${gm.party ne gm.cpartied}">
+                <c:if test="${gm.party ne gm.cpartied and gm.leftd >= 0}">
                     <a href="/game/detail?pno=${gm.pno}" class="item-button"></a>
                 </c:if>
             </div>

@@ -34,12 +34,11 @@ public class SaleController {
     {
         mv.setViewName("seller/update.tiles");
         mv.addObject("pd", ssrv.readOneProd(pno));
-        System.out.println(pno + "아아아");
         return mv;
     }
 
     @PostMapping("/seller/update")
-    public String updateSellOk(Product p, MultipartFile[] img, String todie)
+    public String updateSellOk(Product p, MultipartFile[] img)
     {
         ssrv.modifySaleItem(p, img);
         return "redirect:/";

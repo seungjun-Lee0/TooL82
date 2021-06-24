@@ -59,7 +59,8 @@
             <c:set var="pos" value="${fn:indexOf(f,'.')}" />
             <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
             <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
-        <div class="item-row <c:if test="${ut.party eq ut.cpartied}">disabled</c:if>">
+        <div class="item-row <c:if test="${ut.party eq ut.cpartied}">disabled</c:if>
+                               <c:if test="${ut.leftd < 0 and ut.party ne ut.cpartied}">disabled</c:if>">
             <div class="item-type">
                 <span>${ut.title}</span>
                 <c:if test="${fname eq ''}">
@@ -82,7 +83,14 @@
                         </span>
                     </div>
                 </c:if>
-                <c:if test="${ut.party ne ut.cpartied}">
+                <c:if test="${ut.leftd < 0 and ut.party ne ut.cpartied}">
+                    <div class="detail-sale-badge">
+                        <span class="join-ended">
+                            인원 모집 실패! 새로운 공구를 기다려주세요!
+                        </span>
+                    </div>
+                </c:if>
+                <c:if test="${ut.party ne ut.cpartied and ut.leftd >= 0}">
                     <progress value="${ut.partyrt}" max="100" id="jb"></progress>
                 </c:if>
             </div>
@@ -95,19 +103,19 @@
                 <div class="item-quantity">
 
                     <span class="Rajdhani">
-                        <c:if test="${ut.party ne ut.cpartied}">
+                        <c:if test="${ut.party ne ut.cpartied and ut.leftd >= 0}">
                             ${ut.cpartied} / ${ut.party}</span>명
                     </c:if>
 
                 </div>
                 <div class="item-date">
                         ${ut.edate}<span class="pc-inline">까지</span>
-                        <c:if test="${ut.party ne ut.cpartied}">
+                        <c:if test="${ut.party ne ut.cpartied and ut.leftd >= 0}">
                             (<strong>${ut.leftd}</strong>일)
                         </c:if>
                 </div>
             </div>
-            <c:if test="${ut.party ne ut.cpartied}">
+            <c:if test="${ut.party ne ut.cpartied and ut.leftd >= 0}">
                 <a href="/util/detail?pno=${ut.pno}" class="item-button"></a>
             </c:if>
         </div>

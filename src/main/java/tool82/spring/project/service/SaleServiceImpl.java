@@ -146,11 +146,11 @@ public class SaleServiceImpl implements SaleService {
         sdao.updateSaleItem(p);
 
         // 업로드한 이미지들 중 첫번째 이미지를 썸내일로 만듬
-        String ofname = p.getFnames().split("/")[0];
-        int pos = ofname.lastIndexOf(".");
-        String fname = ofname.substring(0, pos);
-        String fext = ofname.substring(pos+1);
-        ofname = fname + p.getUuid() + "." + fext;
+//        String ofname = p.getFnames().split("/")[0];
+//        int pos = ofname.lastIndexOf(".");
+//        String fname = ofname.substring(0, pos);
+//        String fext = ofname.substring(pos+1);
+//        ofname = fname + p.getUuid() + "." + fext;
 
 
     }
