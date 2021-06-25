@@ -14,13 +14,7 @@ $('.bar-percentage[data-percentage]').each(function () {
 });
 
 
-// buy agree
-$('#buyreqbtn').click(function () {
-    if ($('#chk_confirm').is(":checked") == false)
-        alert('동의 여부를 확인해주세요.');
-    else
-        location.href='/game/list';
-})
+
 
 
 // to the top
@@ -44,31 +38,8 @@ $( document ).ready( function() {
 // next page
 
 $(document).on("click","#tryit", function (){
-    /*const fullContent = document.querySelector('.item-box');
-    var btn = document.createElement("button");*/
-
-    /*btn.setAttribute("id","tryit2")
-    var t = document.createTextNode("더보기");
-    btn.appendChild(t);
-    fullContent.appendChild(btn);
-    $('#tryit').remove();*/
     madeBox();
-    console.log($('#epage').val());
-    console.log($('#cpage').val());
-    console.log($('#tpage').val());
 });
-
-
-/*$(document).on("click","#tryit2", function (){
-    const fullContent = document.querySelector('.item-box');
-    var btn = document.createElement("button");
-    btn.setAttribute("id","tryit")
-    var t = document.createTextNode("더보기");
-    btn.appendChild(t);
-    fullContent.appendChild(btn);
-    $('#tryit2').remove();
-    madeBox();
-});*/
 
 function madeBox() { // 만약 버튼을 클릭했다면
     const fullContent = document.querySelector('.item-list');
@@ -99,3 +70,66 @@ function madeBox() { // 만약 버튼을 클릭했다면
     }
 
 }
+
+
+$('#deletebtn').on('click', function (){
+    if($('#cpartied').val() !== 0) {
+        alert("모집된 인원이 있을 때에는 삭제할 수 없습니다.")
+    }
+    else
+        alert("삭제")
+})
+
+
+
+function button_event(){
+    if (confirm("정말 구매하시겠습니까?") == true){    //확인
+        document.form.submit();
+    }else{   //취소
+        return;
+    }
+}
+
+
+
+// buy agree
+// $('#buyreqbtn').click(function () {
+//     if ($('#chk_confirm').is(":checked") == false)
+//         alert('동의 여부를 확인해주세요.');
+//     else if ($('#chk_confirm').is(":checked") == true) {
+//         if (confirm("정말 구매하시겠습니까?") == true){
+//         var data = {}
+//         data["pno"] = $('#pno').val();
+//         data["mno"] = $('#mno').val();
+//         data["category"] = $('#category').val();
+//         data["title"] = $('#title').val();
+//         data["edate"] = $('#enddate').val();
+//         data["sprice"] = $('#sprice').val();
+//         location.href = '/game/buy?pno=' + $('#pno').val();
+//         $.ajax({
+//             type : "POST",
+//             url : "/game/buy",
+//             dataType : 'json',
+//             data : JSON.stringify(data) ,
+//             contentType: "application/json; charset=UTF-8",
+//             success : function(response) {
+//                         alert(response.message);
+//                     },
+//             error : function(request, status, error) {
+//                 alert(response.message);
+//             }
+//         });
+//     }
+//     } else
+//         return;
+// });
+
+$('#buyreqbtn').on('click', function () {
+    const frm = $('#buyfrm');
+    frm.attr("method", "post");
+    frm.attr('action', "/game/buy");
+    frm.attr('enctype', "multipart/form-data");
+    frm.submit();
+})
+
+

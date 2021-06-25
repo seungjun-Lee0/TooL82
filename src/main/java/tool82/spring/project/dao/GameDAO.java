@@ -1,8 +1,11 @@
 package tool82.spring.project.dao;
 
+import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Product;
+import tool82.spring.project.vo.Sellist;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GameDAO {
 
@@ -10,6 +13,6 @@ public interface GameDAO {
     Product selectOneGame(String pno);
 
     int selectCountGame();
-//    String selectNxtGm(int snum);
+
 
 }

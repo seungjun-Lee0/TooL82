@@ -2,41 +2,42 @@ package tool82.spring.project.vo;
 
 public class Buylist {
 
-    protected String mno;
-    protected String selleryn;
-    protected String pno;
-    protected String title;
+    protected String buyno;
+    protected String userid;
     protected String category;
+    protected String title;
+    protected String party;
+    protected String cpartied;
+    protected String email;
     protected String bdate;
     protected String edate;
     protected String sprice;
-    protected String contents;
     protected String buystat;
-    protected String todie;
-    protected String pcnt;
+    protected String pno;
+    protected String mno;
 
-    public String getMno() {
-        return mno;
+    public String getBuyno() {
+        return buyno;
     }
 
-    public void setMno(String mno) {
-        this.mno = mno;
+    public void setBuyno(String buyno) {
+        this.buyno = buyno;
     }
 
-    public String getSelleryn() {
-        return selleryn;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setSelleryn(String selleryn) {
-        this.selleryn = selleryn;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public String getPno() {
-        return pno;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPno(String pno) {
-        this.pno = pno;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getTitle() {
@@ -47,12 +48,28 @@ public class Buylist {
         this.title = title;
     }
 
-    public String getCategory() {
-        return category;
+    public String getParty() {
+        return party;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setParty(String party) {
+        this.party = party;
+    }
+
+    public String getCpartied() {
+        return cpartied;
+    }
+
+    public void setCpartied(String cpartied) {
+        this.cpartied = cpartied;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getBdate() {
@@ -79,14 +96,6 @@ public class Buylist {
         this.sprice = sprice;
     }
 
-    public String getContents() {
-        return contents;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
     public String getBuystat() {
         return buystat;
     }
@@ -95,19 +104,19 @@ public class Buylist {
         this.buystat = buystat;
     }
 
-    public String getTodie() {
-        return todie;
+    public String getPno() {
+        return pno;
     }
 
-    public void setTodie(String todie) {
-        this.todie = todie;
+    public void setPno(String pno) {
+        this.pno = pno;
     }
 
-    public String getPcnt() {
-        return pcnt;
+    public String getMno() {
+        return mno;
     }
 
-    public void setPcnt(String pcnt) {
-        this.pcnt = pcnt;
+    public void setMno(String mno) {
+        this.mno = mno;
     }
 }

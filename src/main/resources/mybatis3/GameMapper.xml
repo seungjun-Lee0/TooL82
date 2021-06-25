@@ -20,13 +20,13 @@
             parameterType="String"
             resultType="tool82.spring.project.vo.Product">
         select pno, userid, category, title, party, cpartied, email, sdate, edate, oprice, sprice, contents, fnames,
-                CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
-                CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
-                DATEDIFF(edate, current_date) leftd,
-                uuid
+               CAST( 100 - ( cast(sprice as float) / cast(oprice as float) )*100 as decimal ) pricert,
+               CAST( ( cast(cpartied as float) / cast(party as float) )*100 as decimal ) partyrt,
+               DATEDIFF(edate, current_date) leftd,
+               uuid, category
         from pdetail
         where pno = #{pno}
-        and category = 'g';
+          and category = 'g';
     </select>
 
     <select id="countGame" statementType="PREPARED"
@@ -34,6 +34,5 @@
         select count(pno) cnt from pdetail
         where category = 'g'
     </select>
-
 
 </mapper>

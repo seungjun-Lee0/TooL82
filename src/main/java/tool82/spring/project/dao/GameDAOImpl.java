@@ -3,9 +3,11 @@ package tool82.spring.project.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Product;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("gdao")
 public class GameDAOImpl implements GameDAO {
@@ -27,9 +29,6 @@ public class GameDAOImpl implements GameDAO {
         return sqlSession.selectOne("game.countGame");
     }
 
-//    @Override
-//    public String selectNxtGm(int snum) {
-//        return sqlSession.selectOne("game.selectNext", snum);
-//    }
+
 
 }

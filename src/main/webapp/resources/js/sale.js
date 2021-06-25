@@ -38,10 +38,6 @@ $('#sellbtn').on('click', function() {
     else if (
         document.querySelector('#em_warn').innerHTML='');
 
-    else if ($( "#sdate" ).val() >= $( "#edate" ).val())
-        document.querySelector('#dt_warn').innerHTML=
-            '<font color = #dc143c>최소 하루 이상의 기간을 두어야합니다.</font>';
-
     else if (
         document.querySelector('#dt_warn').innerHTML='');
 
@@ -170,10 +166,6 @@ $('#updateokbtn').on('click', function (){
             '<font color = #dc143c>이메일을 작성해주세요.</font>'
     else if (
         document.querySelector('#em_warn').innerHTML='');
-
-    else if ($( "#sdate" ).val() >= $( "#edate" ).val())
-        document.querySelector('#dt_warn').innerHTML=
-            '<font color = #dc143c>최소 하루 이상의 기간을 두어야합니다.</font>';
 
     else if (
         document.querySelector('#dt_warn').innerHTML='');

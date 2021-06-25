@@ -28,7 +28,7 @@
         <span>${mc.title}️</span>
         <span style="float: right">
         <button class="button small border button-purple" id="updatebtn">수정하기</button>
-        <button class="button small border button-purple">삭제하기</button>
+        <button class="button small border button-purple" id="deletebtn">삭제하기</button>
         </span>
     </div>
 </div>
