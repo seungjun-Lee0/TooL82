@@ -17,10 +17,10 @@
                 <a href="/member/mypage"> 내 정보</a>
             </li>
             <li >
-                <a href="/member/sellerpage"> 판매 목록</a>
+                <a href="/member/sellerpage?mno=${sessionScope.MyInfo.mno}"> 판매 목록</a>
             </li>
             <li >
-                <a href="/member/buyerpage"> 구매 목록</a>
+                <a href="/member/buyerpage?mno=${sessionScope.MyInfo.mno}"> 구매 목록</a>
             </li>
         </ul>
     </div>

@@ -103,8 +103,7 @@
 
         <input type="hidden" name="email" id="email">
         <input type="hidden" name="cpartied" id="cpartied" value="0">
-        <input type="hidden" name="userid" id="userid" value="anonymous">
+        <input type="hidden" name="userid" id="userid" value="${sessionScope.MyInfo.userid}">
     </form>
 
 </div>
-
