@@ -9,9 +9,9 @@ import java.util.Map;
 
 public interface ListDAO {
 
-    List<Sellist> selectSell(int snum);
+    List<Sellist> selectSell(Map<String, Object> param);
     List<Sellist> findSelectSell(Map<String, Object> param);
-    List<Buylist> selectBuy(int snum);
+    List<Buylist> selectBuy(Map<String, Object> param);
     List<Buylist> findSelectBuy(Map<String, Object> param);
 
     Sellist selectOneSellUid(String mno);

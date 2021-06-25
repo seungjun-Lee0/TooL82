@@ -14,7 +14,7 @@
     <fmt:parseNumber var="tp" value="${tp + 1}" />
 </c:if>
 
-<c:set var="pglink" value="/member/sellerpage?cp=" />
+<c:set var="pglink" value="/member/sellerpage?mno=${sessionScope.MyInfo.mno}&cp=" />
 
 <c:if test="${not empty param.findkey}">
     <c:set var="pglink"
@@ -35,10 +35,10 @@
                 <a href="/member/mypage"> 내 정보</a>
             </li>
             <li >
-                <a href="/member/sellerpage"> 판매 목록</a>
+                <a href="/member/sellerpage?mno=${sessionScope.MyInfo.mno}"> 판매 목록</a>
             </li>
             <li >
-                <a href="/member/buyerpage"> 구매 목록</a>
+                <a href="/member/buyerpage?mno=${sessionScope.MyInfo.mno}"> 구매 목록</a>
             </li>
         </ul>
     </div>
@@ -137,13 +137,13 @@
                                 </td>
                                 <td>
                                     <div class="buystat">
-                                        <c:if test="${sl.buystat eq '0'}">
+                                        <c:if test="${sl.sellstat eq '0'}">
                                             <span>구매중</span>
                                         </c:if>
-                                        <c:if test="${sl.buystat eq '1'}">
+                                        <c:if test="${sl.sellstat eq '1'}">
                                             <span>구매완료</span>
                                         </c:if>
-                                        <c:if test="${sl.buystat eq '2'}">
+                                        <c:if test="${sl.sellstat eq '2'}">
                                             <span>구매실패</span>
                                         </c:if>
                                     </div>

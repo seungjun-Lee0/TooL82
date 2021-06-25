@@ -15,7 +15,7 @@
     </select>
 
     <select id="showOneMember" statementType="PREPARED" parameterType="String" resultType="tool82.spring.project.vo.Member">
-        select name, userid, email, regdate, selleryn from register where userid = #{userid}
+        select name, mno, userid, email, regdate, selleryn from register where userid = #{userid}
     </select>
 
     <update id="updateMember" statementType="PREPARED" parameterType="String">

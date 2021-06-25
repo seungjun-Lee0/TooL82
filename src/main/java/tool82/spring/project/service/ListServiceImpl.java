@@ -19,9 +19,15 @@ public class ListServiceImpl implements ListService {
     @Autowired private ListDAO ldao;
 
     @Override
-    public List<Sellist> readSell(String cp) {
+    public List<Sellist> readSell(String cp, String mno) {
         int snum = (Integer.parseInt(cp) - 1 ) * 10;
-        return ldao.selectSell(snum);
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("MNO", mno);
+        params.put("snum", snum);
+
+        return ldao.selectSell(params);
     }
 
     @Override
@@ -37,9 +43,14 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public List<Buylist> readBuy(String cp) {
+    public List<Buylist> readBuy(String cp, String mno) {
         int snum = (Integer.parseInt(cp) - 1) * 10;
-        return ldao.selectBuy(snum);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("MNO", mno);
+        params.put("snum", snum);
+
+        return ldao.selectBuy(params);
     }
 
     @Override

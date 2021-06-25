@@ -18,8 +18,8 @@ public class ListDAOImpl implements ListDAO {
 
 
     @Override
-    public List<Buylist> selectBuy(int snum) {
-        return sqlSession.selectList("sellbuy.selectBuy", snum);
+    public List<Buylist> selectBuy(Map<String, Object> param) {
+        return sqlSession.selectList("sellbuy.selectBuy", param);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class ListDAOImpl implements ListDAO {
     }
 
     @Override
-    public List<Sellist> selectSell(int snum) {
-        return sqlSession.selectList("sellbuy.selectSell", snum);
+    public List<Sellist> selectSell(Map<String, Object> param) {
+        return sqlSession.selectList("sellbuy.selectSell", param);
     }
 
     @Override

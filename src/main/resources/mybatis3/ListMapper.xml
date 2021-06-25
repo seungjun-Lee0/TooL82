@@ -29,18 +29,20 @@
     </insert>
 
     <select id = "selectBuy" statementType="PREPARED"
-            parameterType="int"
+            parameterType="map"
             resultType="tool82.spring.project.vo.Buylist">
-        select mno, selleryn, pno, title, category, bdate, edate, sprice, email, buystat
+        select pno, title, category, bdate, edate, sprice, buystat
         from buylist
+        where mno = #{MNO}
         order by bdate desc limit #{snum}, 10;
     </select>
 
     <select id = "selectSell" statementType="PREPARED"
-            parameterType="int"
+            parameterType="map"
             resultType="tool82.spring.project.vo.Sellist">
-        select mno, selleryn, pno, title, category, bdate, edate, sprice, email, buystat
+        select pno, title, category, edate, sprice
         from sellist
+        where mno = #{MNO}
         order by edate desc limit #{snum}, 10;
     </select>
 
@@ -50,11 +52,11 @@
             resultType="tool82.spring.project.vo.Sellist">
         select * from sellist
         <if test="ftype == 'buying'">
-            where buystat like 0 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buysuss'">
-            where buystat like 1 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 1 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buyfail'">
-            where buystat like 2 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 2 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'music'">
@@ -89,23 +91,23 @@
 
     <select id="countSell" statementType="PREPARED"
             resultType="int">
-        select count(pno) cnt from sellist
+        select count(slno) cnt from sellist
     </select>
 
     <select id="countBuy" statementType="PREPARED"
             resultType="int">
-        select count(pno) cnt from buylist
+        select count(byno) cnt from buylist
     </select>
 
     <select id="findCountSell" statementType="PREPARED"
             parameterType="map" resultType="int">
-        select count(pno) cnt from sellist
+        select count(slno) cnt from sellist
         <if test="ftype == 'buying'">
-            where buystat like 0 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buysuss'">
-            where buystat like 1 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 1 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buyfail'">
-            where buystat like 2 and title like concat('%', #{fkey}, '%') </if>
+            where sellstat like 2 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'music'">
@@ -118,7 +120,7 @@
 
     <select id="findCountBuy" statementType="PREPARED"
             parameterType="map" resultType="int">
-        select count(pno) cnt from buylist
+        select count(byno) cnt from buylist
         <if test="ftype == 'buying'">
             where buystat like 0 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buysuss'">

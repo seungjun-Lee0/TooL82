@@ -20,23 +20,19 @@ public class ListController {
     @Autowired private MemberService mbsrv;
 
     @GetMapping("member/buyerpage")
-    public ModelAndView buyerpage(ModelAndView mv, HttpSession sess, String cp){
+    public ModelAndView buyerpage(ModelAndView mv,String cp, String mno){
         if (cp == null) cp = "1";
-        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
-        mv.addObject("mb", m);
         mv.setViewName("member/buyerpage.tiles");
-        mv.addObject("bys", lsrv.readBuy(cp));
+        mv.addObject("bys", lsrv.readBuy(cp, mno));
         mv.addObject("bycnt", lsrv.countBuy());
         return mv;
     }
 
     @GetMapping("/member/sellerpage")
-    public ModelAndView sellerpage(ModelAndView mv, HttpSession sess, String cp){
+    public ModelAndView sellerpage(ModelAndView mv, String cp, String mno){
         if (cp == null) cp = "1";
-        Member m = mbsrv.readOneMember((String)sess.getAttribute("UID"));
-        mv.addObject("mb", m);
         mv.setViewName("member/sellerpage.tiles");
-        mv.addObject("sls", lsrv.readSell(cp));
+        mv.addObject("sls", lsrv.readSell(cp, mno));
         mv.addObject("slcnt", lsrv.countSell());
         return mv;
     }
@@ -46,9 +42,9 @@ public class ListController {
     public ModelAndView buyfind(ModelAndView mv, String cp,
                                  String findtype, String findkey) {
         mv.setViewName("member/buyerpage.tiles");
-        mv.addObject("bys",
+        mv.addObject("bys1",
                 lsrv.readBuy(cp, findtype, findkey));
-        mv.addObject("bycnt",
+        mv.addObject("bycnt1",
                 lsrv.countBuy(findtype, findkey));
         return mv;
     }
@@ -57,9 +53,9 @@ public class ListController {
     public ModelAndView sellfind(ModelAndView mv, String cp,
                                  String findtype, String findkey) {
         mv.setViewName("member/sellerpage.tiles");
-        mv.addObject("sls",
+        mv.addObject("sls1",
                 lsrv.readSell(cp, findtype, findkey));
-        mv.addObject("slcnt",
+        mv.addObject("slcnt1",
                 lsrv.countSell(findtype, findkey));
         return mv;
     }
