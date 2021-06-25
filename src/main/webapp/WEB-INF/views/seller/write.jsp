@@ -28,10 +28,9 @@
                     <div class="lightgrey" id="tit_warn">최대 글자 20자를 넘지 않게 해주세요.</div>
                 </li>
                 <li>
-                    <div class="subject w100">ㆍ 진행 기간</div>
-                    <input type="text" name="sdate" id="sdate" class="width-100" size="8"> ~
-                    <input type="text" name="edate" id="edate" class="width-100" size="8">
-                    <div class="lightgrey" id="dt_warn"></div>
+                    <div class="subject w100">ㆍ 마감 날짜</div>
+                    <input type="text" name="edate" id="edate" class="width-100" size="8" readonly>
+                    <div class="lightgrey" id="dt_warn">시작 날짜는 판매 등록한 날짜로 자동 설정되며, 수정이 불가합니다.</div>
                 </li>
                 <li>
                     <div class="subject">ㆍ 모집인원</div>
@@ -81,11 +80,11 @@
                 <li>
                     <div class="subject w100">ㆍ 제품 이미지</div>
                     <div>
-                    <input type="file" name="img" id="img2"
-                           class="custom-file-input">
-                    <label class="custom-file-label" style="margin-left:120px; width: 300px;">
-                        첨부할 파일을 선택하세요
-                    </label>
+                        <input type="file" name="img" id="img2"
+                               class="custom-file-input">
+                        <label class="custom-file-label" style="margin-left:120px; width: 300px;">
+                            첨부할 파일을 선택하세요
+                        </label>
                         <div class="lightgrey" id="img2_warn"></div>
                     </div>
                 </li>
@@ -101,9 +100,8 @@
             <button type="button" class="button border button-purple" id="sellbtn">등록</button>
         </div>
 
-        <input type="hidden" name="email" id="email">
-        <input type="hidden" name="cpartied" id="cpartied" value="0">
         <input type="hidden" name="userid" id="userid" value="${sessionScope.MyInfo.userid}">
+        <input type="hidden" name="email" id="email">
     </form>
 
 </div>

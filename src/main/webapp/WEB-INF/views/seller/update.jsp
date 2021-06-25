@@ -28,10 +28,9 @@
                     <div class="lightgrey" id="tit_warn">최대 글자 20자를 넘지 않게 해주세요.</div>
                 </li>
                 <li>
-                    <div class="subject w100">ㆍ 진행 기간</div>
-                    <input type="text" name="sdate" id="sdate" class="width-100" size="8" value="${pd.sdate}"> ~
-                    <input type="text" name="edate" id="edate" class="width-100" size="8" value="${pd.edate}">
-                    <div class="lightgrey" id="dt_warn"></div>
+                    <div class="subject w100">ㆍ 마감 날짜</div>
+                    <input type="text" name="edate" id="edate" class="width-100" size="8" readonly>
+                    <div class="lightgrey" id="dt_warn">시작 날짜는 판매 등록한 날짜로 자동 설정되며, 수정이 불가합니다.</div>
                 </li>
                 <li>
                     <div class="subject">ㆍ 모집인원</div>

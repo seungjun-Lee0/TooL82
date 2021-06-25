@@ -2,49 +2,34 @@ package tool82.spring.project.vo;
 
 public class Sellist {
 
-    protected String mno;
-    protected String selleryn;
-    protected String pno;
-    protected String title;
+    protected String sellno;
+    protected String userid;
     protected String category;
-    protected String bdate;
+    protected String title;
+    protected String party;
+    protected String cpartied;
+    protected String email;
+    protected String sdate;
     protected String edate;
     protected String sprice;
-    protected String contents;
-    protected String buystat;
-    protected String todie;
-    protected String pcnt;
+    protected String sellstat;
+    protected String pno;
+    protected String mno;
 
-    public String getMno() {
-        return mno;
+    public String getSellno() {
+        return sellno;
     }
 
-    public void setMno(String mno) {
-        this.mno = mno;
+    public void setSellno(String sellno) {
+        this.sellno = sellno;
     }
 
-    public String getSelleryn() {
-        return selleryn;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setSelleryn(String selleryn) {
-        this.selleryn = selleryn;
-    }
-
-    public String getPno() {
-        return pno;
-    }
-
-    public void setPno(String pno) {
-        this.pno = pno;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getCategory() {
@@ -55,12 +40,44 @@ public class Sellist {
         this.category = category;
     }
 
-    public String getBdate() {
-        return bdate;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBdate(String bdate) {
-        this.bdate = bdate;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getParty() {
+        return party;
+    }
+
+    public void setParty(String party) {
+        this.party = party;
+    }
+
+    public String getCpartied() {
+        return cpartied;
+    }
+
+    public void setCpartied(String cpartied) {
+        this.cpartied = cpartied;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSdate() {
+        return sdate;
+    }
+
+    public void setSdate(String sdate) {
+        this.sdate = sdate;
     }
 
     public String getEdate() {
@@ -79,35 +96,27 @@ public class Sellist {
         this.sprice = sprice;
     }
 
-    public String getContents() {
-        return contents;
+    public String getSellstat() {
+        return sellstat;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
+    public void setSellstat(String sellstat) {
+        this.sellstat = sellstat;
     }
 
-    public String getBuystat() {
-        return buystat;
+    public String getPno() {
+        return pno;
     }
 
-    public void setBuystat(String buystat) {
-        this.buystat = buystat;
+    public void setPno(String pno) {
+        this.pno = pno;
     }
 
-    public String getTodie() {
-        return todie;
+    public String getMno() {
+        return mno;
     }
 
-    public void setTodie(String todie) {
-        this.todie = todie;
-    }
-
-    public String getPcnt() {
-        return pcnt;
-    }
-
-    public void setPcnt(String pcnt) {
-        this.pcnt = pcnt;
+    public void setMno(String mno) {
+        this.mno = mno;
     }
 }

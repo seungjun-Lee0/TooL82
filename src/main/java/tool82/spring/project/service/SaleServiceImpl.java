@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tool82.spring.project.dao.SaleDAO;
 import tool82.spring.project.util.ImgUploadUtil;
 import tool82.spring.project.vo.Product;
+import tool82.spring.project.vo.Sellist;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -56,6 +57,16 @@ public class SaleServiceImpl implements SaleService {
 
         return true;
     }
+
+    @Override
+    public boolean newSaleList(Sellist sl) {
+        boolean isOk = false;
+        if(sdao.insertSaleList(sl) > 0){
+            isOk = true;
+        }
+        return isOk;
+    }
+
 
     @Override
     public Product readOneProd(String pno) {

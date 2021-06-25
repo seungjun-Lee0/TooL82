@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import tool82.spring.project.vo.Product;
+import tool82.spring.project.vo.Sellist;
 
 @Repository("sdao")
 public class SaleDAOImpl implements SaleDAO {
@@ -28,5 +29,10 @@ public class SaleDAOImpl implements SaleDAO {
     @Override
     public int updateSaleItem(Product p) {
         return sqlSession.update("sale.updateSaleItem", p);
+    }
+
+    @Override
+    public int insertSaleList(Sellist sl) {
+        return sqlSession.update("sale.insertSaleList", sl);
     }
 }
