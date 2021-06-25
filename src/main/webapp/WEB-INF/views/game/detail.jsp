@@ -27,8 +27,10 @@
     <div class="subject">️
         <span id="title" name="title">${gm.title}️</span>
         <span style="float: right">
-        <button class="button small border button-purple" id="updatebtn">수정하기</button>
-        <button class="button small border button-purple" id="deletebtn">삭제하기</button>
+            <c:if test="${sessionScope.MyInfo.userid eq gm.userid and gm.cpartied eq 0}">
+                <button class="button small border button-purple" id="updatebtn">수정하기</button>
+                <button class="button small border button-purple" id="deletebtn">삭제하기</button>
+            </c:if>
         </span>
     </div>
 </div>

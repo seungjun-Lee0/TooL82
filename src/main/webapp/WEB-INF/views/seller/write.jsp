@@ -101,6 +101,7 @@
         </div>
 
         <input type="hidden" name="userid" id="userid" value="${sessionScope.MyInfo.userid}">
+        <input type="hidden" name="mno" id="mno" value="${param.mno}">
         <input type="hidden" name="email" id="email">
     </form>
 

@@ -6,14 +6,16 @@ import org.springframework.stereotype.Repository;
 import tool82.spring.project.vo.Product;
 import tool82.spring.project.vo.Sellist;
 
+import java.util.Map;
+
 @Repository("sdao")
 public class SaleDAOImpl implements SaleDAO {
 
     @Autowired private SqlSession sqlSession;
 
     @Override
-    public int insertSale(Product p) {
-        return sqlSession.insert("sale.insertSale", p);
+    public int insertSale(Map<String, Object> params) {
+        return sqlSession.insert("sale.insertSale", params);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class SaleDAOImpl implements SaleDAO {
     }
 
     @Override
-    public int insertSaleList(Sellist sl) {
-        return sqlSession.update("sale.insertSaleList", sl);
+    public int insertSaleList(Map<String, Object> param) {
+        return sqlSession.update("sale.insertSaleList", param);
     }
 }

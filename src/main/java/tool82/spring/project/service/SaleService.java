@@ -7,8 +7,8 @@ import tool82.spring.project.vo.Sellist;
 public interface SaleService {
 
     // with img
-    boolean newSale(Product p, MultipartFile[] img);
-    boolean newSaleList(Sellist sl);
+    boolean newSale(Product p, MultipartFile[] img, String mno);
+    boolean newSaleList(Product p, String mno);
 
     Product readOneProd(String pno);
 

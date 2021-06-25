@@ -31,13 +31,14 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public List<Sellist> readSell(String cp, String ftype, String fkey) {
+    public List<Sellist> readSell(String cp, String mno, String ftype, String fkey) {
         int snum = (Integer.parseInt(cp) - 1) * 10;
 
         Map<String, Object> params = new HashMap<>();
         params.put("snum", snum);
         params.put("ftype", ftype);
         params.put("fkey", fkey);
+        params.put("MNO", mno);
 
         return ldao.findSelectSell(params);
     }
@@ -54,16 +55,17 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public List<Buylist> readBuy(String cp, String ftype, String fkey) {
+    public List<Buylist> readBuy(String cp, String mno, String ftype, String fkey) {
         int snum = (Integer.parseInt(cp) - 1) * 10;
         Map<String, Object> params = new HashMap<>();
         params.put("snum", snum);
         params.put("ftype", ftype);
         params.put("fkey", fkey);
+        params.put("MNO", mno);
         return ldao.findSelectBuy(params);
     }
 
-    @Override
+  /*  @Override
     public Sellist readSellUid(String mno) {
         return ldao.selectOneSellUid(mno);
     }
@@ -71,26 +73,44 @@ public class ListServiceImpl implements ListService {
     @Override
     public Buylist readBuyUid(String mno) {
         return ldao.selectOneBuyUid(mno);
+    }*/
+
+    @Override
+    public int countSell(String mno) {
+        return ldao.selectCountSell(mno);
     }
 
     @Override
-    public int countSell() {
-        return ldao.selectCountSell();
+    public int countSell(String ftype, String fkey, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("ftype", ftype);
+        params.put("fkey", fkey);
+        params.put("MNO", mno);
+        return ldao.selectCountSell(params);
     }
 
     @Override
-    public int countSell(String ftype, String fkey) {
-        return ldao.selectCountSell();
+    public int countBuy(String mno) {
+        return ldao.selectCountBuy(mno);
     }
 
     @Override
-    public int countBuy() {
-        return ldao.selectCountBuy();
+    public int countBuy(String ftype, String fkey, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("ftype", ftype);
+        params.put("fkey", fkey);
+        params.put("MNO", mno);
+        return ldao.selectCountBuy(params);
     }
 
     @Override
-    public int countBuy(String ftype, String fkey) {
-        return ldao.selectCountBuy();
+    public void newBuyList(Map<String, Object> params) {
+
+    }
+
+    @Override
+    public void modifyParty(String pno) {
+
     }
 
 }

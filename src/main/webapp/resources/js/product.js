@@ -72,16 +72,6 @@ function madeBox() { // 만약 버튼을 클릭했다면
 }
 
 
-$('#deletebtn').on('click', function (){
-    if($('#cpartied').val() !== 0) {
-        alert("모집된 인원이 있을 때에는 삭제할 수 없습니다.")
-    }
-    else
-        alert("삭제")
-})
-
-
-
 function button_event(){
     if (confirm("정말 구매하시겠습니까?") == true){    //확인
         document.form.submit();

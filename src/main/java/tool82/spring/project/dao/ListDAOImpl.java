@@ -28,16 +28,6 @@ public class ListDAOImpl implements ListDAO {
     }
 
     @Override
-    public Sellist selectOneSellUid(String mno) {
-        return sqlSession.selectOne("sellbuy.selectSellUid", mno);
-    }
-
-    @Override
-    public Buylist selectOneBuyUid(String mno) {
-        return sqlSession.selectOne("sellbuy.selectBuyUid", mno);
-    }
-
-    @Override
     public List<Sellist> selectSell(Map<String, Object> param) {
         return sqlSession.selectList("sellbuy.selectSell", param);
     }
@@ -48,23 +38,23 @@ public class ListDAOImpl implements ListDAO {
     }
 
     @Override
-    public int selectCountSell() {
-        return sqlSession.selectOne("sellbuy.countSell");
+    public int selectCountSell(String mno) {
+        return sqlSession.selectOne("sellbuy.countSell", mno);
     }
 
     @Override
     public int selectCountSell(Map<String, Object> param) {
-        return sqlSession.selectOne("sellbuy.countSell", param);
+        return sqlSession.selectOne("sellbuy.findCountSell", param);
     }
 
     @Override
-    public int selectCountBuy() {
-        return sqlSession.selectOne("sellbuy.countBuy");
+    public int selectCountBuy(String mno) {
+        return sqlSession.selectOne("sellbuy.countBuy", mno);
     }
 
     @Override
     public int selectCountBuy(Map<String, Object> param) {
-        return sqlSession.selectOne("sellbuy.countBuy", param);
+        return sqlSession.selectOne("sellbuy.findCountBuy", param);
     }
 
 

@@ -14,12 +14,9 @@ public interface ListDAO {
     List<Buylist> selectBuy(Map<String, Object> param);
     List<Buylist> findSelectBuy(Map<String, Object> param);
 
-    Sellist selectOneSellUid(String mno);
-    Buylist selectOneBuyUid(String mno);
-
-    int selectCountSell();
+    int selectCountSell(String mno);
     int selectCountSell(Map<String, Object> param);
-    int selectCountBuy();
+    int selectCountBuy(String mno);
     int selectCountBuy(Map<String, Object> param);
 
 }

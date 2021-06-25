@@ -4,9 +4,11 @@ package tool82.spring.project.dao;
 import tool82.spring.project.vo.Product;
 import tool82.spring.project.vo.Sellist;
 
+import java.util.Map;
+
 public interface SaleDAO {
 
-    int insertSale(Product p);
+    int insertSale(Map<String, Object> params);
 
     Product selectOneProd(String pno);
 
@@ -14,5 +16,5 @@ public interface SaleDAO {
 
     int updateSaleItem(Product p);
 
-    int insertSaleList(Sellist sl);
+    int insertSaleList(Map<String, Object> param);
 }

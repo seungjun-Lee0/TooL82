@@ -26,7 +26,7 @@
             <div class="header-right">
                 <c:if test="${not empty sessionScope.MyInfo}">
                     <c:if test="${sessionScope.MyInfo.selleryn eq 0}">
-                <a href="/seller/write" class="header-button">판매 등록</a>
+                <a href="/seller/write?mno=${sessionScope.MyInfo.mno}" class="header-button">판매 등록</a>
                     </c:if>
                 </c:if>
                 <c:if test="${empty sessionScope.MyInfo}">
