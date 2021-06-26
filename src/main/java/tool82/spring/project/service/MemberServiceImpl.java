@@ -3,7 +3,9 @@ package tool82.spring.project.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tool82.spring.project.dao.MemberDAO;
+import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
+import tool82.spring.project.vo.Sellist;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -53,6 +55,32 @@ public class MemberServiceImpl implements MemberService{
         }
         return result;
     }
+
+    @Override
+    public String removeMember(Member m) {
+//        int cnt = mbdao.confirmBuystat(m);
+        String result = "success";
+        if (mbdao.confirmBuystat(m) == 0 && mbdao.confirmSelstat(m) == 0) mbdao.deleteMember(m);
+//        else if (mbdao.confirmSelstat(m) == 0) mbdao.deleteMember(m);
+        else result = "fail";
+            return result;
+//        mbdao.deleteSMember(m);
+//        mbdao.deleteBMember(m);
+
+    }
+
+//    @Override
+//    public void removeSMember(Sellist sl) {
+//        mbdao.deleteSMember(sl);
+//
+//    }
+//
+//    @Override
+//    public void removeBMember(Buylist bl) {
+//
+//        mbdao.deleteBMember(bl);
+
+//    }
 
 
 }

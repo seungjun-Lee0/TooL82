@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tool82.spring.project.service.MemberService;
+import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
+import tool82.spring.project.vo.Sellist;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 public class RegisterController {
@@ -97,6 +100,53 @@ public class RegisterController {
         mv.addObject("mb", sess.getAttribute("MyInfo"));
         return "redirect:/member/mypage";
     }
+
+    // 회원탈퇴
+    @GetMapping("/member/remove")
+    public String removeMember() {
+        return "member/removeMember.tiles";
+    }
+
+    @GetMapping("/member/removeFail")
+    public String removeFail() {
+        return "member/removeFail.tiles";
+    }
+
+
+    @PostMapping("/member/remove")
+    public String removeOk(Member m, HttpSession sess, RedirectAttributes ra, HttpServletResponse res) {
+
+        if (mbsrv.removeMember(m) == "fail") {
+        ra.addFlashAttribute("rmvmsg", "현재 구매 또는 판매가 진행중인 상품이 있습니다. 확인 후 탈퇴를 진행해 주세요!");
+        ra.addFlashAttribute("rmvurl", "/member/mypage");
+        return "redirect:/member/removeFail";
+        }
+        else {
+            res.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.println("<script>alert('정상적으로 탈퇴되었습니다!'); location.href=\"/\";</script>");
+            out.flush();
+
+//        mbsrv.removeSMember(sl);
+//        mbsrv.removeBMember(bl);
+        mbsrv.removeMember(m);
+        sess.invalidate();}
+        return "redirect:/";
+    }
+
+//    @ResponseBody
+//    @GetMapping("/member/removeSuccess")
+//    public String removeSuccess() {
+//        String smsg = "<script>alert('정상적으로 탈퇴되었습니다!');</script>";
+//        return smsg;
+//    }
+
+
 
 
 }
