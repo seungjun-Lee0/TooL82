@@ -3,12 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc
-       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
+
+
 
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
@@ -48,6 +53,78 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760" /><!-- 10MB 제한 -->
+    </bean>
+
+
+
+
+<!--     상태 자동 실행 설정-->
+    <bean id="autoJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 서비스 구현 객체의 빈 이름을 인자로 -->
+        <property name="targetObject" ref="emlsrv" />
+        <!-- 서비스 객체에서 주기적으로 실행될 메소드 지정 -->
+        <!-- 잘 작동되는지 보는 용도: test -->
+        <!-- 이메일 자동 작성: sendMail -->
+        <!-- 상태 자동 수정: modifyStat, modifyBuyStat -->
+        <!-- 동시 실행을 방지. -->
+        <property name="targetMethod" value="modifyStat" />
+        <property name="concurrent" value="false" />
+    </bean>
+
+<!--     트리거-->
+    <bean id="autoJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="autoJob" />
+        <!-- CronTrigger를 사용하여 실행 -->
+        <property name="cronExpression" value="10 * * * * ?" />
+        <!--        매 5초 마다 실행 : "0/5 * * ?"-->
+        <!--        매 2분 마다 실행 : "0 0/2 * ?"-->
+        <!--        10초뒤 2분마다 실행 : "10 0/2 * ?"-->
+        <!--        매일 오전 1시에 실행 : "0 0 1 * * ?"-->
+        <!--        매주 금요일 오전 1시에 실행 : "0 0 1 ? * FRI"-->
+        <!--        매주 수요일과 금요일 10:30, 11:30, 12:30, 13:30 에 실행 : "0 30 10-13 ? * WED,FRI"-->
+        <!--        매월 5일, 20일 오전 8시부터 오전 10시 사이에30분 간격으로 실행 : "0 0/30 8-9 5,20 * ?"-->
+    </bean>
+
+
+
+    <!--     이메일 자동 실행 설정-->
+    <bean id="emailJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 서비스 구현 객체의 빈 이름을 인자로 -->
+        <property name="targetObject" ref="emlsrv" />
+        <!-- 서비스 객체에서 주기적으로 실행될 메소드 지정 -->
+        <!-- 잘 작동되는지 보는 용도: test -->
+        <!-- 이메일 자동 작성: sendMail -->
+        <!-- 상태 자동 수정: modifyStat, modifyBuyStat -->
+        <!-- 동시 실행을 방지. -->
+        <property name="targetMethod" value="sendMail" />
+        <property name="concurrent" value="false" />
+    </bean>
+
+
+    <!--     트리거-->
+    <bean id="emailJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="emailJob" />
+        <!-- CronTrigger를 사용하여 실행 -->
+        <property name="cronExpression" value="10 * * * * ?" />
+        <!--        매 5초 마다 실행 : "0/5 * * ?"-->
+        <!--        매 2분 마다 실행 : "0 0/2 * ?"-->
+        <!--        10초뒤 2분마다 실행 : "10 0/2 * ?"-->
+        <!--        매일 오전 1시에 실행 : "0 0 1 * * ?"-->
+        <!--        매주 금요일 오전 1시에 실행 : "0 0 1 ? * FRI"-->
+        <!--        매주 수요일과 금요일 10:30, 11:30, 12:30, 13:30 에 실행 : "0 30 10-13 ? * WED,FRI"-->
+        <!--        매월 5일, 20일 오전 8시부터 오전 10시 사이에 30분 간격으로 실행 : "0 0/30 8-9 5,20 * ?"-->
+    </bean>
+
+
+    <!-- 스케줄러 -->
+    <bean id="testJobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <!-- 앞에서 설정한 트리거를 등록. -->
+            <list>
+                <ref bean="autoJobTrigger" />
+                <ref bean="emailJobTrigger" />
+            </list>
+        </property>
     </bean>
 
 
