@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 import tool82.spring.project.dao.SaleDAO;
 import tool82.spring.project.util.ImgUploadUtil;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 import java.io.File;
 import java.util.*;
@@ -146,12 +145,9 @@ public class SaleServiceImpl implements SaleService {
                     String name = todie[i].substring(0, pos);
                     String ext = todie[i].substring(pos + 1);
                     String one = name + p.getUuid() + "." + ext;
-                    // String two = "thumb/small_" + p.getPno() + "_" + one;
 
                     File f = new File(fpath + one);    // 이미지
                     f.delete();
-                    //f = new File(fpath + two);         // 썸네일
-                    //f.delete();
                 }catch (Exception e){}
 
             }
@@ -159,15 +155,15 @@ public class SaleServiceImpl implements SaleService {
 
         // 수정된 내용 및 파일정보를 테이블에 저장
         sdao.updateSaleItem(p);
+    }
 
-        // 업로드한 이미지들 중 첫번째 이미지를 썸내일로 만듬
-//        String ofname = p.getFnames().split("/")[0];
-//        int pos = ofname.lastIndexOf(".");
-//        String fname = ofname.substring(0, pos);
-//        String fext = ofname.substring(pos+1);
-//        ofname = fname + p.getUuid() + "." + fext;
+    @Override
+    public void deleteSale(String pno, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("PNO", pno);
+        params.put("MNO", mno);
 
-
+        sdao.deleteSaleItem(params);
     }
 
 }

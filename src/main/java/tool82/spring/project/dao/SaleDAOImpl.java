@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 import java.util.Map;
 
@@ -36,5 +35,10 @@ public class SaleDAOImpl implements SaleDAO {
     @Override
     public int insertSaleList(Map<String, Object> param) {
         return sqlSession.update("sale.insertSaleList", param);
+    }
+
+    @Override
+    public void deleteSaleItem(Map<String, Object> param) {
+        sqlSession.delete("sale.deleteSaleItem", param );
     }
 }

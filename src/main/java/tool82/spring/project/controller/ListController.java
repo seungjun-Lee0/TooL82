@@ -15,14 +15,13 @@ import javax.servlet.http.HttpSession;
 public class ListController {
 
     @Autowired
-    public ListService lsrv;
+    private ListService lsrv;
 
     @Autowired private MemberService mbsrv;
 
     @GetMapping("member/buyerpage")
     public ModelAndView buyerpage(ModelAndView mv,String cp, String mno){
         if (cp == null) cp = "1";
-        System.out.println(mno+ "123");
         mv.setViewName("member/buyerpage.tiles");
         mv.addObject("bys", lsrv.readBuy(cp, mno));
         mv.addObject("bycnt", lsrv.countBuy(mno));

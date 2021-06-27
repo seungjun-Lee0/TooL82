@@ -25,17 +25,17 @@
         </div>
     </div>
     <div class="subject">️
-        <span id="title" name="title">${gm.title}️</span>
+        <span id="title" name="title">${gm.title}</span>
         <span style="float: right">
             <c:if test="${sessionScope.MyInfo.userid eq gm.userid and gm.cpartied eq 0}">
                 <button class="button small border button-purple" id="updatebtn">수정하기</button>
-                <button class="button small border button-purple" id="deletebtn">삭제하기</button>
+                <button class="button small border button-purple" id="deletegbtn">삭제하기</button>
             </c:if>
         </span>
     </div>
 </div>
 
-<form name="buyfrm" id="buyfrm">
+
     <div class="item-view-row">
         <span class="picture">
             <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small.png" alt="" />
@@ -68,7 +68,7 @@
         <span class="v-bar left">판매가 :
             <span class="sale-price">${gm.oprice}</span>
             <span class="price Rajdhani text-purple" id="sprice">${gm.sprice}</span>
-            <span class="lightgrey"> 원</span></span>+-
+            <span class="lightgrey"> 원</span></span>
         <span class="detail-sale-badge">${gm.pricert}% 할인</span>
 
         <span class="v-bar left"> 남은 인원 :
@@ -99,14 +99,6 @@
             ${gm.contents}
         </div>
     </div>
-
-
-    <div class="item-view-check">
-        <div class="input-check item-view-confirm">
-            <input type="checkbox" id="chk_confirm" name="chk_confirm" />
-            <label for="chk_confirm">파티 규칙에 대한 내용 확인 및 파티 알림 수신에 동의합니다.</label>
-        </div>
-    </div>
     <br>
     <div class="item-view-caution" style="border-color:#7e69fe; background-color: #ffffff;">
         <div class="text">
@@ -117,27 +109,21 @@
         </div>
     </div>
 
-    <input type="hidden" id="pno" name="pno" value="${param.pno}">
-    <input type="hidden" id="category" name="category" value="${gm.category}">
-    <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}">
+<form name="buygamefrm" id="buygamefrm">
+    <input type="hidden" name="pno" value="${gm.pno}" />
+    <input type="hidden" name="mno" value="${sessionScope.MyInfo.mno}" />
+    <input type="hidden" name="category" value="${gm.category}" />
+    <input type="hidden" name="title" value="${gm.title}" />
+    <input type="hidden" name="edate" value="${gm.edate}" />
+    <input type="hidden" name="sprice" value="${gm.sprice}" />
 
     <div class="button-align center">
         <a href="/game/list" class="button large">목록</a>
 
-        <button type="button" class="button large button-purple" id="buyreqbtn"
-                data-toggle="modal" data-target="#buyreq">구매신청</button>
+        <c:if test="${dupcheck eq 0 and not empty sessionScope.MyInfo.mno and sessionScope.MyInfo.userid ne gm.userid}">
+        <button type="button" class="button large button-purple" id="buyreqgamebtn">
+            구매신청</button>
+        </c:if>
     </div>
-
 
 </form>
-
-
-
-
-<div class="button-align right button-align-border">
-    <a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">이전</a>
-    <a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">다음</a>
-    <div class="float-right">
-    </div>
-</div>
-

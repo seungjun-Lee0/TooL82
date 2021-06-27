@@ -2,7 +2,6 @@ package tool82.spring.project.service;
 
 import org.springframework.web.multipart.MultipartFile;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 public interface SaleService {
 
@@ -13,4 +12,6 @@ public interface SaleService {
     Product readOneProd(String pno);
 
     void modifySaleItem(Product p, MultipartFile[] img);
+
+    void deleteSale(String pno, String mno);
 }

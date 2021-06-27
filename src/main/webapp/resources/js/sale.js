@@ -204,3 +204,51 @@ $('#updateokbtn').on('click', function (){
         alert('판매 수정이 완료되었습니다!')
     }
 })
+
+$('#deleteubtn').on('click', function () {
+    if (confirm("삭제된 게시물은 복구 하실 수 없습니다. 정말 삭제하시겠습니까?") == true){    //확인
+        const frm = $('#buyutilfrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/seller/delete");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+})
+
+$('#deletegbtn').on('click', function () {
+    if (confirm("삭제된 게시물은 복구 하실 수 없습니다. 정말 삭제하시겠습니까?") == true){    //확인
+        const frm = $('#buygamefrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/seller/delete");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+})
+
+$('#deletembtn').on('click', function () {
+    if (confirm("삭제된 게시물은 복구 하실 수 없습니다. 정말 삭제하시겠습니까?") == true){    //확인
+        const frm = $('#buymusicfrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/seller/delete");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+})
+
+$('#deletevbtn').on('click', function () {
+    if (confirm("삭제된 게시물은 복구 하실 수 없습니다. 정말 삭제하시겠습니까?") == true){    //확인
+        const frm = $('#buyvideofrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/seller/delete");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+})

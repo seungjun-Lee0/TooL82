@@ -85,7 +85,7 @@
                             </div>
                         </td>
                     </c:if>
-                    <c:if test="${slcnt gt 1}">
+                    <c:if test="${slcnt gt 0}">
                         <c:forEach var="sl" items="${sls}">
                             <tr>
                                 <td>${sl.edate}</td>
@@ -108,19 +108,19 @@
                                 <td>
                                     <div class="subject" style="text-align: center">
                                         <c:if test="${sl.category eq 'g'}">
-                                            <a href="/game/detail?pno=${sl.pno}">
+                                            <a href="/game/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'm'}">
-                                            <a href="/music/detail?pno=${sl.pno}">
+                                            <a href="/music/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'u'}">
-                                            <a href="/util/detail?pno=${sl.pno}">
+                                            <a href="/util/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'v'}">
-                                            <a href="/video/detail?pno=${sl.pno}">
+                                            <a href="/video/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                     </div>
@@ -170,8 +170,6 @@
                             </c:if>
                         </c:forEach>
 
-
-
                         <%-- '다음'버튼이 작동되어야 할때는 ??? --%>
                         <li class="page-item <c:if test="${ep gt tp}">disabled</c:if>">
                             <a href="${pglink}${sp+10}" class="page-link">다음</a></li>
@@ -179,8 +177,8 @@
                 </div>
 
             </div>
-            <input hidden name="mno" id="mno" value="${sessionScope.MyInfo.mno}"/>
-            <input hidden name="findkey" id="findkey" value=""/>
+            <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}"/>
+            <input type="hidden" name="findkey" id="findkey" value=""/>
 
 
         </div><!-- /#page-wrapper -->

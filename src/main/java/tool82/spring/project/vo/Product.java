@@ -20,6 +20,7 @@ public class Product {
     protected String leftd;
     protected String uuid;
     protected String todie;
+    protected String sellstat;
 
     public String getPno() {
         return pno;
@@ -163,5 +164,13 @@ public class Product {
 
     public void setTodie(String todie) {
         this.todie = todie;
+    }
+
+    public String getSellstat() {
+        return sellstat;
+    }
+
+    public void setSellstat(String sellstat) {
+        this.sellstat = sellstat;
     }
 }

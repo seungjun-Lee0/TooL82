@@ -29,7 +29,7 @@
         <span style="float: right">
         <c:if test="${sessionScope.MyInfo.userid eq mc.userid and mc.cpartied eq 0}">
             <button class="button small border button-purple" id="updatebtn">수정하기</button>
-            <button class="button small border button-purple" id="deletebtn">삭제하기</button>
+            <button class="button small border button-purple" id="deletembtn">삭제하기</button>
         </c:if>
         </span>
     </div>
@@ -98,14 +98,7 @@
     </div>
 </div>
 
-<form>
 
-    <div class="item-view-check">
-        <div class="input-check item-view-confirm">
-            <input type="checkbox" id="chk_confirm" name="chk_confirm" />
-            <label for="chk_confirm">파티 규칙에 대한 내용 확인 및 파티 알림 수신에 동의합니다.</label>
-        </div>
-    </div>
     <br>
     <div class="item-view-caution" style="border-color:#7e69fe; background-color: #ffffff;">
         <div class="text">
@@ -116,21 +109,19 @@
         </div>
     </div>
 
+<form id="buymusicfrm">
+    <input type="hidden" name="pno" value="${mc.pno}" />
+    <input type="hidden" name="mno" value="${sessionScope.MyInfo.mno}" />
+    <input type="hidden" name="category" value="${mc.category}" />
+    <input type="hidden" name="title" value="${mc.title}" />
+    <input type="hidden" name="edate" value="${mc.edate}" />
+    <input type="hidden" name="sprice" value="${mc.sprice}" />
+
     <div class="button-align center">
         <a href="/music/list" class="button large">목록</a>
 
-        <button type="button" class="button large button-purple" id="buyreqbtn">구매신청</button>
+        <c:if test="${dupcheck eq 0 and not empty sessionScope.MyInfo.mno and sessionScope.MyInfo.userid ne mc.userid}">
+            <button type="button" class="button large button-purple" id="buyreqmusicbtn">구매신청</button>
+        </c:if>
     </div>
-
-    <input type="hidden" id="pno" value="${param.pno}">
 </form>
-
-<div class="sns-share-icon">
-</div>
-
-<div class="button-align right button-align-border">
-    <a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">이전</a>
-    <a href="./item.php?it_id=1593077843&amp;ca_id=10" class="button small border button-purple">다음</a>
-    <div class="float-right">
-    </div>
-</div>

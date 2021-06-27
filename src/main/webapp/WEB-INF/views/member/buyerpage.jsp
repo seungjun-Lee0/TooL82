@@ -79,9 +79,7 @@
                         <td colspan="9">
                             <div class="empty">
                                 <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
-                                <h5>판매 목록이 없습니다!</h5>
-                                <h5>혹시 판매자가 아니신가요? 그렇다면 판매자 등록을 해주세요</h5>
-                                <a href="/member/mypage">판매자 등록하러 가기</a>
+                                <h5>구매 목록이 없습니다!</h5>
                             </div>
                         </td>
                     </c:if>
@@ -108,19 +106,19 @@
                             <td>
                                 <div class="subject" style="text-align: center">
                                     <c:if test="${by.category eq 'g'}">
-                                        <a href="/game/detail?pno=${by.pno}">
+                                        <a href="/game/detail?pno=${by.pno}&mno=${sessionScope.MyInfo.mno}">
                                                 ${by.title}</a>
                                     </c:if>
                                     <c:if test="${by.category eq 'm'}">
-                                        <a href="/music/detail?pno=${by.pno}">
+                                        <a href="/music/detail?pno=${by.pno}&mno=${sessionScope.MyInfo.mno}">
                                                 ${by.title}</a>
                                     </c:if>
                                     <c:if test="${by.category eq 'u'}">
-                                        <a href="/util/detail?pno=${by.pno}">
+                                        <a href="/util/detail?pno=${by.pno}&mno=${sessionScope.MyInfo.mno}">
                                                 ${by.title}</a>
                                     </c:if>
                                     <c:if test="${by.category eq 'v'}">
-                                        <a href="/video/detail?pno=${by.pno}">
+                                        <a href="/video/detail?pno=${by.pno}&mno=${sessionScope.MyInfo.mno}">
                                                 ${by.title}</a>
                                     </c:if>
                                 </div>
@@ -176,8 +174,8 @@
                 </div>
 
             </div>
-            <input hidden name="mno" id="mno" value="${sessionScope.MyInfo.mno}"/>
-            <input hidden name="findkey1" id="findkey1" value=""/>
+            <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}"/>
+            <input type="hidden" name="findkey1" id="findkey1" value=""/>
 
         </div><!-- /#page-wrapper -->
     </div><!-- /#wrapper -->

@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import tool82.spring.project.service.SaleService;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 @Controller
 public class SaleController {
@@ -25,7 +24,6 @@ public class SaleController {
     @PostMapping("/seller/write")
     public String sellRegOk(Product p, String mno, MultipartFile[] img) {
         String returnPage = "redirect:/game/list";
-        System.out.println(1+mno);
         ssrv.newSale(p, img, mno);
         return returnPage;
     }
@@ -42,6 +40,13 @@ public class SaleController {
     public String updateSellOk(Product p, MultipartFile[] img)
     {
         ssrv.modifySaleItem(p, img);
+        return "redirect:/";
+    }
+
+    @PostMapping("/seller/delete")
+    public String deleteSellOk(String pno, String mno)
+    {
+        ssrv.deleteSale(pno, mno);
         return "redirect:/";
     }
 

@@ -21,7 +21,7 @@
 
     <select id = "selectSell" statementType="PREPARED"
             parameterType="map"
-            resultType="tool82.spring.project.vo.Sellist">
+            resultType="tool82.spring.project.vo.Product">
         select pno, title, category, edate, sprice, sellstat
         from pdetail
         where mno = #{MNO}
@@ -31,7 +31,7 @@
 
     <select id="findSelectSell" statementType="PREPARED"
             parameterType="map"
-            resultType="tool82.spring.project.vo.Sellist">
+            resultType="tool82.spring.project.vo.Product">
         select * from pdetail
         <if test="ftype == 'buying'">
             where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
@@ -127,5 +127,23 @@
         and mno = #{MNO}
     </select>
 
+    <insert id="insertBuyList" statementType="PREPARED"
+            parameterType="map">
+        insert into buylist (pno, mno, category, title, edate, sprice)
+        values (#{PNO}, #{MNO}, #{CATEGORY}, #{TITLE},#{EDATE}, #{SPRICE});
+    </insert>
+
+    <update id="plusParty" statementType="PREPARED"
+            parameterType="map">
+        update pdetail set cpartied = cpartied + 1
+        where pno = #{PNO};
+    </update>
+
+    <select id="duplicateCheck" statementType="PREPARED"
+            parameterType="map"
+            resultType="int">
+        select COUNT(mno) cntmno from buylist
+        where pno = #{PNO} and mno = #{MNO};
+    </select>
 
 </mapper>

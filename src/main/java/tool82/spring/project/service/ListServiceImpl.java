@@ -7,7 +7,6 @@ import tool82.spring.project.dao.ListDAO;
 import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +16,10 @@ import java.util.Map;
 public class ListServiceImpl implements ListService {
 
     @Autowired private ListDAO ldao;
+    @Autowired private GameDAO gdao;
 
     @Override
-    public List<Sellist> readSell(String cp, String mno) {
+    public List<Product> readSell(String cp, String mno) {
         int snum = (Integer.parseInt(cp) - 1 ) * 10;
 
         Map<String, Object> params = new HashMap<>();
@@ -31,7 +31,7 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public List<Sellist> readSell(String cp, String mno, String ftype, String fkey) {
+    public List<Product> readSell(String cp, String mno, String ftype, String fkey) {
         int snum = (Integer.parseInt(cp) - 1) * 10;
 
         Map<String, Object> params = new HashMap<>();
@@ -65,16 +65,6 @@ public class ListServiceImpl implements ListService {
         return ldao.findSelectBuy(params);
     }
 
-  /*  @Override
-    public Sellist readSellUid(String mno) {
-        return ldao.selectOneSellUid(mno);
-    }
-
-    @Override
-    public Buylist readBuyUid(String mno) {
-        return ldao.selectOneBuyUid(mno);
-    }*/
-
     @Override
     public int countSell(String mno) {
         return ldao.selectCountSell(mno);
@@ -104,13 +94,29 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public void newBuyList(Map<String, Object> params) {
+    public int newBuyList(String pno, String mno, String category, String title,
+                           String edate, String sprice) {
+        Map<String, Object> params = new HashMap<>();
 
+        params.put("PNO", pno);
+        params.put("MNO", mno);
+        params.put("CATEGORY", category);
+        params.put("TITLE", title);
+        params.put("EDATE", edate);
+        params.put("SPRICE", sprice);
+
+        return ldao.insertBuyList(params);
     }
 
     @Override
-    public void modifyParty(String pno) {
+    public int duplicateCheck(String pno, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        int pnoInt = Integer.parseInt(pno);
+        int mnoInt = Integer.parseInt(mno);
 
+        params.put("PNO", pnoInt);
+        params.put("MNO", mnoInt);
+        return ldao.countDuplicateItem(params);
     }
 
 }

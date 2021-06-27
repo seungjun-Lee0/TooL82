@@ -11,15 +11,6 @@
                     #{p.contents}, #{p.fnames}, #{p.uuid});
     </insert>
 
-    <insert id="insertSaleList" statementType="PREPARED"
-            parameterType="map">
-        insert into sellist (mno, pno, category, title, edate, party, cpartied,
-                             sprice)
-        values (#{MNO}, #{p.pno}, #{p.category}, #{p.title}, #{p.edate}, #{p.party},
-                #{p.cpartied}, #{p.sprice});
-
-    </insert>
-
     <update id="updateSellstat" statementType="PREPARED"
             parameterType="String">
         update sellist set sellstat =
@@ -64,5 +55,10 @@
         where pno = #{pno};
     </update>
 
+    <delete id="deleteSaleItem" statementType="PREPARED"
+            parameterType="map">
+        delete from pdetail
+        where pno = #{PNO} and mno = #{MNO}
+    </delete>
 
 </mapper>
