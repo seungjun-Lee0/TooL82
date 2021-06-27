@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="email">
+
+
+
+    <select id="selectEmail" statementType="PREPARED"
+            parameterType="String"
+            resultType="tool82.spring.project.vo.Member">
+        select rg.email
+        from register rg right outer join
+             buylist bl on rg.mno = bl.mno
+        where bl.buystat = 3;
+    </select>
+
+
+
+    <update id="updateSussStat" statementType="PREPARED">
+        update pdetail set sellstat = 1
+        where current_timestamp > edate and party = cpartied;
+    </update>
+
+
+    <update id="updateFailStat" statementType="PREPARED">
+        update pdetail set sellstat = 2
+        where current_timestamp > edate and party != cpartied;
+    </update>
+
+
+    <update id="updateSussBuy" statementType="PREPARED">
+        update buylist bl
+            left outer join pdetail p on bl.mno = p.mno
+        set buystat = 1
+        where p.cpartied = p.party and current_timestamp > p.edate and current_timestamp > bl.edate;
+    </update>
+
+    <update id="updateFailBuy" statementType="PREPARED">
+        update buylist bl
+               left outer join pdetail p on bl.mno = p.mno
+        set buystat = 2
+        where p.cpartied != p.party and current_timestamp > p.edate and current_timestamp > bl.edate;
+    </update>
+
+
+
+
+</mapper>
