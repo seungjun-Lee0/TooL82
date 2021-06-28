@@ -1,8 +1,9 @@
 // search board
 $('#findbtn').on('click', function() {
     if ($('#findkey').val() == '') alert('검색할 내용을 입력하세요!');
+    else if($('#findtype3').val() == null) alert('카테고리를 선택하세요!')
     else {
-        let qry = "?findtype=" + $('#findtype').val();
+        let qry = "?findtype=" + $('#findtype3').val();
         qry += "&findkey=" + $('#findkey').val() + "&cp=1";
 
         let url = '/notice/find' + qry
@@ -11,7 +12,7 @@ $('#findbtn').on('click', function() {
 });
 
 // findtype tag setting
-$('#findtype').val('${param.findtype}').prop('selected', 'true');
+$('#findtype3').val('${param.findtype}').prop('selected', 'true');
 
 // 이전글
 $('#nprvbtn').on('click', function() {

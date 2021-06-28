@@ -36,7 +36,7 @@
                 <input type="hidden" name="bo_table" value="notice">
                 <input type="hidden" name="sca" value="">
                 <input type="hidden" name="sop" value="and">
-                <select name="findtype" id="findtype">
+                <select name="findtype3" id="findtype3">
                     <option value="title">제목</option>
                     <option value="contents">내용</option>
                     <option value="titcont">제목+내용</option>

@@ -23,7 +23,6 @@ public class ImgUploadUtil {
                 break;
             }
         }
-        System.out.println(">>>" +isFiles);
         return isFiles;
     }
 

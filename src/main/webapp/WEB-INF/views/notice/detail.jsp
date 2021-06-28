@@ -26,9 +26,7 @@
 </div>
 
 <div class="table-row">
-    <span class="picture"><img src="https://buts.co.kr/data/member_image/bu/butsadm.gif" class="photo" alt=""></span>
     <span class="v-bar"><span class="sv_member">관리자</span></span>
-<%--    <span class="v-bar">댓글 <span class="text-purple">0</span></span>--%>
     <span class="v-bar">조회수 <span class="text-purple">${nts.views}</span></span>
     <div class="right">${nts.regdate}</div>
 </div>
