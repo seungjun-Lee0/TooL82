@@ -117,7 +117,12 @@
                     </div>
                 </div>
                 <c:if test="${gm.party ne gm.cpartied and gm.leftd >= 0}">
-                    <a href="/game/detail?pno=${gm.pno}" class="item-button"></a>
+                    <c:if test="${empty sessionScope.MyInfo.mno}">
+                        <a href="/game/detail?pno=${gm.pno}&mno=-1" class="item-button"></a>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.MyInfo.mno}">
+                        <a href="/game/detail?pno=${gm.pno}&mno=${sessionScope.MyInfo.mno}" class="item-button"></a>
+                    </c:if>
                 </c:if>
             </div>
         </c:forEach>

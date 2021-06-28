@@ -3,20 +3,28 @@
 <mapper namespace="sale">
 
     <insert id="insertSale" statementType="PREPARED"
-            parameterType="tool82.spring.project.vo.Product">
-            insert into pdetail (userid, category, title, party, cpartied, sdate, edate,
+            parameterType="map">
+            insert into pdetail (mno, userid, category, title, party, edate,
                                  email, oprice, sprice, contents, fnames, uuid)
-            values (#{userid}, #{category}, #{title},#{party}, #{cpartied}, #{sdate}, #{edate},
-                #{email},#{oprice},#{sprice},#{contents}, #{fnames}, #{uuid});
+            values (#{MNO}, #{p.userid}, #{p.category}, #{p.title},#{p.party},
+                    #{p.edate}, #{p.email},#{p.oprice},#{p.sprice},
+                    #{p.contents}, #{p.fnames}, #{p.uuid});
     </insert>
 
-    <insert id="insertSaleList" statementType="PREPARED"
-            parameterType="tool82.spring.project.vo.Sellist">
-        insert into sellist (category, title, edate,
-                             sprice, sellstat)
-        values (#{userid}, #{category}, #{title},#{party}, #{cpartied}, #{edate},
-                #{email},#{sprice},#{sellstat});
-    </insert>
+    <update id="updateSellstat" statementType="PREPARED"
+            parameterType="String">
+        update sellist set sellstat =
+        <if test="DATEDIFF(#{edate}, current_date) leftd gte 0 and #{party} gt #{cpartied}">
+            0
+        </if>
+        <if test="DATEDIFF(#{edate}, current_date) leftd lt 0 and #{party} eq #{cpartied}">
+            1
+        </if>
+        <if test="DATEDIFF(#{edate}, current_date) leftd lt 0 and #{party} gt #{cpartied}">
+            2
+        </if>
+        where pno = #{pno};
+    </update>
 
     <select id="selectOneProd" statementType="PREPARED"
             parameterType="String"
@@ -47,5 +55,10 @@
         where pno = #{pno};
     </update>
 
+    <delete id="deleteSaleItem" statementType="PREPARED"
+            parameterType="map">
+        delete from pdetail
+        where pno = #{PNO} and mno = #{MNO}
+    </delete>
 
 </mapper>

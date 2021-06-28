@@ -14,8 +14,9 @@ import java.util.Map;
 public class MusicController {
 
     @Autowired
-    public MusicService msrv;
-    public ListService lsrv;
+    private MusicService msrv;
+    @Autowired
+    private ListService lsrv;
 
     @GetMapping("/music/list")
     public ModelAndView List(ModelAndView mv, String cp){
@@ -27,31 +28,22 @@ public class MusicController {
     }
 
     @GetMapping("/music/detail")
-    public ModelAndView Detail(String pno, ModelAndView mv) {
+    public ModelAndView Detail(String pno, String mno, ModelAndView mv) {
         mv.setViewName("music/detail.tiles");
         mv.addObject("mc", msrv.readOneMusic(pno));
+        mv.addObject("dupcheck", lsrv.duplicateCheck(pno, mno));
         return mv;
     }
 
-    @RequestMapping(value = "/music/buy", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> buyList(@RequestBody Map<String, Object> params) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            lsrv.newBuyList(params);
-        } catch (Exception ex) {
-            resultMap.put("message", ex.getMessage());
-            return resultMap;
-        }
-        resultMap.put("message", "구매신청에 성공하셨습니다");
-        return resultMap;
+    @PostMapping("/music/detail")
+    public String buyOK(String pno, String mno, String category, String title,
+                        String edate, String sprice) {
+        String returnPage = "redirect:/music/list";
+
+        lsrv.newBuyList(pno, mno, category, title, edate, sprice);
+
+        return returnPage;
     }
 
-
-    @GetMapping("/music/buy")
-    public String buyOk(String pno) {
-        lsrv.modifyParty(pno);
-        return "redirect:/game/list.tiles";
-    }
 
 }

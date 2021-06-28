@@ -47,31 +47,21 @@
     <div class="partner-body">
 
         <div id="page-wrapper">
-
-            <!-- [[ 파트너 참여정보 ]] -->
-
-            <form class="form" role="form" name="frm_saleitem" method="get">
-                <input type="hidden" name="ap" value="saleitem">
-
-                <div class="partner-well">
-                    <select name="findtype" id="findtype">
+            <div class="title">
+                <span class="text-purple">판매</span> 정보
+                <div style="float: right">
+                    <select name="findtype2" id="findtype2" style="width: 150px;">
                         <option value="video">&nbsp;&nbsp;&nbsp;영상</option>
                         <option value="music">&nbsp;&nbsp;&nbsp;음악</option>
                         <option value="game">&nbsp;&nbsp;&nbsp;게임</option>
                         <option value="util">&nbsp;&nbsp;&nbsp;유틸</option>
-                        <option value="buying">&nbsp;&nbsp;&nbsp;구매중</option>
-                        <option value="buysuss">&nbsp;&nbsp;&nbsp;구매완료</option>
-                        <option value="buyfail">&nbsp;&nbsp;&nbsp;구매실패</option>
+                        <option value="selling">&nbsp;&nbsp;&nbsp;진행중</option>
+                        <option value="sellsuss">&nbsp;&nbsp;&nbsp;판매완료</option>
+                        <option value="sellfail">&nbsp;&nbsp;&nbsp;판매실패</option>
                     </select>
-                    <input type="text" name="findkey" id="findkey" value="${param.findkey}"
-                           placeholder="빈 칸 가능합니다." size="70" maxlength="100">
                     <button type="button" class="button mini border button-purple" id="findsellbtn">검색</button>
                 </div>
-
-            </form>
-
-            <div class="title"><span class="text-purple">판매</span> 정보</div>
-            <div class="title"><span class="text-purple">총</span> 판매 수 </div>
+            </div>
 
             <div class="table-list scroll">
                 <table >
@@ -85,19 +75,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="sl" items="${sls}">
-                        <tr>
-<%--                            <c:if test="${slcnt eq 0}">--%>
-<%--                                <td colspan="9">--%>
-<%--                                    <div class="empty">--%>
-<%--                                        <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>--%>
-<%--                                        <h5>판매 목록이 없습니다!</h5>--%>
-<%--                                        <h5>혹시 판매자가 아니신가요? 그렇다면 판매자 등록을 해주세요</h5>--%>
-<%--                                        <a href="/member/mypage">판매자 등록하러 가기</a>--%>
-<%--                                    </div>--%>
-<%--                                </td>--%>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${slcnt gt 1}">--%>
+                    <c:if test="${slcnt eq 0}">
+                        <td colspan="9">
+                            <div class="empty">
+                                <div class="icon"><img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-big-glay.png" /></div>
+                                <h5>판매 목록이 없습니다!</h5>
+                                <h5>혹시 판매자가 아니신가요? 그렇다면 판매자 등록을 해주세요</h5>
+                                <a href="/member/mypage">판매자 등록하러 가기</a>
+                            </div>
+                        </td>
+                    </c:if>
+                    <c:if test="${slcnt gt 0}">
+                        <c:forEach var="sl" items="${sls}">
+                            <tr>
                                 <td>${sl.edate}</td>
                                 <td>
                                     <div class="pdcategory">
@@ -118,40 +108,40 @@
                                 <td>
                                     <div class="subject" style="text-align: center">
                                         <c:if test="${sl.category eq 'g'}">
-                                            <a href="/game/detail?pno=${sl.pno}">
+                                            <a href="/game/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'm'}">
-                                            <a href="/music/detail?pno=${sl.pno}">
+                                            <a href="/music/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'u'}">
-                                            <a href="/util/detail?pno=${sl.pno}">
+                                            <a href="/util/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                         <c:if test="${sl.category eq 'v'}">
-                                            <a href="/video/detail?pno=${sl.pno}">
+                                            <a href="/video/detail?pno=${sl.pno}&mno=${sessionScope.MyInfo.mno}">
                                                     ${sl.title}</a>
                                         </c:if>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="buystat">
-                                        <c:if test="${sl.sellstat eq '0'}">
-                                            <span>구매중</span>
+                                    <div>
+                                        <c:if test="${sl.sellstat eq 0}">
+                                            <span>진행중</span>
                                         </c:if>
-                                        <c:if test="${sl.sellstat eq '1'}">
-                                            <span>구매완료</span>
+                                        <c:if test="${sl.sellstat eq 1}">
+                                            <span>판매완료</span>
                                         </c:if>
-                                        <c:if test="${sl.sellstat eq '2'}">
-                                            <span>구매실패</span>
+                                        <c:if test="${sl.sellstat eq 2}">
+                                            <span>판매실패</span>
                                         </c:if>
                                     </div>
                                 </td>
                                 <td class="pc-table" style="width: 10%">${sl.sprice}</td>
-<%--                            </c:if>--%>
-                        </tr>
-                    </c:forEach>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
                     </tbody>
                 </table>
             </div>
@@ -187,6 +177,9 @@
                 </div>
 
             </div>
+            <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}"/>
+            <input type="hidden" name="findkey" id="findkey" value=""/>
+
 
         </div><!-- /#page-wrapper -->
     </div><!-- /#wrapper -->

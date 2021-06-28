@@ -6,12 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 import tool82.spring.project.dao.SaleDAO;
 import tool82.spring.project.util.ImgUploadUtil;
 import tool82.spring.project.vo.Product;
-import tool82.spring.project.vo.Sellist;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service("ssrv")
 public class SaleServiceImpl implements SaleService {
@@ -21,7 +18,7 @@ public class SaleServiceImpl implements SaleService {
 
     // with img
     @Override
-    public boolean newSale(Product p, MultipartFile[] img) {
+    public boolean newSale(Product p, MultipartFile[] img, String mno) {
         String uuid = imgutil.makeUUID();
 
         if(imgutil.checkSaleFiles(img)) {
@@ -52,16 +49,22 @@ public class SaleServiceImpl implements SaleService {
             p.setUuid(uuid);
 
         } // if
+        Map<String, Object> params = new HashMap<>();
+        params.put("p", p);
+        params.put("MNO", mno);
 
-        sdao.insertSale(p);
+        sdao.insertSale(params);
 
         return true;
     }
 
     @Override
-    public boolean newSaleList(Sellist sl) {
+    public boolean newSaleList(Product p, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("p", p);
+        params.put("MNO", mno);
         boolean isOk = false;
-        if(sdao.insertSaleList(sl) > 0){
+        if(sdao.insertSaleList(params) > 0){
             isOk = true;
         }
         return isOk;
@@ -142,12 +145,9 @@ public class SaleServiceImpl implements SaleService {
                     String name = todie[i].substring(0, pos);
                     String ext = todie[i].substring(pos + 1);
                     String one = name + p.getUuid() + "." + ext;
-                    // String two = "thumb/small_" + p.getPno() + "_" + one;
 
                     File f = new File(fpath + one);    // 이미지
                     f.delete();
-                    //f = new File(fpath + two);         // 썸네일
-                    //f.delete();
                 }catch (Exception e){}
 
             }
@@ -155,15 +155,15 @@ public class SaleServiceImpl implements SaleService {
 
         // 수정된 내용 및 파일정보를 테이블에 저장
         sdao.updateSaleItem(p);
+    }
 
-        // 업로드한 이미지들 중 첫번째 이미지를 썸내일로 만듬
-//        String ofname = p.getFnames().split("/")[0];
-//        int pos = ofname.lastIndexOf(".");
-//        String fname = ofname.substring(0, pos);
-//        String fext = ofname.substring(pos+1);
-//        ofname = fname + p.getUuid() + "." + fext;
+    @Override
+    public void deleteSale(String pno, String mno) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("PNO", pno);
+        params.put("MNO", mno);
 
-
+        sdao.deleteSaleItem(params);
     }
 
 }

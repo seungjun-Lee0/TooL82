@@ -9,7 +9,7 @@ import tool82.spring.project.service.NoticeService;
 @Controller
 public class NoticeController {
 
-    @Autowired public NoticeService nsrv;
+    @Autowired private NoticeService nsrv;
 
     @GetMapping("/notice/list")
     public ModelAndView noticeList(ModelAndView mv, String cp){

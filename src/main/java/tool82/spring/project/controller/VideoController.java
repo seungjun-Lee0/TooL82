@@ -14,8 +14,9 @@ import java.util.Map;
 public class VideoController {
 
     @Autowired
-    public VideoService vsrv;
-    public ListService lsrv;
+    private VideoService vsrv;
+    @Autowired
+    private ListService lsrv;
 
     @GetMapping("/video/list")
     public ModelAndView List(ModelAndView mv, String cp){
@@ -27,30 +28,20 @@ public class VideoController {
     }
 
     @GetMapping("/video/detail")
-    public ModelAndView Detail(String pno, ModelAndView mv) {
+    public ModelAndView Detail(String pno, String mno, ModelAndView mv) {
         mv.setViewName("video/detail.tiles");
         mv.addObject("vd", vsrv.readOneVideo(pno));
+        mv.addObject("dupcheck", lsrv.duplicateCheck(pno, mno));
         return mv;
     }
 
-    @RequestMapping(value = "/video/buy", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> buyList(@RequestBody Map<String, Object> params) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            lsrv.newBuyList(params);
-        } catch (Exception ex) {
-            resultMap.put("message", ex.getMessage());
-            return resultMap;
-        }
-        resultMap.put("message", "구매신청에 성공하셨습니다");
-        return resultMap;
-    }
+    @PostMapping("/video/detail")
+    public String buyOK(String pno, String mno, String category, String title,
+                        String edate, String sprice) {
+        String returnPage = "redirect:/video/list";
 
+        lsrv.newBuyList(pno, mno, category, title, edate, sprice);
 
-    @GetMapping("/video/buy")
-    public String buyOk(String pno) {
-        lsrv.modifyParty(pno);
-        return "redirect:/game/list.tiles";
+        return returnPage;
     }
 }

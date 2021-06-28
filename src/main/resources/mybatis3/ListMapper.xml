@@ -2,24 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sellbuy">
 
-<!--    예정: association을 통해 register(member)의 userid에 따른 sellist buylist의 mno를 알아낸 후
-        세션에 저장된 userid와 일치시켜서 구매&판매목록 얻어오기 -->
-<!--    <resultMap id="sellMemUid" type="tool82.spring.project.vo.Sellist">-->
-<!--        <id property="sellno" column="sellno"/>-->
-<!--        <association property="mno" column="writerId" javaType="com.freeboard02.domain.user.UserEntity" resultMap="userResultMap" />-->
-<!--    </resultMap>-->
-
-
-<!--    <select id="selectSellUid"-->
-<!--            resultMap="sellMemUid">-->
-<!--        select * from sellist-->
-<!--    </select>-->
-
-<!--    <select id="selectBuyUid" statementType="PREPARED" parameterType="String"-->
-<!--            resultMap="tool82.spring.project.vo.Buylist">-->
-<!--        select * from buylist where mno = #{mno};-->
-<!--    </select>-->
-
     <insert id="insertSale" statementType="PREPARED"
             parameterType="tool82.spring.project.vo.Product">
         insert into pdetail (userid, category, title, party, cpartied, sdate, edate,
@@ -39,9 +21,9 @@
 
     <select id = "selectSell" statementType="PREPARED"
             parameterType="map"
-            resultType="tool82.spring.project.vo.Sellist">
-        select pno, title, category, edate, sprice
-        from sellist
+            resultType="tool82.spring.project.vo.Product">
+        select pno, title, category, edate, sprice, sellstat
+        from pdetail
         where mno = #{MNO}
         order by edate desc limit #{snum}, 10;
     </select>
@@ -49,8 +31,8 @@
 
     <select id="findSelectSell" statementType="PREPARED"
             parameterType="map"
-            resultType="tool82.spring.project.vo.Sellist">
-        select * from sellist
+            resultType="tool82.spring.project.vo.Product">
+        select * from pdetail
         <if test="ftype == 'buying'">
             where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buysuss'">
@@ -65,6 +47,7 @@
             where category like 'u' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'game'">
             where category like 'g' and title like concat('%', #{fkey}, '%') </if>
+        and mno = #{MNO}
         order by edate desc;
     </select>
 
@@ -86,27 +69,32 @@
             where category like 'u' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'game'">
             where category like 'g' and title like concat('%', #{fkey}, '%') </if>
+        and mno = #{MNO}
         order by edate desc;
     </select>
 
     <select id="countSell" statementType="PREPARED"
+            parameterType="String"
             resultType="int">
-        select count(slno) cnt from sellist
+        select count(pno) cnt from pdetail
+        where mno = #{MNO}
     </select>
 
     <select id="countBuy" statementType="PREPARED"
+            parameterType="String"
             resultType="int">
         select count(byno) cnt from buylist
+        where mno = #{MNO}
     </select>
 
     <select id="findCountSell" statementType="PREPARED"
             parameterType="map" resultType="int">
-        select count(slno) cnt from sellist
-        <if test="ftype == 'buying'">
+        select count(pno) cnt from pdetail
+        <if test="ftype == 'selling'">
             where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
-        <if test="ftype == 'buysuss'">
+        <if test="ftype == 'sellsuss'">
             where sellstat like 1 and title like concat('%', #{fkey}, '%') </if>
-        <if test="ftype == 'buyfail'">
+        <if test="ftype == 'sellfail'">
             where sellstat like 2 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
@@ -116,6 +104,7 @@
             where category like 'u' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'game'">
             where category like 'g' and title like concat('%', #{fkey}, '%') </if>
+        and mno = #{MNO}
     </select>
 
     <select id="findCountBuy" statementType="PREPARED"
@@ -135,8 +124,25 @@
             where category like 'u' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'game'">
             where category like 'g' and title like concat('%', #{fkey}, '%') </if>
+        and mno = #{MNO}
     </select>
 
+    <insert id="insertBuyList" statementType="PREPARED"
+            parameterType="map">
+        insert into buylist (pno, mno, category, title, edate, sprice)
+        values (#{PNO}, #{MNO}, #{CATEGORY}, #{TITLE},#{EDATE}, #{SPRICE});
+    </insert>
 
+    <update id="plusParty" statementType="PREPARED"
+            parameterType="map">
+        update pdetail set cpartied = cpartied + 1
+        where pno = #{PNO};
+    </update>
 
+    <select id="duplicateCheck" statementType="PREPARED"
+            parameterType="map"
+            resultType="int">
+        select COUNT(mno) cntmno from buylist
+        where pno = #{PNO} and mno = #{MNO};
+    </select>
 </mapper>

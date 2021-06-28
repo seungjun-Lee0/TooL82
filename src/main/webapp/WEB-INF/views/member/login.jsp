@@ -3,7 +3,7 @@
 <div class="mw-400 form-pd form-login">
     <form class="form" role="form" name="loginfrm" id="loginfrm">
         <div class="login-logo">
-            <img src="/banner/tool82_logo.jpeg" alt="" />
+            <img src="/banner/tool82_logo.jpeg" width="200" height="200" />
         </div>
         <div class="login-input">
             <input type="text" name="userid" id="userid" required  maxLength="20" placeholder="아이디를 입력하세요" />

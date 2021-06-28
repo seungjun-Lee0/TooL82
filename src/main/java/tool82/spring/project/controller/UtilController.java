@@ -14,8 +14,10 @@ import java.util.Map;
 public class UtilController {
 
     @Autowired
-    public UtilService usrv;
-    public ListService lsrv;
+    private UtilService usrv;
+    @Autowired
+    private
+    ListService lsrv;
 
     @GetMapping("/util/list")
     public ModelAndView List(ModelAndView mv, String cp){
@@ -27,31 +29,20 @@ public class UtilController {
     }
 
     @GetMapping("/util/detail")
-    public ModelAndView Detail(String pno, ModelAndView mv) {
+    public ModelAndView Detail(String pno, String mno, ModelAndView mv) {
         mv.setViewName("util/detail.tiles");
         mv.addObject("ut", usrv.readOneUtil(pno));
+        mv.addObject("dupcheck", lsrv.duplicateCheck(pno, mno));
         return mv;
     }
 
-    @RequestMapping(value = "/util/buy", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> buyList(@RequestBody Map<String, Object> params) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            lsrv.newBuyList(params);
-        } catch (Exception ex) {
-            resultMap.put("message", ex.getMessage());
-            return resultMap;
-        }
-        resultMap.put("message", "구매신청에 성공하셨습니다");
-        return resultMap;
+    @PostMapping("/util/detail")
+    public String buyOK(String pno, String mno, String category, String title,
+                        String edate, String sprice) {
+        String returnPage = "redirect:/util/list";
+
+        lsrv.newBuyList(pno, mno, category, title, edate, sprice);
+
+        return returnPage;
     }
-
-
-    @GetMapping("/util/buy")
-    public String buyOk(String pno) {
-        lsrv.modifyParty(pno);
-        return "redirect:/game/list.tiles";
-    }
-
 }

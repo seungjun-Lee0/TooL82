@@ -22,10 +22,9 @@ public class SaleController {
 
     // with img
     @PostMapping("/seller/write")
-    public String sellRegOk(Product p, MultipartFile[] img) {
+    public String sellRegOk(Product p, String mno, MultipartFile[] img) {
         String returnPage = "redirect:/game/list";
-        System.out.println("111" + img);
-        ssrv.newSale(p, img);
+        ssrv.newSale(p, img, mno);
         return returnPage;
     }
 
@@ -44,21 +43,12 @@ public class SaleController {
         return "redirect:/";
     }
 
-
-
-
-
-    // without img
-//    @PostMapping("/seller/write")
-//    public String sellRegok(Product p) {
-//        String returnPage = "redirect:/game/list";
-//
-//        if (ssrv.newSale(p))
-//            System.out.println("입력완료!");
-//
-//        return returnPage;
-//    }
-
+    @PostMapping("/seller/delete")
+    public String deleteSellOk(String pno, String mno)
+    {
+        ssrv.deleteSale(pno, mno);
+        return "redirect:/";
+    }
 
 
 }

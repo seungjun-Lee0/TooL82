@@ -116,7 +116,12 @@
                 </div>
             </div>
             <c:if test="${ut.party ne ut.cpartied and ut.leftd >= 0}">
-                <a href="/util/detail?pno=${ut.pno}" class="item-button"></a>
+                <c:if test="${empty sessionScope.MyInfo.mno}">
+                    <a href="/util/detail?pno=${ut.pno}&mno=-1" class="item-button"></a>
+                </c:if>
+                <c:if test="${not empty sessionScope.MyInfo.mno}">
+                    <a href="/util/detail?pno=${ut.pno}&mno=${sessionScope.MyInfo.mno}" class="item-button"></a>
+                </c:if>
             </c:if>
         </div>
     </c:forEach>

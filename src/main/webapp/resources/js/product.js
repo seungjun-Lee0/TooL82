@@ -35,13 +35,8 @@ $( document ).ready( function() {
 
 
 
-// next page
-
+// 더보기 버튼
 $(document).on("click","#tryit", function (){
-    madeBox();
-});
-
-function madeBox() { // 만약 버튼을 클릭했다면
     const fullContent = document.querySelector('.item-list');
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -68,68 +63,53 @@ function madeBox() { // 만약 버튼을 클릭했다면
     if ( $('#cpage').val() > $('#tpage').val() + 1 ) {
         $('#tryit').hide();
     }
+});
 
-}
-
-
-$('#deletebtn').on('click', function (){
-    if($('#cpartied').val() !== 0) {
-        alert("모집된 인원이 있을 때에는 삭제할 수 없습니다.")
-    }
-    else
-        alert("삭제")
-})
-
-
-
-function button_event(){
-    if (confirm("정말 구매하시겠습니까?") == true){    //확인
-        document.form.submit();
+$('#buyreqgamebtn').on('click', function () {
+    if (confirm("신청된 구매요청은 취소 하실 수 없습니다. 정말 구매하시겠습니까?") == true){    //확인
+        const frm = $('#buygamefrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/game/detail");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
     }else{   //취소
         return;
     }
-}
+});
+
+$('#buyreqmusicbtn').on('click', function () {
+    if (confirm("신청된 구매요청은 취소 하실 수 없습니다. 정말 구매하시겠습니까?") == true){    //확인
+        const frm = $('#buymusicfrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/music/detail");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+});
+
+$('#buyrequtilbtn').on('click', function () {
+    if (confirm("신청된 구매요청은 취소 하실 수 없습니다. 정말 구매하시겠습니까?") == true){    //확인
+        const frm = $('#buyutilfrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/util/detail");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+});
 
 
-
-// buy agree
-// $('#buyreqbtn').click(function () {
-//     if ($('#chk_confirm').is(":checked") == false)
-//         alert('동의 여부를 확인해주세요.');
-//     else if ($('#chk_confirm').is(":checked") == true) {
-//         if (confirm("정말 구매하시겠습니까?") == true){
-//         var data = {}
-//         data["pno"] = $('#pno').val();
-//         data["mno"] = $('#mno').val();
-//         data["category"] = $('#category').val();
-//         data["title"] = $('#title').val();
-//         data["edate"] = $('#enddate').val();
-//         data["sprice"] = $('#sprice').val();
-//         location.href = '/game/buy?pno=' + $('#pno').val();
-//         $.ajax({
-//             type : "POST",
-//             url : "/game/buy",
-//             dataType : 'json',
-//             data : JSON.stringify(data) ,
-//             contentType: "application/json; charset=UTF-8",
-//             success : function(response) {
-//                         alert(response.message);
-//                     },
-//             error : function(request, status, error) {
-//                 alert(response.message);
-//             }
-//         });
-//     }
-//     } else
-//         return;
-// });
-
-$('#buyreqbtn').on('click', function () {
-    const frm = $('#buyfrm');
-    frm.attr("method", "post");
-    frm.attr('action', "/game/buy");
-    frm.attr('enctype', "multipart/form-data");
-    frm.submit();
-})
-
-
+$('#buyreqvideobtn').on('click', function () {
+    if (confirm("신청된 구매요청은 취소 하실 수 없습니다. 정말 구매하시겠습니까?") == true){    //확인
+        const frm = $('#buyvideofrm');
+        frm.attr("method", "post");
+        frm.attr('action', "/video/detail");
+        frm.attr('enctype', "multipart/form-data");
+        frm.submit();
+    }else{   //취소
+        return;
+    }
+});
