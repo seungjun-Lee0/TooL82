@@ -150,3 +150,26 @@ $('#modifybtn').on('click', function() {
 
 });
 
+// 회원 탈퇴
+$('#delbtn').on('click', function() {
+    location.href = '/member/remove';
+});
+
+$('#removebtn').on('click', function() {
+    if ($('#passwd').val() == '') alert('비밀번호를 입력하세요!');
+    else if ($('#sesspw').val() != $('#passwd').val()) $('#rmvpwdmsg').text('비밀번호를 확인하세요!').attr('style', 'color:red');
+    else if (alert('정말 탈퇴하시겠습니까?'));
+    else {
+        const frm = $('#removefrm');
+        frm.attr('method', 'post');
+        frm.attr('action', '/member/remove');
+        frm.submit();
+        // alert('정상적으로 탈퇴되었습니다.');
+    }
+});
+
+
+$('#cancelrmv').on('click', function() {
+    location.href = '/member/mypage';
+});
+

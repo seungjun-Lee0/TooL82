@@ -15,11 +15,36 @@
     </select>
 
     <select id="showOneMember" statementType="PREPARED" parameterType="String" resultType="tool82.spring.project.vo.Member">
-        select name, mno, userid, email, regdate, selleryn from register where userid = #{userid}
+        select name, mno, userid, email, regdate, selleryn, passwd from register where userid = #{userid}
     </select>
 
     <update id="updateMember" statementType="PREPARED" parameterType="String">
         update register set passwd = #{passwd}, email = #{email}, selleryn = #{selleryn} where userid = #{userid}
     </update>
+
+    <select id="confirmBuystat" statementType="PREPARED" parameterType="String" resultType="int">
+        select count(buystat) cnt from buylist where mno = (select register.mno from register where userid = #{userid}) and buystat = 0
+    </select>
+
+    <select id="confirmSelstat" statementType="PREPARED" parameterType="String" resultType="int">
+        select count(sellstat) cnt from sellist where mno = (select register.mno from register where userid = #{userid}) and sellstat = 0
+    </select>
+
+    <!-- 구매목록 삭제 -->
+    <delete id="deleteBMember" statementType="PREPARED" parameterType="String">
+        delete from buylist where mno = (select register.mno from register where userid = #{userid})
+    </delete>
+
+    <!-- 판매목록 삭제 -->
+    <delete id="deleteSMember" statementType="PREPARED" parameterType="String">
+        delete from sellist where mno = (select register.mno from register where userid = #{userid})
+    </delete>
+
+    <!-- 회원정보 삭제 -->
+    <delete id="deleteMember" statementType="PREPARED" parameterType="String">
+        delete from register where userid = #{userid} and passwd = #{passwd}
+    </delete>
+
+
 
 </mapper>

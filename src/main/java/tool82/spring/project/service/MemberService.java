@@ -1,6 +1,8 @@
 package tool82.spring.project.service;
 
+import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
+import tool82.spring.project.vo.Sellist;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -12,5 +14,8 @@ public interface MemberService {
     boolean checkLogin(Member m, HttpSession sess);
     Member readOneMember(String uid);
     String modifyMember(Member m, HttpSession sess);
+    String removeMember(Member m);
+//    void removeSMember(Sellist sl);
+//    void removeBMember(Buylist bl);
 
 }
