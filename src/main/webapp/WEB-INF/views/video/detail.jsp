@@ -111,8 +111,8 @@
     </div>
 
 <form id="buyvideofrm" name="buyvideofrm">
-    <input type="hidden" name="pno" value="${vd.pno}" />
-    <input type="hidden" name="mno" value="${sessionScope.MyInfo.mno}" />
+    <input type="hidden" name="pno" id="pno" value="${vd.pno}" />
+    <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}" />
     <input type="hidden" name="category" value="${vd.category}" />
     <input type="hidden" name="title" value="${vd.title}" />
     <input type="hidden" name="edate" value="${vd.edate}" />

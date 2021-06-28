@@ -117,7 +117,7 @@ $('#img2').on('change', function() {
 
 // update sale item
 $('#updatebtn').on('click', function () {
-    location.href = '/seller/update?pno=' + $('#pno').val();
+    location.href = '/seller/update?pno=' + $('#pno').val() + '&mno=' + $('#mno').val();
 });
 
 $('#die1').on('change', function (){

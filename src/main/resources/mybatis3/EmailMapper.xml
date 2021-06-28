@@ -38,7 +38,7 @@
 
     <update id="updateSussStat" statementType="PREPARED">
         update pdetail set sellstat = 1
-        where current_timestamp > edate and party = cpartied;
+        where /*current_timestamp > edate and*/ party = cpartied;
     </update>
 
 
@@ -50,14 +50,14 @@
 
     <update id="updateSussBuy" statementType="PREPARED">
         update buylist bl
-            left outer join pdetail p on bl.mno = p.mno
+            left outer join pdetail p on bl.pno = p.pno
         set buystat = 1
-        where p.cpartied = p.party and current_timestamp > p.edate and current_timestamp > bl.edate and buystat != 3;
+        where p.cpartied = p.party /*and current_timestamp > p.edate and current_timestamp > bl.edate */ and buystat != 3;
     </update>
 
     <update id="updateFailBuy" statementType="PREPARED">
         update buylist bl
-               left outer join pdetail p on bl.mno = p.mno
+               left outer join pdetail p on bl.pno = p.pno
         set buystat = 2
         where p.cpartied != p.party and current_timestamp > p.edate and current_timestamp > bl.edate;
     </update>

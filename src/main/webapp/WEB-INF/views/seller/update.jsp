@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="fname" value="${fn:split(pd.fnames,'/')}" />
+<c:set var="email" value="${fn:split(pd.email,'@')}" />
 
 <div class="title"><span class="text-purple">판매</span>  수정</div>
 
@@ -29,7 +30,7 @@
                 </li>
                 <li>
                     <div class="subject w100">ㆍ 마감 날짜</div>
-                    <input type="text" name="edate" id="edate" class="width-100" size="8" readonly>
+                    <input type="text" name="edate" id="edate" class="width-100" size="8" readonly value="${pd.edate}">
                     <div class="lightgrey" id="dt_warn">시작 날짜는 판매 등록한 날짜로 자동 설정되며, 수정이 불가합니다.</div>
                 </li>
                 <li>
@@ -41,9 +42,9 @@
                 <li>
                     <div class="subject w100">ㆍ 이메일(문의처)</div>
                     <div>
-                        <input type="text" class="width-200" name="email1" id="email1" placeholder="이메일을 입력해주세요." required value="" />
+                        <input type="text" class="width-200" name="email1" id="email1" placeholder="이메일을 입력해주세요." required value="${email[0]}" />
                         <span class="lightgrey at">@</span>
-                        <input type="text" class="width-200" name="email2" id="email2" class="form-control border-danger col-2" readonly>
+                        <input type="text" class="width-200" name="email2" id="email2" class="form-control border-danger col-2" readonly value="${email[1]}">
                         <select class="width-200" id="email3">
                             <option>-선택하세요-</option>
                             <option>직접입력하기</option>

@@ -110,8 +110,8 @@
     </div>
 
 <form id="buymusicfrm">
-    <input type="hidden" name="pno" value="${mc.pno}" />
-    <input type="hidden" name="mno" value="${sessionScope.MyInfo.mno}" />
+    <input type="hidden" name="pno" id="pno" value="${mc.pno}" />
+    <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}" />
     <input type="hidden" name="category" value="${mc.category}" />
     <input type="hidden" name="title" value="${mc.title}" />
     <input type="hidden" name="edate" value="${mc.edate}" />

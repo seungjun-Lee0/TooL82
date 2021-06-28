@@ -13,7 +13,7 @@
 
     <update id="updateSellstat" statementType="PREPARED"
             parameterType="String">
-        update sellist set sellstat =
+        update pdetail set sellstat =
         <if test="DATEDIFF(#{edate}, current_date) leftd gte 0 and #{party} gt #{cpartied}">
             0
         </if>

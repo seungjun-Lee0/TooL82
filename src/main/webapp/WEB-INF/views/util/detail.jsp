@@ -110,8 +110,8 @@
     </div>
 
 <form id="buyutilfrm" name="buyutilfrm">
-    <input type="hidden" name="pno" value="${ut.pno}" />
-    <input type="hidden" name="mno" value="${sessionScope.MyInfo.mno}" />
+    <input type="hidden" name="pno" id="pno" value="${ut.pno}" />
+    <input type="hidden" name="mno" id="mno" value="${sessionScope.MyInfo.mno}" />
     <input type="hidden" name="category" value="${ut.category}" />
     <input type="hidden" name="title" value="${ut.title}" />
     <input type="hidden" name="edate" value="${ut.edate}" />

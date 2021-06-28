@@ -75,7 +75,7 @@
     <bean id="autoJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="autoJob" />
         <!-- CronTrigger를 사용하여 실행 -->
-        <property name="cronExpression" value="10 * * * * ?" />
+        <property name="cronExpression" value="5 * * * * ?" />
         <!--        매 5초 마다 실행 : "0/5 * * ?"-->
         <!--        매 2분 마다 실행 : "0 0/2 * ?"-->
         <!--        10초뒤 2분마다 실행 : "10 0/2 * ?"-->
