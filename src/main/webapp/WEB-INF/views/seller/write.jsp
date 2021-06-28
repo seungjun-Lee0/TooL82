@@ -68,7 +68,7 @@
                 <li>
                     <div class="subject w100">ㆍ 로고 이미지</div>
                     <div>
-                        <input type="file" name="img" id="img1"
+                        <input type="file" name="img" id="img1" accept="image/*"
                                class="custom-file-input">
                         <label class="custom-file-label" style="margin-left:120px; width: 300px;">
                             첨부할 파일을 선택하세요
@@ -80,7 +80,7 @@
                 <li>
                     <div class="subject w100">ㆍ 제품 이미지</div>
                     <div>
-                        <input type="file" name="img" id="img2"
+                        <input type="file" name="img" id="img2" accept="image/*"
                                class="custom-file-input">
                         <label class="custom-file-label" style="margin-left:120px; width: 300px;">
                             첨부할 파일을 선택하세요

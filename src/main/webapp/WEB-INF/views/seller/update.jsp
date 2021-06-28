@@ -72,7 +72,7 @@
                             <input type="checkbox" id="die1" class="custom-control-input">
                             <label for="die1" class="custom-control-label"></label>
                         </span>
-                        <input type="file" name="img" id="img1"
+                        <input type="file" name="img" id="img1" accept="image/*"
                                class="custom-file-input" style="width: 300px" disabled>
                         <label class="custom-file-label" style="margin-left:120px; width: 300px;">
                             ${fname[0]}
@@ -88,7 +88,7 @@
                             <input type="checkbox" id="die2" class="custom-control-input">
                             <label for="die2" class="custom-control-label"></label>
                         </span>
-                        <input type="file" name="img" id="img2"
+                        <input type="file" name="img" id="img2" accept="image/*"
                                class="custom-file-input" style="width: 300px" disabled>
                         <label class="custom-file-label" style="margin-left:120px; width: 300px;">
                             ${fname[1]}
