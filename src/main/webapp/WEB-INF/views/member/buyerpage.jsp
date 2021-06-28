@@ -134,6 +134,9 @@
                                     <c:if test="${by.buystat eq 2}">
                                         <span>구매실패</span>
                                     </c:if>
+                                    <c:if test="${by.buystat eq 3}">
+                                        <span>코드발송완료</span>
+                                    </c:if>
                                 </div>
                             </td>
                             <td class="pc-table" style="width: 10%">${by.sprice}</td>

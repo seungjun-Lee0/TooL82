@@ -145,5 +145,4 @@
         select COUNT(mno) cntmno from buylist
         where pno = #{PNO} and mno = #{MNO};
     </select>
-
 </mapper>

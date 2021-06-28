@@ -24,7 +24,7 @@ public class EmailController {
             // 응답결과의 유형은 JSON형식으로 설정
             res.setContentType("application/json; charset=UTF-8");
             // 응답결과를 뷰없이 브라우져로 바로 출력
-            res.getWriter().print(emlsrv.findEmail(buystat));
+            res.getWriter().print("12");
         } catch (IOException e) {
             e.printStackTrace();
         }

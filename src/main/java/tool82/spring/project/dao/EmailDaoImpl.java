@@ -16,8 +16,9 @@ public class EmailDaoImpl implements EmailDAO {
     private SqlSession sqlSession;
 
     @Override
-    public List<Member> selectEmail(String buystat) {
-        return sqlSession.selectList("email.selectEmail", buystat);
+    public List<String> selectEmail() {
+
+        return sqlSession.selectList("email.selectEmail");
     }
 
     @Override
@@ -38,6 +39,11 @@ public class EmailDaoImpl implements EmailDAO {
     @Override
     public int updateFailBuyStat() {
         return sqlSession.update("email.updateFailBuy");
+    }
+
+    @Override
+    public void updateEmailStat() {
+        sqlSession.update("email.updateEmailStat");
     }
 
 

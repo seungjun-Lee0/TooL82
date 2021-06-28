@@ -68,5 +68,4 @@ public class ListDAOImpl implements ListDAO {
         return sqlSession.selectOne("sellbuy.duplicateCheck", params);
     }
 
-
 }

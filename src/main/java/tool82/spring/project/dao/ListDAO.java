@@ -21,4 +21,5 @@ public interface ListDAO {
 
     int insertBuyList(Map<String, Object> params);
     int countDuplicateItem(Map<String, Object> params);
+
 }

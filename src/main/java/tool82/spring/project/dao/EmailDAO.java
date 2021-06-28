@@ -8,11 +8,12 @@ import java.util.List;
 
 public interface EmailDAO {
 
-    List<Member> selectEmail(String buystat);
+    List<String> selectEmail();
 
     int updateSussStat();
     int updateFailStat();
     int updateSussBuyStat();
     int updateFailBuyStat();
 
+    void updateEmailStat();
 }
