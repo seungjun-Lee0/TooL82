@@ -27,7 +27,7 @@
     </select>
 
     <select id="confirmSelstat" statementType="PREPARED" parameterType="String" resultType="int">
-        select count(sellstat) cnt from sellist where mno = (select register.mno from register where userid = #{userid}) and sellstat = 0
+        select count(sellstat) cnt from pdetail where mno = (select register.mno from register where userid = #{userid}) and sellstat = 0
     </select>
 
     <!-- 구매목록 삭제 -->
@@ -37,7 +37,7 @@
 
     <!-- 판매목록 삭제 -->
     <delete id="deleteSMember" statementType="PREPARED" parameterType="String">
-        delete from sellist where mno = (select register.mno from register where userid = #{userid})
+        delete from pdetail where mno = (select register.mno from register where userid = #{userid})
     </delete>
 
     <!-- 회원정보 삭제 -->

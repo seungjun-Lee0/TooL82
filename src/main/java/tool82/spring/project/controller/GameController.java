@@ -2,20 +2,10 @@ package tool82.spring.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import tool82.spring.project.service.GameService;
 import tool82.spring.project.service.ListService;
-import tool82.spring.project.vo.Buylist;
-import tool82.spring.project.vo.Product;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class GameController {

@@ -126,17 +126,14 @@ public class SaleServiceImpl implements SaleService {
                 ofn[pos-1] = nfn[i];    // 변경한 파일이름 저장
                 todie[i] = fn.split("[/]")[pos-1];  // 삭제할 파일이름 저장
             }
-            // 수정된 결과 확인
-            //System.out.println(String.join("/", ofn));
 
             fnames = String.join("/", ofn);
 
             p.setFnames( fnames );
 
-            // 이미지 파일과 썸네일 제거
+            // 이미지 파일과 제거
             // abc123.png, uuid
             // => abc123uuid.png
-            // => small_글번호_abc123uuid.png
 
             String fpath = "/opt/homebrew/var/www/cdn/";
             for (int i=0; i < todie.length; ++i){

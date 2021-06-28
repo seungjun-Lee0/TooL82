@@ -22,6 +22,16 @@ public class EmailDaoImpl implements EmailDAO {
     }
 
     @Override
+    public List<String> selectName() {
+        return sqlSession.selectList("email.selectName");
+    }
+
+    @Override
+    public List<String> selectTitle() {
+        return sqlSession.selectList("email.selectTitle");
+    }
+
+    @Override
     public int updateSussStat() {
         return sqlSession.update("email.updateSussStat");
     }

@@ -12,6 +12,22 @@
         where bl.buystat = 1;
     </select>
 
+    <select id="selectName" statementType="PREPARED"
+            resultType="String">
+        select rg.name
+        from register rg right outer join
+             buylist bl on rg.mno = bl.mno
+        where bl.buystat = 1;
+    </select>
+
+    <select id="selectTitle" statementType="PREPARED"
+            resultType="String">
+        select bl.title
+        from register rg right outer join
+             buylist bl on rg.mno = bl.mno
+        where bl.buystat = 1;
+    </select>
+
     <update id="updateEmailStat" statementType="PREPARED">
         update register rg right outer join
             buylist bl on rg.mno = bl.mno set bl.buystat = 3

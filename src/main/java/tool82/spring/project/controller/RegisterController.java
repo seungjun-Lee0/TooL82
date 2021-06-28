@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tool82.spring.project.service.MemberService;
-import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
-import tool82.spring.project.vo.Sellist;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -132,21 +130,8 @@ public class RegisterController {
             out.println("<script>alert('정상적으로 탈퇴되었습니다!'); location.href=\"/\";</script>");
             out.flush();
 
-//        mbsrv.removeSMember(sl);
-//        mbsrv.removeBMember(bl);
         mbsrv.removeMember(m);
         sess.invalidate();}
         return "redirect:/";
     }
-
-//    @ResponseBody
-//    @GetMapping("/member/removeSuccess")
-//    public String removeSuccess() {
-//        String smsg = "<script>alert('정상적으로 탈퇴되었습니다!');</script>";
-//        return smsg;
-//    }
-
-
-
-
 }

@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import tool82.spring.project.dao.MemberDAO;
 import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
-import tool82.spring.project.vo.Sellist;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package tool82.spring.project.dao;
 
 import tool82.spring.project.vo.Buylist;
 import tool82.spring.project.vo.Member;
-import tool82.spring.project.vo.Sellist;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -16,12 +15,7 @@ public interface MemberDAO {
     Member showOneMember(String uid);
 
     int updateMember(Member m);
-
     void deleteMember(Member m);
-
     int confirmBuystat(Member m);
     int confirmSelstat(Member m);
-
-//    void deleteSMember (Sellist sl);
-//    void deleteBMember (Buylist bl);
 }
