@@ -20,7 +20,7 @@
         <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
         <div>
             <c:if test="${fname ne ''}">
-            <img src="${baseURL}${fname}${vd.uuid}.${fext}" class="img-fluid" style="height: 70px">
+            <img src="${baseURL}${fname}${vd.uuid}.${fext}" class="img-fluid" style="height: 70px; width: 70px">
             </c:if>
         </div>
     </div>

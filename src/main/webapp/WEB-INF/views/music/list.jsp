@@ -64,11 +64,11 @@
                 <span>${mc.title}</span>
                 <c:if test="${fname eq ''}">
                     <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png"
-                         width="40" height="40" style="float: right">
+                         width="40" height="40" style="float: right;">
                 </c:if>
                 <c:if test="${fname ne ''}">
                     <img src="${baseURL}${fname}${mc.uuid}.${fext}" width="40" height="40"
-                         id="logo" style="float: right">
+                         id="logo" style="float: right; border-radius: 10px">
                 </c:if>
             </div>
             <div class="item-title">

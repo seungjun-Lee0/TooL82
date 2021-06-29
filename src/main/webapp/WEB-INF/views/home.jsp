@@ -3,6 +3,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
+<c:set var="baseURL" value="http://localhost/cdn/" />
+
+
+
+
 <script src="//code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/personal/modal.css">
 
@@ -25,6 +31,10 @@
     <div class="item-boundary">
         <div class="item-list">
                 <c:forEach var="hm" items="${hms}">
+                    <c:set var="f" value="${fn:split(hm.fnames, '/')[0]}" />
+                    <c:set var="pos" value="${fn:indexOf(f,'.')}" />
+                    <c:set var="fname" value="${fn:substring(f, 0, pos)}" />
+                    <c:set var="fext" value="${fn:substring(f, pos+1, fn:length(f))}" />
                     <c:if test="${hm.category eq 'm'}">
                         <c:set var="category" value="music" />
                     </c:if>
@@ -40,7 +50,14 @@
                     <div class="item-row <c:if test="${hm.party eq hm.cpartied}">disabled</c:if>">
                         <div class="item-type">
                             <span>${hm.title}</span>
-                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png" alt="" id="logo" style="float: right"/>
+                            <c:if test="${fname eq ''}">
+                                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png"
+                                     width="40" height="40" style="float: right">
+                            </c:if>
+                            <c:if test="${fname ne ''}">
+                            <img src="${baseURL}${fname}${hm.uuid}.${fext}" width="40" height="40"
+                                 id="logo" style="float: right; border-radius: 10px">
+                            </c:if>
                         </div>
                         <div class="item-title">
                                 ${fn:substring(hm.userid,0,3)}***
