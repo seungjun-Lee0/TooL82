@@ -33,11 +33,11 @@
             parameterType="map"
             resultType="tool82.spring.project.vo.Product">
         select * from pdetail
-        <if test="ftype == 'buying'">
+        <if test="ftype == 'selling'">
             where sellstat like 0 and title like concat('%', #{fkey}, '%') </if>
-        <if test="ftype == 'buysuss'">
+        <if test="ftype == 'sellsuss'">
             where sellstat like 1 and title like concat('%', #{fkey}, '%') </if>
-        <if test="ftype == 'buyfail'">
+        <if test="ftype == 'sellfail'">
             where sellstat like 2 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
@@ -61,6 +61,8 @@
             where buystat like 1 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buyfail'">
             where buystat like 2 and title like concat('%', #{fkey}, '%') </if>
+        <if test="ftype == 'redeem'">
+            where buystat like 3 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'music'">
@@ -116,6 +118,8 @@
             where buystat like 1 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'buyfail'">
             where buystat like 2 and title like concat('%', #{fkey}, '%') </if>
+        <if test="ftype == 'redeem'">
+            where buystat like 3 and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'video'">
             where category like 'v' and title like concat('%', #{fkey}, '%') </if>
         <if test="ftype == 'music'">

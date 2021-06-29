@@ -58,6 +58,7 @@
                         <option value="buying">&nbsp;&nbsp;&nbsp;진행중</option>
                         <option value="buysuss">&nbsp;&nbsp;&nbsp;구매완료</option>
                         <option value="buyfail">&nbsp;&nbsp;&nbsp;구매실패</option>
+                        <option value="redeem">&nbsp;&nbsp;&nbsp;코드발송완료</option>
                     </select>
                     <button type="button" class="button mini border button-purple" id="findbuybtn">검색</button>
                 </div>
