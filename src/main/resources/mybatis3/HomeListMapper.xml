@@ -16,7 +16,7 @@
 
     <select id="selectNoticeList" statementType="PREPARED"
             resultType="tool82.spring.project.vo.Notice">
-        select bno, title, regdate, views from notice order by bno desc limit 5
+        select bno, title, regdate, views from notice order by bno desc limit 6;
     </select>
 
 </mapper>

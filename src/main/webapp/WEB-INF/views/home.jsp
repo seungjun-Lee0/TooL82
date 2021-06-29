@@ -156,7 +156,14 @@
                 <td>
                     <div class="subject">
                         <a href="/notice/detail?bno=${hmn.bno}">
-                                ${hmn.title}																													</a>
+                            <c:if test="${fn:length(hmn.title) gt 25}">
+                                ${fn:substring(hmn.title,0,25)}...
+                            </c:if>
+                            <c:if test="${fn:length(hmn.title) le 25}">
+                                ${hmn.title}
+                            </c:if>
+                            <div style="height: 5px"><br></div>
+                        </a>																													</a>
                     </div>
                 </td>
                 <td>${fn:substring(hmn.regdate,0,10)}</td>
