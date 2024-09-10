@@ -1,0 +1,148 @@
+@model IEnumerable<TooL82.Web.Models.Entities.Product>
+@{
+    ViewData["Title"] = "홈";
+}
+
+<link rel="stylesheet" href="~/css/personal/modal.css" />
+
+<style>
+    .cologo li {
+        border: solid 1px #cec8f1;
+        float: left;
+    }
+</style>
+
+<div class="title-wrap">
+    <div class="title">곧 <span class="text-purple">마감</span> 되는 공구 목록
+        <span class="title-text">&nbsp;&nbsp;&nbsp;<span class="text-purple">8282</span> 서두르세요!!</span>
+    </div>
+</div>
+
+<div class="item-slide party">
+    <a href="" class="slide-navi prev"></a>
+    <a href="" class="slide-navi next"></a>
+    <div class="item-boundary">
+        <div class="item-list">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var product in Model.OrderBy(p => p.EDate).Take(8))
+                {
+                    var isClosed = product.Party == product.CPartied;
+                    var disabledClass = isClosed ? "disabled" : "";
+                    var categoryPath = product.Category switch {
+                        "g" => "Product",
+                        "m" => "Product",
+                        "v" => "Product",
+                        "u" => "Product",
+                        _ => "Product"
+                    };
+                    var maskedUserId = product.UserId?.Length > 3
+                        ? product.UserId.Substring(0, 3) + "***"
+                        : product.UserId + "***";
+
+                    <div class="item-row @disabledClass">
+                        <div class="item-type">
+                            <span>@product.Title</span>
+                            @if (string.IsNullOrEmpty(product.FNames))
+                            {
+                                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png"
+                                     width="40" height="40" style="float: right" />
+                            }
+                            else
+                            {
+                                <img src="/uploads/@(product.FNames.Split(',')[0])" width="40" height="40"
+                                     style="float: right; border-radius: 10px" />
+                            }
+                        </div>
+                        <div class="item-title">@maskedUserId</div>
+                        <div>
+                            @if (isClosed)
+                            {
+                                <div class="detail-sale-badge">
+                                    <span class="join-ended">인원 모집 완료! 새로운 공구를 기다려주세요!</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <progress value="@product.PartyRate" max="100" id="jb"></progress>
+                            }
+                        </div>
+                        <div class="item-info">
+                            <div class="item-price">
+                                <del>@product.OPrice.ToString("N0")원</del>
+                                <span class="Rajdhani">@product.SPrice.ToString("N0")</span>원
+                                <span class="sale-badge">@product.PriceRate% 할인</span>
+                            </div>
+                            <div class="item-quantity">
+                                @if (!isClosed)
+                                {
+                                    <span class="Rajdhani">@product.CPartied / @product.Party</span><text>명</text>
+                                }
+                            </div>
+                            <div class="item-date">
+                                @product.EDate.ToString("yyyy-MM-dd")<span class="pc-inline">까지</span>
+                                @if (!isClosed)
+                                {
+                                    <text>(</text><strong>@product.LeftDays</strong><text>일)</text>
+                                }
+                            </div>
+                        </div>
+                        @if (!isClosed)
+                        {
+                            <a href="@Url.Action("Detail", "Product", new { pno = product.Pno, category = product.Category })" class="item-button"></a>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-info">등록된 상품이 없습니다.</div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- event -->
+<div class="event-slide event">
+    <a href="" class="slide-navi prev"></a>
+    <a href="" class="slide-navi next"></a>
+    <div class="event-boundary">
+        <div class="event-list" style="padding-bottom: 5px;">
+            <img src="~/banner/tool82_banner1.png" alt="banner1" />
+        </div>
+        <div class="event-list">
+            <img src="~/banner/tool82_banner2.png" alt="banner2" />
+        </div>
+    </div>
+    <div class="indicator"></div>
+</div>
+
+<!-- recommend -->
+<div class="title">TooL82 <span class="text-purple">추천</span> 신작게임 트레일러!!</div>
+<div class="recommand-list" style="padding-bottom: 50px">
+    <div class="popupModalVideo">
+        <a data-video="ssrNcwxALS4"><img src="https://img.youtube.com/vi/ssrNcwxALS4/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="bMcrXmaocv0"><img src="https://img.youtube.com/vi/bMcrXmaocv0/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="55PRv_e00wc"><img src="https://img.youtube.com/vi/55PRv_e00wc/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="3TL1ueQlBz8"><img src="https://img.youtube.com/vi/3TL1ueQlBz8/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
+</div>
+
+<div class="form-half form-round signup" style="height: 350px; margin-left: 30px">
+    <div class="title" style="margin-top: 0px"><span class="title-text">협력사</span></div>
+    <ul class="cologo" style="margin-top: 40px; margin-left: 5px;">
+        <li><img src="~/logo/Ableton.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Acidpro.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Autocad.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Finale.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Nintendo.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Notion6.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Picsart.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Playstation.png" width="85" height="85" /></li>
+        <li><img src="~/logo/Solidwork.jpg" width="85" height="85" /></li>
+        <li><img src="~/logo/Steam.jpeg" width="85" height="85" /></li>
+    </ul>
+</div>
