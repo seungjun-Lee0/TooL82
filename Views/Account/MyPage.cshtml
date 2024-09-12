@@ -1,0 +1,79 @@
+@model TooL82.Web.Models.Entities.Member
+@{
+    ViewData["Title"] = "마이페이지";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">내 정보</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <th>이름</th>
+                        <td>@Model?.Name</td>
+                    </tr>
+                    <tr>
+                        <th>아이디</th>
+                        <td>@Model?.UserId</td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td>@Model?.Email</td>
+                    </tr>
+                    <tr>
+                        <th>가입일</th>
+                        <td>@Model?.RegDate.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr>
+                        <th>판매자</th>
+                        <td>@(Model?.SellerYn == "Y" ? "예" : "아니오")</td>
+                    </tr>
+                </table>
+                <a href="@Url.Action("ModifyInfo", "Account")" class="btn btn-outline-primary btn-block">정보 수정</a>
+                <a href="@Url.Action("Remove", "Account")" class="btn btn-outline-danger btn-block">회원 탈퇴</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">내 구매/판매</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="@Url.Action("BuyerPage", "Purchase")" class="btn btn-info btn-lg btn-block">
+                            <i class="fas fa-shopping-cart"></i> 구매 목록
+                        </a>
+                    </div>
+                    @if (Model?.SellerYn == "Y")
+                    {
+                        <div class="col-md-6">
+                            <a href="@Url.Action("SellerPage", "Purchase")" class="btn btn-success btn-lg btn-block">
+                                <i class="fas fa-store"></i> 판매 목록
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @if (Model?.SellerYn == "Y")
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">판매자 메뉴</h5>
+                </div>
+                <div class="card-body">
+                    <a href="@Url.Action("Create", "Sale")" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> 새 상품 등록
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

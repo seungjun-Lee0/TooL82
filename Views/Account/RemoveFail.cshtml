@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "탈퇴 실패";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0">탈퇴 실패</h4>
+            </div>
+            <div class="card-body text-center">
+                <p class="lead">@TempData["ErrorMessage"]</p>
+                <a href="@Url.Action("MyPage")" class="btn btn-primary">마이페이지로 이동</a>
+            </div>
+        </div>
+    </div>
+</div>
