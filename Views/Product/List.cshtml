@@ -1,0 +1,146 @@
+@model IEnumerable<TooL82.Web.Models.Entities.Product>
+@{
+    var category = ViewBag.Category as string ?? "g";
+    var categoryName = category switch {
+        "g" => "게임",
+        "m" => "음악",
+        "v" => "영상",
+        "u" => "유틸",
+        _ => "전체"
+    };
+    ViewData["Title"] = categoryName + " 목록";
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+<link rel="stylesheet" href="~/css/personal/modal.css" />
+
+<div class="title">Coming Soon</div>
+<div class="recommand-list">
+    <div class="popupModalVideo">
+        <a data-video="ZaSTQbfQuQg"><img src="https://img.youtube.com/vi/ZaSTQbfQuQg/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="-kiZBSp87Qw"><img src="https://img.youtube.com/vi/-kiZBSp87Qw/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="ULFAEnoc5jA"><img src="https://img.youtube.com/vi/ULFAEnoc5jA/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+        <a data-video="UNch5YTXUc4"><img src="https://img.youtube.com/vi/UNch5YTXUc4/mqdefault.jpg" class="recommand-thumb popup-youtube" /></a>
+    </div>
+    <div class="video_modal_popup">
+        <div class="video_modal_popup-closer"></div>
+    </div>
+</div>
+
+<div class="title-wrap">
+    <div class="title">
+        <a href="@Url.Action("List", new { category })" class="text">@categoryName</a>
+    </div>
+</div>
+
+<div class="item-list">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var product in Model)
+        {
+            var isClosed = product.Party == product.CPartied;
+            var isExpired = product.LeftDays < 0 && !isClosed;
+            var disabledClass = (isClosed || isExpired) ? "disabled" : "";
+            var maskedUserId = product.UserId?.Length > 3
+                ? product.UserId.Substring(0, 3) + "***"
+                : product.UserId + "***";
+
+            <div class="item-row @disabledClass">
+                <div class="item-type">
+                    <span>@product.Title</span>
+                    @if (string.IsNullOrEmpty(product.FNames))
+                    {
+                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/icon-butsicon-small-glay.png"
+                             width="40" height="40" style="float: right" />
+                    }
+                    else
+                    {
+                        <img src="/uploads/@(product.FNames.Split(',')[0])" width="40" height="40"
+                             style="float: right; border-radius: 10px" />
+                    }
+                </div>
+                <div class="item-title">@maskedUserId</div>
+                <div>
+                    @if (isClosed)
+                    {
+                        <div class="detail-sale-badge">
+                            <span class="join-ended">인원 모집 완료! 새로운 공구를 기다려주세요!</span>
+                        </div>
+                    }
+                    else if (isExpired)
+                    {
+                        <div class="detail-sale-badge">
+                            <span class="join-ended">인원 모집 실패! 새로운 공구를 기다려주세요!</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <progress value="@product.PartyRate" max="100" id="jb"></progress>
+                    }
+                </div>
+                <div class="item-info">
+                    <div class="item-price">
+                        <del>@product.OPrice.ToString("N0")원</del>
+                        <span class="Rajdhani">@product.SPrice.ToString("N0")</span>원
+                        <span class="sale-badge">@product.PriceRate% 할인</span>
+                    </div>
+                    <div class="item-quantity">
+                        @if (!isClosed && !isExpired)
+                        {
+                            <span class="Rajdhani">@product.CPartied / @product.Party</span><text>명</text>
+                        }
+                    </div>
+                    <div class="item-date">
+                        @product.EDate.ToString("yyyy-MM-dd")<span class="pc-inline">까지</span>
+                        @if (!isClosed && !isExpired)
+                        {
+                            <text>(</text><strong>@product.LeftDays</strong><text>일)</text>
+                        }
+                    </div>
+                </div>
+                @if (!isClosed && !isExpired)
+                {
+                    <a href="@Url.Action("Detail", new { pno = product.Pno, category = product.Category })" class="item-button"></a>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">등록된 상품이 없습니다.</div>
+    }
+</div>
+
+<div class="item-more">
+    <button id="tryit" title="더보기">더보기</button>
+</div>
+
+<!-- 페이지네이션 -->
+@if (totalPages > 1)
+{
+    <div class="apages">
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("List", new { category, page = currentPage - 1 })">이전</a>
+                    </li>
+                }
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("List", new { category, page = i })">@i</a>
+                    </li>
+                }
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("List", new { category, page = currentPage + 1 })">다음</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+}
