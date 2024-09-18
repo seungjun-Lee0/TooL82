@@ -1,0 +1,121 @@
+@model IEnumerable<TooL82.Web.Models.Entities.Product>
+@{
+    ViewData["Title"] = "판매 목록";
+    var currentPage = ViewBag.CurrentPage ?? 1;
+    var totalPages = ViewBag.TotalPages ?? 1;
+    var filterType = ViewBag.FilterType as string ?? "";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>내 판매 목록</h2>
+    <a href="@Url.Action("Create", "Sale")" class="btn btn-primary">
+        <i class="fas fa-plus"></i> 새 상품 등록
+    </a>
+</div>
+
+<!-- 검색 -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form asp-action="SellerSearch" method="get" class="form-inline">
+            <select name="ftype" class="form-control mr-2">
+                <option value="">전체</option>
+                @if (filterType == "selling") { <option value="selling" selected>진행중</option> } else { <option value="selling">진행중</option> }
+                @if (filterType == "sellsuss") { <option value="sellsuss" selected>성공</option> } else { <option value="sellsuss">성공</option> }
+                @if (filterType == "sellfail") { <option value="sellfail" selected>실패</option> } else { <option value="sellfail">실패</option> }
+                @if (filterType == "game") { <option value="game" selected>게임</option> } else { <option value="game">게임</option> }
+                @if (filterType == "music") { <option value="music" selected>음악</option> } else { <option value="music">음악</option> }
+                @if (filterType == "video") { <option value="video" selected>영상</option> } else { <option value="video">영상</option> }
+                @if (filterType == "util") { <option value="util" selected>유틸</option> } else { <option value="util">유틸</option> }
+            </select>
+            <input type="text" name="fkey" class="form-control mr-2" placeholder="검색어" value="@ViewBag.FilterKey" />
+            <button type="submit" class="btn btn-primary">검색</button>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>카테고리</th>
+                        <th>상품명</th>
+                        <th>가격</th>
+                        <th>참여/목표</th>
+                        <th>마감일</th>
+                        <th>상태</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var categoryName = item.Category switch {
+                            "g" => "게임",
+                            "m" => "음악",
+                            "v" => "영상",
+                            "u" => "유틸",
+                            _ => "기타"
+                        };
+                        var statusBadge = item.SellStat switch {
+                            0 => "badge-warning",
+                            1 => "badge-success",
+                            2 => "badge-danger",
+                            _ => "badge-secondary"
+                        };
+                        var statusText = item.SellStat switch {
+                            0 => "진행중",
+                            1 => "성공",
+                            2 => "실패",
+                            _ => "알수없음"
+                        };
+
+                        <tr>
+                            <td><span class="badge badge-secondary">@categoryName</span></td>
+                            <td>
+                                <a href="@Url.Action("Detail", "Product", new { pno = item.Pno, category = item.Category })">
+                                    @item.Title
+                                </a>
+                            </td>
+                            <td>@item.SPrice.ToString("N0")원</td>
+                            <td>@item.CPartied / @item.Party 명</td>
+                            <td>@item.EDate.ToString("yyyy-MM-dd")</td>
+                            <td><span class="badge @statusBadge">@statusText</span></td>
+                            <td>
+                                @if (item.SellStat == 0)
+                                {
+                                    <a href="@Url.Action("Edit", "Sale", new { pno = item.Pno })" class="btn btn-sm btn-outline-primary">수정</a>
+                                    <form asp-action="Delete" asp-controller="Sale" method="post" class="d-inline">
+                                        <input type="hidden" name="pno" value="@item.Pno" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">판매 중인 상품이 없습니다.</div>
+        }
+    </div>
+</div>
+
+<!-- 페이지네이션 -->
+@if ((int)totalPages > 1)
+{
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= (int)totalPages; i++)
+            {
+                <li class="page-item @((int)currentPage == i ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("SellerPage", new { page = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
