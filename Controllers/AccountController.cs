@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using TooL82.Web.Infrastructure;
 using TooL82.Web.Models.Entities;
 using TooL82.Web.Models.ViewModels;
 using TooL82.Web.Services.Interfaces;
@@ -31,6 +32,7 @@ public class AccountController : Controller
 
     // 회원가입 처리
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if (!ModelState.IsValid)
@@ -66,6 +68,7 @@ public class AccountController : Controller
 
     // 로그인 처리
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
@@ -100,25 +103,19 @@ public class AccountController : Controller
 
     // 마이페이지
     [HttpGet]
+    [SessionAuthorize]
     public IActionResult MyPage()
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
-            return RedirectToAction("Login");
-
-        var member = JsonSerializer.Deserialize<Member>(memberJson);
+        var member = HttpContext.Items["CurrentMember"] as Member;
         return View(member);
     }
 
     // 정보 수정 페이지
     [HttpGet]
+    [SessionAuthorize]
     public IActionResult ModifyInfo()
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
-            return RedirectToAction("Login");
-
-        var member = JsonSerializer.Deserialize<Member>(memberJson);
+        var member = HttpContext.Items["CurrentMember"] as Member;
         var model = new ModifyInfoViewModel
         {
             UserId = member?.UserId ?? "",
@@ -131,6 +128,8 @@ public class AccountController : Controller
 
     // 정보 수정 처리
     [HttpPost]
+    [SessionAuthorize]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> ModifyInfo(ModifyInfoViewModel model)
     {
         if (!ModelState.IsValid)
@@ -159,24 +158,19 @@ public class AccountController : Controller
 
     // 회원 탈퇴 페이지
     [HttpGet]
+    [SessionAuthorize]
     public IActionResult Remove()
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
-            return RedirectToAction("Login");
-
         return View();
     }
 
     // 회원 탈퇴 처리
     [HttpPost]
+    [SessionAuthorize]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Remove(string password)
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
-            return RedirectToAction("Login");
-
-        var member = JsonSerializer.Deserialize<Member>(memberJson);
+        var member = HttpContext.Items["CurrentMember"] as Member;
         if (member == null)
             return RedirectToAction("Login");
 

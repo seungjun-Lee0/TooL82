@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using TooL82.Web.Infrastructure;
 using TooL82.Web.Models.Entities;
 using TooL82.Web.Services.Interfaces;
 
@@ -20,9 +21,21 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> List(string category = "g", int page = 1)
     {
+        // 카테고리 유효성 검증
+        var validCategories = new[] { "g", "m", "v", "u" };
+        if (!validCategories.Contains(category.ToLower()))
+        {
+            category = "g";
+        }
+
+        // 페이지 번호 유효성 검증
+        if (page < 1) page = 1;
+
         var products = await _productService.GetProductsAsync(category, page);
         var totalCount = await _productService.GetProductCountAsync(category);
         var totalPages = (int)Math.Ceiling(totalCount / 8.0);
+
+        if (page > totalPages && totalPages > 0) page = totalPages;
 
         ViewBag.Category = category;
         ViewBag.CurrentPage = page;
@@ -46,18 +59,23 @@ public class ProductController : Controller
 
     // 구매 신청 (공동구매 참여)
     [HttpPost]
+    [SessionAuthorize]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Buy(int pno, string category, string title, DateTime edate, int sprice)
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
+        var member = HttpContext.Items["CurrentMember"] as Member;
+        if (member == null)
         {
             TempData["ErrorMessage"] = "로그인이 필요합니다.";
             return RedirectToAction("Login", "Account");
         }
 
-        var member = JsonSerializer.Deserialize<Member>(memberJson);
-        if (member == null)
-            return RedirectToAction("Login", "Account");
+        // 마감일 검증
+        if (edate <= DateTime.Now)
+        {
+            TempData["ErrorMessage"] = "이미 마감된 상품입니다.";
+            return RedirectToAction("Detail", new { pno, category });
+        }
 
         // 중복 구매 확인
         if (await _purchaseService.IsDuplicatePurchaseAsync(pno, member.Mno))

@@ -1,10 +1,11 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using TooL82.Web.Infrastructure;
 using TooL82.Web.Models.Entities;
 using TooL82.Web.Services.Interfaces;
 
 namespace TooL82.Web.Controllers;
 
+[SessionAuthorize]
 public class PurchaseController : Controller
 {
     private readonly IPurchaseService _purchaseService;
@@ -14,13 +15,9 @@ public class PurchaseController : Controller
         _purchaseService = purchaseService;
     }
 
-    private Member? GetCurrentMember()
+    private Member GetCurrentMember()
     {
-        var memberJson = HttpContext.Session.GetString("MyInfo");
-        if (string.IsNullOrEmpty(memberJson))
-            return null;
-
-        return JsonSerializer.Deserialize<Member>(memberJson);
+        return (HttpContext.Items["CurrentMember"] as Member)!;
     }
 
     // 구매자 페이지 (구매 목록)
@@ -28,12 +25,16 @@ public class PurchaseController : Controller
     public async Task<IActionResult> BuyerPage(int page = 1)
     {
         var member = GetCurrentMember();
-        if (member == null)
-            return RedirectToAction("Login", "Account");
+
+        // 페이지 번호 유효성 검증
+        if (page < 1) page = 1;
 
         var buyList = await _purchaseService.GetBuyListAsync(member.Mno, page);
         var totalCount = await _purchaseService.GetBuyCountAsync(member.Mno);
         var totalPages = (int)Math.Ceiling(totalCount / 10.0);
+
+        // 페이지가 범위를 벗어나면 조정
+        if (page > totalPages && totalPages > 0) page = totalPages;
 
         ViewBag.CurrentPage = page;
         ViewBag.TotalPages = totalPages;
@@ -47,8 +48,6 @@ public class PurchaseController : Controller
     public async Task<IActionResult> BuyerSearch(string ftype, string fkey)
     {
         var member = GetCurrentMember();
-        if (member == null)
-            return RedirectToAction("Login", "Account");
 
         var buyList = await _purchaseService.SearchBuyListAsync(member.Mno, ftype, fkey ?? "");
 
@@ -60,21 +59,19 @@ public class PurchaseController : Controller
 
     // 판매자 페이지 (판매 목록)
     [HttpGet]
+    [SessionAuthorize(RequireSeller = true)]
     public async Task<IActionResult> SellerPage(int page = 1)
     {
         var member = GetCurrentMember();
-        if (member == null)
-            return RedirectToAction("Login", "Account");
 
-        if (member.SellerYn != "Y")
-        {
-            TempData["ErrorMessage"] = "판매자만 이용할 수 있습니다.";
-            return RedirectToAction("MyPage", "Account");
-        }
+        // 페이지 번호 유효성 검증
+        if (page < 1) page = 1;
 
         var sellList = await _purchaseService.GetSellListAsync(member.Mno, page);
         var totalCount = await _purchaseService.GetSellCountAsync(member.Mno);
         var totalPages = (int)Math.Ceiling(totalCount / 10.0);
+
+        if (page > totalPages && totalPages > 0) page = totalPages;
 
         ViewBag.CurrentPage = page;
         ViewBag.TotalPages = totalPages;
@@ -85,17 +82,10 @@ public class PurchaseController : Controller
 
     // 판매 목록 검색
     [HttpGet]
+    [SessionAuthorize(RequireSeller = true)]
     public async Task<IActionResult> SellerSearch(string ftype, string fkey)
     {
         var member = GetCurrentMember();
-        if (member == null)
-            return RedirectToAction("Login", "Account");
-
-        if (member.SellerYn != "Y")
-        {
-            TempData["ErrorMessage"] = "판매자만 이용할 수 있습니다.";
-            return RedirectToAction("MyPage", "Account");
-        }
 
         var sellList = await _purchaseService.SearchSellListAsync(member.Mno, ftype, fkey ?? "");
 

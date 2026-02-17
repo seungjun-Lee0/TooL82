@@ -12,7 +12,7 @@ A web platform for group buying software licenses.
 
 ## Tech Stack
 
-- **Framework**: ASP.NET Core MVC (.NET 8)
+- **Framework**: ASP.NET Core MVC (.NET 10)
 - **Database**: SQL Server (LocalDB)
 - **ORM**: Entity Framework Core
 - **Authentication**: Session-based authentication
@@ -74,7 +74,7 @@ Open your browser and navigate to `https://localhost:5001` or `http://localhost:
 
 ## 기술 스택
 
-- **프레임워크**: ASP.NET Core MVC (.NET 8)
+- **프레임워크**: ASP.NET Core MVC (.NET 10)
 - **데이터베이스**: SQL Server (LocalDB)
 - **ORM**: Entity Framework Core
 - **인증**: 세션 기반 인증
